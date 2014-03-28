@@ -8,7 +8,7 @@ categories: [VirtualBox, XFCE]
 
 I love VirtualBox. I need Windows in order to run some programs (read: games) so VirtualBox lets me run Linux when I need it. Sometimes, I need to use more screen space -- I want a terminal on one window and my web browser/IDE on the other.
 
-First of all, you want to go to your VM's settings and increase the monitor account. You can only do this when the VM is shut down.
+First of all, you want to go to your VM's settings and increase the monitor amount. You can only do this when the VM is shut down.
 
 ![Set the settings](http://i.imgur.com/Zf7U04J.png)
 
