@@ -23,6 +23,6 @@ If this does not work, you can also try this:
 tmux set -g status-right '#(/usr/local/share/python/powerline tmux right)'
 ```
 
-This uses powerline as if you installed it as root.
+This uses powerline if you installed it as root.
 
 Source: [an issue on the Github Powerline repository](https://github.com/Lokaltog/powerline/issues/150)
