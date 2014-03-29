@@ -17,3 +17,5 @@ I did a bit of Googling and found that I needed to install the PowerlineSymbols 
 3. Download `10-powerline-symbols.conf` to your `~/.config/fontconfig/conf.d/` using `curl https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf -L >> ~/config/fontconfig/conf.d/10-powerline-symbols.conf`.
 
 Once you've done things, this should work. If not, you may need to restart your terminal or even your entire computer. You can also change your theme to the `agnoster` theme by changing your theme in your `~/.zshrc`.
+
+Source: [Powerline documentation](http://powerline.readthedocs.org/en/latest/installation/linux.html)
