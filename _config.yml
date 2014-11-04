@@ -2,7 +2,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://simplyian.com/
+url: http://simplyian.com/simplyian
 title: Simply Ian
 subtitle: The personal blog of Ian Macalinao
 author: Ian Macalinao
@@ -33,12 +33,11 @@ destination: public/simplyian
 plugins: plugins
 code_dir: downloads/code
 category_dir: blog/categories
-markdown: rdiscount
-rdiscount:
-  extensions:
-    - autolink
-    - footnotes
-    - smart
+
+markdown: redcarpet2
+redcarpet:
+    extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
+
 pygments: false # default python pygments have been replaced by pygments.rb
 
 paginate: 10          # Posts per page on the blog index
