@@ -1,98 +1,91 @@
-# ----------------------- #
-#      Main Configs       #
-# ----------------------- #
+# Hexo Configuration
+## Docs: http://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
 
-url: http://simplyian.com/simplyian
-title: Simply Ian
-subtitle: The personal blog of Ian Macalinao
+# Site
+title: Simply Ian...
+subtitle: The musings of a young software engineer
+description: The personal blog of Ian Macalinao, a software developer, designer, and entrepreneur from Dallas, Texas.
 author: Ian Macalinao
-simple_search: https://www.google.com/search
-description: The personal blog of Ian Macalinao. Covers technology topics including Java, Linux, Node, and whatever I'm doing at the moment.
+email: me@ian.pwj
+language: en-US
 
-# Default date format is "ordinal" (resulting in "July 22nd 2007")
-# You can customize the format as defined in
-# http://www.ruby-doc.org/core-1.9.2/Time.html#method-i-strftime
-# Additionally, %o will give you the ordinal representation of the day
-date_format: "ordinal"
-
-# RSS / Email (optional) subscription links (change if using something like Feedburner)
-subscribe_rss: /atom.xml
-subscribe_email:
-# RSS feeds can list your email address if you like
-email:
-
-# ----------------------- #
-#    Jekyll & Plugins     #
-# ----------------------- #
-
-# If publishing to a subdirectory as in http://site.com/project set 'root: /project'
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://simplyian.com
 root: /
-permalink: /blog/:year/:month/:day/:title/
-source: source
-destination: public/simplyian
-plugins: plugins
+permalink: :year/:month/:day/:title/
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
 code_dir: downloads/code
-category_dir: blog/categories
+permalink_defaults:
 
-markdown: redcarpet
-redcarpet:
-    extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
+# Directory
+source_dir: source
+public_dir: public
 
-paginate: 10          # Posts per page on the blog index
-paginate_path: "posts/:num"  # Directory base for pagination URLs eg. /posts/2/
-recent_posts: 5       # Posts in the sidebar Recent Posts section
-excerpt_link: "Read on &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
-excerpt_separator: "<!--more-->"
+# Writing
+new_post_name: :year-:month-:day-:title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+highlight:
+  enable: true
+  line_number: true
+  tab_replace:
 
-titlecase: true       # Converts page and post titles to titlecase
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
 
-# list each of the sidebar modules you want to include, in the order you want them to appear.
-# To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
+# Archives
+## 2: Enable pagination
+## 1: Disable pagination
+## 0: Fully Disable
+archive: 2
+category: 2
+tag: 2
 
-# Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
-# and add an array with the asides you want to use.
-# blog_index_asides:
-# post_asides:
-# page_asides:
+# Server
+## Hexo uses Connect as a server
+## You can customize the logger format as defined in
+## http://www.senchalabs.org/connect/logger.html
+port: 4000
+server_ip: 0.0.0.0
+logger: false
+logger_format: dev
 
-# ----------------------- #
-#   3rd Party Settings    #
-# ----------------------- #
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: MMM D YYYY
+time_format: H:mm:ss
 
-# Github repositories
-github_user: simplyianm
-github_repo_count: 4
-github_show_profile_link: true
-github_skip_forks: true
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 10
+pagination_dir: page
 
-# Twitter
-twitter_user: simplyianm
-twitter_tweet_button: true
+# Disqus
+disqus_shortname: simplyian
 
-# Google +1
-google_plus_one: true
-google_plus_one_size: medium
+# Extensions
+## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
+## Themes: https://github.com/hexojs/hexo/wiki/Themes
+theme: kael
+exclude_generator:
 
-# Google Plus Profile
-# Hidden: No visible button, just add author information to search results
-googleplus_user: +IanMacalinao
-googleplus_hidden: false
-
-# Pinboard
-pinboard_user:
-pinboard_count: 3
-
-# Delicious
-delicious_user:
-delicious_count: 3
-
-# Disqus Comments
-disqus_short_name: simplyian
-disqus_show_comment_count: true
-
-# Google Analytics
-google_analytics_tracking_id:
-
-# Facebook Like
-facebook_like: true
+# Deployment
+## Docs: http://hexo.io/docs/deployment.html
+deploy:
+  type: github
+  repo: https://github.com/simplyianm/simplyian.com.git
+  branch: gh-pages
+  message: Deploy
