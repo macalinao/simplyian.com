@@ -1,6 +1,10 @@
 title: Creating a Todo app on the MEAN stack using Preston
 date: 2014-12-20 18:34:19
-tags: preston, rest, MEAN, Node.js
+tags:
+- preston
+- rest
+- MEAN
+- Node.js
 ---
 
 [Preston][preston] is an extremely powerful library for creating RESTful applications that use Mongoose models. In this tutorial, I'll be hooking up the [AngularJS TodoMVC app][angular-todomvc] to a Preston-powered backend.
