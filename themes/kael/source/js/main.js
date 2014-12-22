@@ -73,7 +73,6 @@ var loadInlineComment = function(container, id) {
   DUOSHUO.EmbedThread(el);
   $(container).append(el);
 }
-}
 
 //    Multiple DUOSHUO threads for PJAX END
 
