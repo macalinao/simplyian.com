@@ -1,0 +1,3 @@
+[submodule "themes/simplyian"]
+	path = themes/simplyian
+	url = git://github.com/simplyianm/hexo-theme-simplyian.git
