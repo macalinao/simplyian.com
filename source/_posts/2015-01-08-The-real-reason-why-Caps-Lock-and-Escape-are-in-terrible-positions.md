@@ -26,9 +26,9 @@ This 101 Enhanced Keyboard soon became the de-facto standard for keyboard layout
 
 ## How the Escape key was placed in the worst possible position
 
-Meanwhile, the Escape key was placed on the very far top left on the keyboard, meant to be used as much as much as the function keys. It was created in the 1960's to allow programmers to switch from one type code to another.
+Meanwhile, the Escape key was placed on the very far top left on the keyboard, meant to be used as much as much as the function keys. It was created in the 1960's to allow programmers to switch from one type of code to another.
 
-However, once this made no sense, Windows began using the key to close dialogs, mostly to mean "Stop". Other operating systems followed, and Escape became the key to exit or suspend the program in some sort of way.
+However, once this made no sense for the general user, Windows began using the key to close dialogs, mostly to mean "Stop". Other operating systems followed, and Escape became the key to exit or suspend the program in some sort of way.
 
 ## Why Vi uses the Escape key to switch modes
 
