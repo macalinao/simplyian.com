@@ -7,7 +7,7 @@ title: Simply Ian...
 subtitle: The musings of a young software engineer
 description: The personal blog of Ian Macalinao, a software developer, designer, and entrepreneur from Dallas, Texas.
 author: Ian Macalinao
-email: me@ian.pwj
+email: me@ian.pw
 language: en-US
 
 # URL
@@ -79,7 +79,7 @@ disqus_shortname: simplyian
 # Extensions
 ## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
 ## Themes: https://github.com/hexojs/hexo/wiki/Themes
-theme: kael
+theme: simplyian
 exclude_generator:
 
 # Deployment
