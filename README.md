@@ -11,5 +11,11 @@ Last, run `git submodule update --init` to install [my theme][hexo-theme-simplyi
 
 Publishing is done through [Hexo][hexo], an awesome open-source blogging engine on Node.js. I suggest you check it out!
 
+## Writing a post
+
+First run `hexo new post "<title>"` to create a `.md` file. This file will contain your blog post.
+
+To publish the post, run `hexo g -d` to generate and deploy the new static files.
+
 [hexo]: http://hexo.io/
 [hexo-theme-simplyian]: https://github.com/simplyianm/hexo-theme-simplyian
