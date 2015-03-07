@@ -1,4 +1,4 @@
-title: Hacking GMail to use custom domains for free
+title: Hacking Gmail to use custom domains for free
 date: 2015-01-07 13:00:22
 tags:
 - hack
@@ -7,17 +7,17 @@ tags:
 - frugal
 ---
 
-It's pretty much common knowledge that GMail is awesome. It's fast, connects seamlessly with the rest of your Google services such as Drive, has a cool app called [Inbox][inbox], and is overall an extremely powerful email service. However, to use it with a custom domain, you need to purchase [Google Apps][google-apps] for either $5 or $10/month, which for casual users is a bit unnecessary. On top of that, you don't even get all of the features a personal account gets, e.g. Inbox.
+It's pretty much common knowledge that Gmail is awesome. It's fast, connects seamlessly with the rest of your Google services such as Drive, has a cool app called [Inbox][inbox], and is overall an extremely powerful email service. However, to use it with a custom domain, you need to purchase [Google Apps][google-apps] for either $5 or $10/month, which for casual users is a bit unnecessary. On top of that, you don't even get all of the features a personal account gets, e.g. Inbox.
 
-However, there's a free way to use your GMail account with a custom domain: [Mailgun][mailgun].
+However, there's a free way to use your Gmail account with a custom domain: [Mailgun][mailgun].
 
 ![Mailgun Logo][mailgun-logo]
 
-[Mailgun][mailgun] advertises itself as a set of "powerful APIs that enable you to send, receive and track email effortlessly." Reading that description, you may be wondering how a developer tool could allow you to use **GMail with custom domains for free.** Basically, Mailgun has two components that allow you to do this: an email forwarding service and an SMTP server.
+[Mailgun][mailgun] advertises itself as a set of "powerful APIs that enable you to send, receive and track email effortlessly." Reading that description, you may be wondering how a developer tool could allow you to use **Gmail with custom domains for free.** Basically, Mailgun has two components that allow you to do this: an email forwarding service and an SMTP server.
 
 ## Setup
 
-First, [sign up with Mailgun][signup] using your GMail email. **Do not** use your email with your custom domain, as it will cause problems later when you want to verify your account. Once you have clicked the confirm link, log in to the Mailgun website. You should be presented with a dashboard. Now on the right under "Custom Domains", click "Add Domain".
+First, [sign up with Mailgun][signup] using your Gmail email. **Do not** use your email with your custom domain, as it will cause problems later when you want to verify your account. Once you have clicked the confirm link, log in to the Mailgun website. You should be presented with a dashboard. Now on the right under "Custom Domains", click "Add Domain".
 
 ![Add Domain][add-domain]
 
@@ -53,7 +53,7 @@ On this page, click "Manage your SMTP credentials" then "New SMTP Credential" on
 
 Type in the desired SMTP credentials.
 
-Next, go to [the Accounts tab in your GMail Settings][gmail-settings-accounts] and click "Add another email address you own". Once you open this window, enter the email address you wish to send from.
+Next, go to [the Accounts tab in your Gmail Settings][gmail-settings-accounts] and click "Add another email address you own". Once you open this window, enter the email address you wish to send from.
 
 ![Add Email][add-email]
 
