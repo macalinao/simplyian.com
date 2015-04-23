@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Simply Ian...]]></title>
+  <subtitle><![CDATA[The musings of a young software engineer]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://simplyian.com/"/>
+  <updated>2015-04-23T19:18:54.000Z</updated>
+  <id>http://simplyian.com/</id>
+  
+  <author>
+    <name><![CDATA[Ian Macalinao]]></name>
+    <email><![CDATA[me@ian.pw]]></email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Using form-horizontal with simple_form in Rails 4]]></title>
+    <link href="http://simplyian.com/2015/04/23/Using-form-horizontal-with-simple-form-in-Rails-4/"/>
+    <id>http://simplyian.com/2015/04/23/Using-form-horizontal-with-simple-form-in-Rails-4/</id>
+    <published>2015-04-23T19:14:44.000Z</published>
+    <updated>2015-04-23T19:18:54.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="https://github.com/plataformatec/simple_form" target="_blank" rel="external">simple_form</a> is a really great gem for generating bootstrap forms. However, you have to<br>do a little extra to get it working with <a href="http://getbootstrap.com/" target="_blank" rel="external">Bootstrap’s</a> <code>form-horizontal</code> class. The<br>README doesn’t mention this, but it’s built in. Just write your form declaration like this:</p>
+<figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span>&lt;%=<span class="ruby"> simple_form_for [<span class="symbol">:admin</span>, <span class="variable">@c</span>], <span class="symbol">html:</span> &#123; <span class="class"><span class="keyword">class</span>: '<span class="title">form</span>-<span class="title">horizontal</span>' &#125;,</span></span><br><span class="line">  <span class="symbol">wrapper:</span> <span class="symbol">:horizontal_form</span> <span class="keyword">do</span> |f| </span>%&gt;<span class="xml"></span><br><span class="line"></span><br><span class="line"># ...form...</span><br><span class="line"></span><br><span class="line"></span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml"></span></span><br></pre></td></tr></table></figure>
+<p>Note the <code>wrapper</code> attribute. This isn’t described in the README, and I had to dig through the<br>code to figure it out.</p>
+<p>Hope this helps someone!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="https://github.com/plataformatec/simple_form" target="_blank" rel="external">simple_form</a> is a really great gem for generatin]]>
+    </summary>
+    
+      <category term="rails" scheme="http://simplyian.com/tags/rails/"/>
+    
+      <category term="web" scheme="http://simplyian.com/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[How to skip all Yaourt prompts on Arch Linux]]></title>
+    <link href="http://simplyian.com/2015/02/15/How-to-skip-all-Yaourt-prompts-on-Arch-Linux/"/>
+    <id>http://simplyian.com/2015/02/15/How-to-skip-all-Yaourt-prompts-on-Arch-Linux/</id>
+    <published>2015-02-15T22:39:31.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="https://wiki.archlinux.org/index.php/yaourt" target="_blank" rel="external">Yaourt</a> is probably the best tool to automatically download and install packages from the <a href="https://aur.archlinux.org/" target="_blank" rel="external">Arch User Repository</a>, also known as AUR. It’s really powerful; however, by default, it prompts you a <strong>LOT</strong> for confirmations of different things, such as checking if you want to install something, if you want to edit the <code>PKGBUILD</code>, etc. As a result, Yaourt is pretty annoying if you’re used to the hands-free nature of most other package managers.</p>
+<p>As it turns out, there is a file you can create called <code>~/.yaourtrc</code> that can change the behavior of Yaourt.</p>
+<p>To turn off all of the prompts, type the following into a new file called <code>~/.yaourtrc</code>:</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">NOCONFIRM=<span class="value"><span class="number">1</span></span></span></span><br><span class="line"><span class="setting">BUILD_NOCONFIRM=<span class="value"><span class="number">1</span></span></span></span><br><span class="line"><span class="setting">EDITFILES=<span class="value"><span class="number">0</span></span></span></span><br></pre></td></tr></table></figure>
+<p>The first line will skip the messages confirming if you really want to install the package.</p>
+<p>The second line will skip the messages asking you if you want to continue the build.</p>
+<p>The third and last line will skip the messages asking if you want to edit the <code>PKGBUILD</code> files.</p>
+<p>When you’re done doing this, Yaourt should now stop being a pain to use. Have fun with your hands-free installs!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="https://wiki.archlinux.org/index.php/yaourt" target="_blank" rel="external">Yaourt</a> is probably the best tool to automaticall]]>
+    </summary>
+    
+      <category term="arch" scheme="http://simplyian.com/tags/arch/"/>
+    
+      <category term="linux" scheme="http://simplyian.com/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Why hard work doesn't matter]]></title>
+    <link href="http://simplyian.com/2015/02/03/Why-hard-work-doesn-t-matter/"/>
+    <id>http://simplyian.com/2015/02/03/Why-hard-work-doesn-t-matter/</id>
+    <published>2015-02-03T16:47:19.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>Hard work pays off.</strong> That expression is always said in today’s society, and it’s considered a good trait to have. However, many people every day work hard, yet they still find themselves struggling to pay bills or live.</p>
+<p>I don’t believe that hard work is what you should strive for. Rather, it should be <strong>valuable work.</strong></p>
+<h2 id="W_=_Fd">W = Fd</h2><p>If you still remember high school, you might remember the equation for work:</p>
+<p><strong>Work = Force * Distance</strong></p>
+<p>The <strong>time your work takes</strong> can be thought of like the <strong>distance</strong> component. Time is constant for everyone; everyone has it in the same amount and can choose however to spend it. We all have the same distance in the work equation. Putting a lot of time into something equates to <strong>hard work</strong>.</p>
+<p>The actual <strong>value of your time</strong> can be thought of like the <strong>force</strong> component. Just like you can apply more force when lifting something, you can learn different skills to increase how much your time work; e.g. you could learn iOS development in order to become more well rounded in order to get better jobs.</p>
+<p>Finally, the <strong>work</strong> component refers to the value of your work; it is the amount of work you output based on your time and the value of your time, the product of force times distance.</p>
+<h2 id="Bounds_to_time_and_value_of_time">Bounds to time and value of time</h2><p>Time is bounded by the laws of the universe: you can only put 24 hours a day into something. You could work extremely hard, yet there is a limit to how hard you can work.</p>
+<p>On the other hand, value of time is unbounded: you can always get better at a skill or hire more people. You can end up like Mark Zuckerberg, where you’re the CEO of one of the biggest technology companies in the world and just tell people what to do, and your time is extremely valuable.</p>
+<p>Despite working extremely hard, if the value of your time is low, you won’t be able to work hard enough in order to get where you want to be. However, if you focus on maximizing the value of your time, the possibilities are limitless.</p>
+<p>Focus on increasing how good you are and how valuable you are as a person rather than spending all of your time on menial tasks just to get quick money, especially if you’re currently in school.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>Hard work pays off.</strong> That expression is always said in today’s society, and it’s considered a good trait to have. However]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Why abstraction is important when constructing algorithms]]></title>
+    <link href="http://simplyian.com/2015/02/02/Why-abstraction-is-important-when-constructing-algorithms/"/>
+    <id>http://simplyian.com/2015/02/02/Why-abstraction-is-important-when-constructing-algorithms/</id>
+    <published>2015-02-02T15:09:16.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p>In order to get better at algorithms (my greatest weakness), I’m currently going through the <a href="https://www.coursera.org/course/algo" target="_blank" rel="external">Stanford algorithm design course</a>. To learn the concepts better, I decided to implement <a href="http://en.wikipedia.org/wiki/Karatsuba_algorithm" target="_blank" rel="external">Karatsuba multiplication</a> in JavaScript. <a href="https://github.com/simplyianm/node-misc-problems/blob/master/src/karatsuba.js" target="_blank" rel="external">(The fruits of my labor can be found on my miscellaneous algorithm GitHub repository.)</a>.</p>
+<p><strong>This algorithm, only 43 lines, took me about an hour to code.</strong> I already knew the details of the algorithm from the video. Why? Because I was prepending the wrong number of zeroes to the number when figuring out where to split the number.</p>
+<p>Why was this happening? Originally, my <code>prependZeroes</code> method was being done inline, and I wasn’t testing it properly.</p>
+<p>Abstraction is important because you can test individual parts of an algorithm to make sure they are correct so you can figure out where your algorithm is failing. It also allows your code to be more symmetrical, making it a lot easier to follow.</p>
+<p>If I had abstracted the prependZeroes method and had written unit tests for that method specifically, this algorithm would have been much faster to write. Instead, I wasted a ton of time writing <code>console.log</code> statements in order to figure out where my bug was.</p>
+<p>Break algorithms up into as many functions/parts as possible, so you can test your algorithms much more easily.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>In order to get better at algorithms (my greatest weakness), I’m currently going through the <a href="https://www.coursera.org/course/alg]]>
+    </summary>
+    
+      <category term="programming" scheme="http://simplyian.com/tags/programming/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[The real reason why Caps Lock and Escape are in terrible positions]]></title>
+    <link href="http://simplyian.com/2015/01/08/The-real-reason-why-Caps-Lock-and-Escape-are-in-terrible-positions/"/>
+    <id>http://simplyian.com/2015/01/08/The-real-reason-why-Caps-Lock-and-Escape-are-in-terrible-positions/</id>
+    <published>2015-01-08T19:41:08.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p>It is a truth universally acknowledged that <strong>the Caps Lock key is completely useless.</strong> I use it about once or twice a year, and that definitely does not warrant it a spot right next to my pinky finger on the home row. It’s in a place that is just as convenient as the Enter key, despite being completely useless.</p>
+<p>Conversely, the Escape key is extremely useful. I use it when watching full screen videos on YouTube, closing chats on Facebook, and using commands in Vim. However, it often is in the worst spot possible to be used extremely frequently: the top left of the keyboard. And on many laptops, it’s tiny.</p>
+<p><img src="/img/chromebook-keyboard.png" alt="Chromebook Keyboard"><br><img src="/img/escape-mac.png" alt="Mac Keyboard"></p>
+<p>For heavy escape users, this is an incredible boon to productivity.</p>
+<h2 id="How_Caps_Lock_got_its_prominent_position">How Caps Lock got its prominent position</h2><p>Back in the days of the typewriter, the Shift key basically shifted some mechanisms in the typewriter to allow you to type another set of characters, usually uppercase. “Shift Lock” was a toggle that basically kept the keyboard in shifted position, and it was located in the same position that Caps Lock is located on most keyboards today.</p>
+<p><img src="/img/typewriter.png" alt="typewriter"></p>
+<p>When the days of computing came around, Caps Lock was moved to where the Control key now is, and the Control key was placed in the location of Caps Lock. However, the Control key was inconvenient to former typewriter users and mainframe users, and the Caps Lock key was moved pack to its original position on the 101 Enhanced Keyboard by IBM.</p>
+<p><img src="/img/101key-ibm.png" alt="101-Key IBM"></p>
+<p>This 101 Enhanced Keyboard soon became the de-facto standard for keyboard layouts, which is why our keyboards have this Caps Lock positioning. <a href="http://www.pcguide.com/ref/kb/layout/stdEnh101-c.html" target="_blank" rel="external">More info on the 101 Enhanced Keyboard can be found here.</a></p>
+<h2 id="How_the_Escape_key_was_placed_in_the_worst_possible_position">How the Escape key was placed in the worst possible position</h2><p>Meanwhile, the Escape key was placed on the very far top left on the keyboard, meant to be used as much as much as the function keys. It was created in the 1960’s to allow programmers to switch from one type of code to another.</p>
+<p>However, once this made no sense for the general user, Windows began using the key to close dialogs, mostly to mean “Stop”. Other operating systems followed, and Escape became the key to exit or suspend the program in some sort of way.</p>
+<h2 id="Why_Vi_uses_the_Escape_key_to_switch_modes">Why Vi uses the Escape key to switch modes</h2><p>If you’re a Vi/Vim user, you probably use the Escape key quite a bit. It’s necessary to be able to any of the features of the program, and you’ll probably find yourself hitting it at least twice per minute. The positioning doesn’t make sense however, as it’s in such an awkward spot. Why not the Control key? Or the Alt key?</p>
+<p>Vi was built for a keyboard where Escape was in the position of Tab and Control was in the position of Caps Lock: <strong>the ADM-3A.</strong></p>
+<p><img src="/img/adm-3a.png" alt="ADM-3A Keyboard"></p>
+<p>This is an incredibly convenient position. You don’t have to move your hand in order to hit the key, and the key is big, unlike the tiny squares on a current laptop keyboard. It’s too bad that keyboards aren’t built like that today.</p>
+<h2 id="Solutions?">Solutions?</h2><p>On Chromebooks, you can change your keyboard settings to map the “Search” button to the Escape key.</p>
+<p>The easiest and cheapest solution is to swap Caps Lock and Escape. On systems running the X Window System, you can put the following into <code>~/.Xmodmap</code>.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">! Swap caps <span class="operator"><span class="keyword">lock</span> <span class="keyword">and</span> <span class="keyword">escape</span></span><br><span class="line">remove <span class="keyword">Lock</span> = Caps_Lock</span><br><span class="line">keysym <span class="keyword">Escape</span> = Caps_Lock</span><br><span class="line">keysym Caps_Lock = <span class="keyword">Escape</span></span><br><span class="line"><span class="keyword">add</span> <span class="keyword">Lock</span> = Caps_Lock</span></span><br></pre></td></tr></table></figure>
+<p>There are many other solutions on how to do this, but the above is the one I currently use as a Linux user.</p>
+<p>However, you still have the issue of mislabeled keys. Additionally, this fix does not work on Windows.</p>
+<p>There are several keyboards out there that you can purchase that have the keys in a nice spot, e.g. the <a href="http://www.amazon.com/gp/product/B000EXZ0VC/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=B000EXZ0VC&amp;linkCode=as2&amp;tag=colleged07a-20&amp;linkId=NZT5S47X3O26UYYH" target="_blank" rel="external">Happy Hacking Keyboard</a>. However, they’re usually a bit expensive as they’re produced in very limited quantities due to the low demand.</p>
+<p>Caps Lock and Escape were designed in a time where we didn’t have many of the tools we have today. They’re relics of the past that have carried on throughout computing history.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>It is a truth universally acknowledged that <strong>the Caps Lock key is completely useless.</strong> I use it about once or twice a year]]>
+    </summary>
+    
+      <category term="vim" scheme="http://simplyian.com/tags/vim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hacking Gmail to use custom domains for free]]></title>
+    <link href="http://simplyian.com/2015/01/07/Hacking-GMail-to-use-custom-domains-for-free/"/>
+    <id>http://simplyian.com/2015/01/07/Hacking-GMail-to-use-custom-domains-for-free/</id>
+    <published>2015-01-07T19:00:22.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p>It’s pretty much common knowledge that Gmail is awesome. It’s fast, connects seamlessly with the rest of your Google services such as Drive, has a cool app called <a href="http://www.google.com/inbox/" target="_blank" rel="external">Inbox</a>, and is overall an extremely powerful email service. However, to use it with a custom domain, you need to purchase <a href="https://www.google.com/work/apps/business/" target="_blank" rel="external">Google Apps</a> for either $5 or $10/month, which for casual users is a bit unnecessary. On top of that, you don’t even get all of the features a personal account gets, e.g. Inbox.</p>
+<p>However, there’s a free way to use your Gmail account with a custom domain: <a href="https://mailgun.com/" target="_blank" rel="external">Mailgun</a>.</p>
+<p><img src="https://raw.githubusercontent.com/mailgun/media/master/Mailgun_Primary.png" alt="Mailgun Logo"></p>
+<p><a href="https://mailgun.com/" target="_blank" rel="external">Mailgun</a> advertises itself as a set of “powerful APIs that enable you to send, receive and track email effortlessly.” Reading that description, you may be wondering how a developer tool could allow you to use <strong>Gmail with custom domains for free.</strong> Basically, Mailgun has two components that allow you to do this: an email forwarding service and an SMTP server.</p>
+<h2 id="Setup">Setup</h2><p>First, <a href="https://mailgun.com/signup" target="_blank" rel="external">sign up with Mailgun</a> using your Gmail email. <strong>Do not</strong> use your email with your custom domain, as it will cause problems later when you want to verify your account. Once you have clicked the confirm link, log in to the Mailgun website. You should be presented with a dashboard. Now on the right under “Custom Domains”, click “Add Domain”.</p>
+<p><img src="/img/add-domain.png" alt="Add Domain"></p>
+<p>Follow the instructions and set your DNS records with whoever manages your DNS.</p>
+<p>Once you’ve done this, click on the “Routes” link on the top to set up email forwarding.</p>
+<h2 id="Forwarding">Forwarding</h2><p><img src="/img/routes.png" alt="Routes"></p>
+<p>On this page, you want to click “Create New Route”.</p>
+<p><img src="/img/create-new-route.png" alt="Create New Route"></p>
+<p>Then, on this page, enter the following information:</p>
+<p><img src="/img/setup-routes.png" alt="Setup Routes"></p>
+<p>Replace the emails within the quotation marks with the desired emails.</p>
+<h2 id="Sending_with_SMTP">Sending with SMTP</h2><p>Next, we will set up our SMTP configuration so we can send emails from an actual server.</p>
+<p>Underneath the “Domains” tab, click on your domain name.</p>
+<p><img src="/img/domains.png" alt="Domains"></p>
+<p>On this page, click “Manage your SMTP credentials” then “New SMTP Credential” on the next page.</p>
+<p><img src="/img/smtp.png" alt="SMTP"></p>
+<p>Type in the desired SMTP credentials.</p>
+<p>Next, go to <a href="https://mail.google.com/mail/u/0/#settings/accounts" target="_blank" rel="external">the Accounts tab in your Gmail Settings</a> and click “Add another email address you own”. Once you open this window, enter the email address you wish to send from.</p>
+<p><img src="/img/add-email.png" alt="Add Email"></p>
+<p>Then, set the SMTP settings as follows.</p>
+<p><img src="/img/email-smtp-settings.png" alt="Email SMTP Settings"></p>
+<ul>
+<li>Server: smtp.mailgun.org</li>
+<li>Port: 587</li>
+<li>Username: The full email address, e.g. “me@ian.pw”</li>
+<li>Password: Whatever you set in Mailgun</li>
+</ul>
+<p>After clicking “Add Account”, now you’re done! Enjoy your free email service for up to 10,000 emails a month!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>It’s pretty much common knowledge that Gmail is awesome. It’s fast, connects seamlessly with the rest of your Google services such as Dri]]>
+    </summary>
+    
+      <category term="frugal" scheme="http://simplyian.com/tags/frugal/"/>
+    
+      <category term="gmail" scheme="http://simplyian.com/tags/gmail/"/>
+    
+      <category term="hack" scheme="http://simplyian.com/tags/hack/"/>
+    
+      <category term="mailgun" scheme="http://simplyian.com/tags/mailgun/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Creating a Todo app on the MEAN stack using Preston]]></title>
+    <link href="http://simplyian.com/2014/12/20/Creating-a-Todo-app-on-the-MEAN-stack-using-Preston/"/>
+    <id>http://simplyian.com/2014/12/20/Creating-a-Todo-app-on-the-MEAN-stack-using-Preston/</id>
+    <published>2014-12-21T00:34:19.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="http://prestonjs.com" target="_blank" rel="external">Preston</a> is an extremely powerful library for creating RESTful applications that use Mongoose models. In this tutorial, I’ll be hooking up the <a href="http://todomvc.com/examples/angularjs/#/" target="_blank" rel="external">AngularJS TodoMVC app</a> to a Preston-powered backend.</p>
+<p>First, I’ve created a repo that is based off of the AngularJS Todo app. You can clone the first step like so:</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone <span class="string">https:</span><span class="comment">//github.com/simplyianm/todomvc-preston-angular.git</span></span><br><span class="line">git checkout angular</span><br></pre></td></tr></table></figure>
+<p>This is the TodoMVC app with a few changes for simplicity:</p>
+<ol>
+<li>It uses a CDN rather than Bower.</li>
+<li>It uses Express to serve the app rather than being static HTML. This makes the differences between pure Angular to Angular+Preston much more pronounced.</li>
+</ol>
+<h2 id="Backend">Backend</h2><p>To create our backend, we must first install Mongoose, Preston, and <a href="https://github.com/expressjs/body-parser" target="_blank" rel="external">body-parser</a> like so:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> <span class="comment">--save preston mongoose</span></span></span><br></pre></td></tr></table></figure>
+<p>Once this is done, we’re ready to start writing the code for our app. We’ll write all of our backend code in <code>app.js</code>. First, let’s require Mongoose and Preston, so we can use them in our code.</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="reserved">var</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="reserved">var</span> preston = <span class="built_in">require</span>(<span class="string">'preston'</span>);</span><br></pre></td></tr></table></figure>
+<p>Next, let’s connect to our MongoDB database. I’m using MongoHQ since this will be on Heroku, but you can use whatever MongoDB database you want.</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongoose.connect(process.<span class="keyword">env</span>.MONGOHQ_URL || <span class="string">'mongodb://localhost:27017'</span>);</span><br></pre></td></tr></table></figure>
+<p>Once Mongoose is connected, let’s define our model for our todos. We can define it like so:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Todo = mongoose.model(<span class="string">'Todo'</span>, <span class="keyword">new</span> mongoose.Schema(&#123;</span><br><span class="line">  title: <span class="built_in">String</span>,</span><br><span class="line">  completed: <span class="built_in">Boolean</span></span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+<p>Next, let’s add Preston into this. There are only three lines of code needed to create a fully functional JSON RESTful backend with Preston:</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="keyword">use</span>(<span class="keyword">require</span>(<span class="string">'body-parser'</span>).json());</span><br><span class="line">preston(Todo);</span><br><span class="line">app.<span class="keyword">use</span>(<span class="string">'/api'</span>, preston.middleware());</span><br></pre></td></tr></table></figure>
+<p>The first line of code is required to parse the JSON request bodies which Preston depends on.</p>
+<p>The second line of code tells Preston that we want to create routes for the <code>Todo</code> model. By default, all 5 methods (query, create, get, update, destroy) are exposed with full access. *Note: if you don’t want this in your own application, Preston has the power to control what gets sent in every one of those methods. <a href="https://github.com/simplyianm/preston" target="_blank" rel="external">Read the docs</a> for more details.</p>
+<p>The last line tells Express to serve any registered models on the <code>/api</code> route. Thus, routes under <code>/api/todos</code> are created.</p>
+<p>We’re going to add one more line of code to show what routes are created, for the sake of example:</p>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">preston.printRoutes<span class="literal">()</span>;</span><br></pre></td></tr></table></figure>
+<p>This just prints all generated routes, without their prefixes.</p>
+<h2 id="Frontend_(Angular)">Frontend (Angular)</h2><p>Fortunately, most of the AngularJS app is done. The TodoMVC example provides a sample connection to a sample RESTful backend (like ours). This is part of what makes Preston so powerful — <strong>it speaks the universal language of REST.</strong> There are tons of libraries out there to interface with REST: <a href="https://github.com/mgonto/restangular" target="_blank" rel="external">Restangular</a>, <a href="https://github.com/platanus/angular-restmod" target="_blank" rel="external">restmod</a>, etc.</p>
+<p>To get the frontend working, you must populate the todos list and ignore the 404 check. You can do this with the following:</p>
+<p>In <code>client/js/services/todoStorage.js</code>, make the <code>todoStorage</code> factory return the following:</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> $injector.<span class="keyword">get</span>(<span class="string">'api'</span>);</span><br></pre></td></tr></table></figure>
+<p>In <code>client/js/app.js</code>, make the <code>resolve.store</code> function return <code>todoStorage</code>. Furthermore, add the following to <code>TodoCtrl</code>:</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$http.get(<span class="string">'/api/todos'</span>).<span class="keyword">then</span>(<span class="function"><span class="keyword">function</span><span class="params">(data)</span></span> &#123;</span><br><span class="line">  <span class="type">data</span>.<span class="type">data</span>.map(<span class="function"><span class="keyword">function</span><span class="params">(todo)</span></span> &#123;</span><br><span class="line">    store.todos.push(todo);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Don’t forget to inject <code>$http</code> into the controller. <a href="https://github.com/simplyianm/todomvc-preston-angular/commit/40ddf0212a252f99dc2974b3e6c63e4c8cfe5b48" target="_blank" rel="external">The entire diff of these changes can be found here.</a> If you were too lazy to follow this tutorial, you can also type <code>git checkout master</code> into your terminal to get to the latest version.</p>
+<p>If you’re hosting the app on Heroku, you’ll also need to type <code>heroku addons:add mongohq</code> to get a database hooked up to your code.</p>
+<p>The entire backend is now hooked up to Angular with little effort. <a href="https://todomvc-preston-angular.herokuapp.com/" target="_blank" rel="external">Try it here!</a></p>
+<h2 id="Conclusion">Conclusion</h2><p>Preston is a very powerful tool when used in conjunction with AngularJS. It can decrease the time it takes to get from idea to MVP significantly, as the backend code needed is extremely minimal. Preston solves the problem of creating a bunch of routes for your database whenever you need to create a model, as Preston just creates the most optimal routes and knows what you want.</p>
+<p>In the future, I’ll write about using Preston with <a href="https://github.com/mgonto/restangular" target="_blank" rel="external">Restangular</a>, as the combination is even more powerful than using <code>$http</code> alone.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="http://prestonjs.com" target="_blank" rel="external">Preston</a> is an extremely powerful library for creating RESTful applicati]]>
+    </summary>
+    
+      <category term="MEAN" scheme="http://simplyian.com/tags/MEAN/"/>
+    
+      <category term="Node.js" scheme="http://simplyian.com/tags/Node-js/"/>
+    
+      <category term="preston" scheme="http://simplyian.com/tags/preston/"/>
+    
+      <category term="rest" scheme="http://simplyian.com/tags/rest/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Getting Django To Work With Vagrant]]></title>
+    <link href="http://simplyian.com/2014/11/10/getting-django-to-work-with-vagrant/"/>
+    <id>http://simplyian.com/2014/11/10/getting-django-to-work-with-vagrant/</id>
+    <published>2014-11-10T19:13:35.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p>I was having problems getting Django working with Vagrant, then I stumbled upon this <a href="http://stackoverflow.com/questions/5984217/vagrants-port-forwarding-not-working" target="_blank" rel="external">StackOverflow answer</a>.</p>
+<p>The problem with the port forwarding is not with Vagrant, but with Django itself. You need to bind to <code>0.0.0.0</code>, not <code>127.0.0.1</code>.</p>
+<p>So you’d run this command:</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">python</span> migrate.py runserver <span class="number">0.0.0.0:8000</span></span><br></pre></td></tr></table></figure>
+<p>That will fix all of your issues.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I was having problems getting Django working with Vagrant, then I stumbled upon this <a href="http://stackoverflow.com/questions/5984217/]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[The Coffeescript Keyword Nobody's Heard Of: 'by']]></title>
+    <link href="http://simplyian.com/2014/11/04/the-coffeescript-keyword-nobodys-heard-of-by/"/>
+    <id>http://simplyian.com/2014/11/04/the-coffeescript-keyword-nobodys-heard-of-by/</id>
+    <published>2014-11-04T14:22:44.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p>Coffeescript is an amazing language. As a matter of fact, it’s one of my favorite languages, second only to JavaScript. Here’s some recent code I used to split up one array into a multidimensional array with a certain number of columns.</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">matrix.push arr[i..(i + cols - <span class="number">1</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span>.arr.length - <span class="number">1</span>] <span class="keyword">by</span> cols</span><br></pre></td></tr></table></figure>
+<p>Notice the second to last keyword: by.</p>
+<p>The <code>by</code> keyword basically changes the increment of the generated for loop. Without the <code>by</code>, you’d have <code>i++</code> as the increment of your for loop. However, with the <code>by</code>, you’d instead have <code>i += 3</code> if you had <code>by 3</code>.</p>
+<p>Here’s a simple example where I am getting money out of my bank account in the form of 5 dollar bills.</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log <span class="string">"I have <span class="subst">#&#123;i&#125;</span> dollars."</span> <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span>.<span class="number">100</span>] <span class="keyword">by</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>This translates to the following Javascript:</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="reserved">var</span> i;</span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt;= <span class="number">100</span>; i += <span class="number">5</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"I have "</span> + i + <span class="string">" dollars."</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>As you can see, the increment of the loop is now 5 rather than just 1.</p>
+<p>Now the question is, are there any other hidden features of Coffeescript like this?</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Coffeescript is an amazing language. As a matter of fact, it’s one of my favorite languages, second only to JavaScript. Here’s some recen]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[JSON Backends Are The Next Big Thing]]></title>
+    <link href="http://simplyian.com/2014/08/07/json-backends-are-the-next-big-thing/"/>
+    <id>http://simplyian.com/2014/08/07/json-backends-are-the-next-big-thing/</id>
+    <published>2014-08-07T17:19:32.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="http://angularjs.org" target="_blank" rel="external">AngularJS</a> is an awesome web framework made by Google<br>to create “structured web apps”. In this framework, templating is done client-side,<br>so all the server needs to do is send data to the client via HTTP. Thus, no templating<br>needs to be done on the backend and the web browser handles all of the data.<br>All the backend needs to do is send JSON.</p>
+<p>This is awesome.</p>
+<p>Why? Because data is now separate from the view. Model-View-Controller, or MVC for<br>short, has long been a standard of developing web applications as it organizes code<br>in a way that just makes sense. A controller takes a request and serves a model, the<br>data, and a view, which formats the data into a nice format.</p>
+<p>However, since the introduction of the iPhone, web isn’t all we have to worry about.<br>Mobile apps are becoming almost necessary for services. Everyone does things from<br>their phone now, as not everyone wants to bring a laptop around everywhere they go.</p>
+<p>Websites are not built for mobile devices. Yes, there is responsive web design, but<br>that does not beat the usefulness of an app that you can just click from your home<br>screen. Thus, apps are a necessity.</p>
+<p>So let’s say you built a backend specific for your app. Great! But how about if you<br>need to deal with other platforms? For example, smart watches or smart TVs. You need<br>to build a whole new app that may have a completely different interface. To make this<br>easier, you can create an API which will make it easy to interface with your website.<br>You can even expose this API to developers to increase adoption of your product.</p>
+<p>However, now you have this website that you simultaneously have to maintain. Every<br>new feature of the website has its own rendering mechanism completely separate from<br>the REST API. The features of the REST API aren’t synchronized with your website.</p>
+<p>Here’s where frameworks like Angular come in. Angular can be like a mobile app,<br>dealing directly with your API. When you build a new feature on your website, you<br>can also build the logic into your API, causing you to only have to write your code<br>ONCE. Now you don’t have to worry about supporting certain operations on multiple<br>platforms, as you have one backend that handles all of the platforms.</p>
+<p>JSON-based backends are awesome. Logic is written once, and all you have to worry about<br>is how your data is displayed. You can still support multiple platforms, but you only<br>need to write your backend logic once, as JSON is ubiquitous.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="http://angularjs.org" target="_blank" rel="external">AngularJS</a> is an awesome web framework made by Google<br>to create “stru]]>
+    </summary>
+    
+      <category term="Web" scheme="http://simplyian.com/categories/Web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[How to Have Language-Specific Settings in Vim]]></title>
+    <link href="http://simplyian.com/2014/04/28/how-to-have-language-specific-settings-in-vim/"/>
+    <id>http://simplyian.com/2014/04/28/how-to-have-language-specific-settings-in-vim/</id>
+    <published>2014-04-29T01:50:27.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p>I wanted to set up Vim so that <a href="http://coffeescript.org/" target="_blank" rel="external">Coffeescript</a> files would use 2 spaces for indentation. This was very simple:</p>
+<ol>
+<li>Create a file at <code>~/.vim/ftplugin/&lt;language&gt;.vim</code> where <code>&lt;language&gt;</code> is the language you want to modify. For Coffeescript, this is <code>coffee</code>. The language name you should use is just the file extension.</li>
+<li>In this file, add your settings. In my <code>coffee.vim</code>, I have <code>setlocal tabstop=2</code> and <code>setlocal shiftwidth=2</code> to make my tabs 2 spaces.</li>
+<li>Open up a file in that language and enjoy your language specific settings!</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I wanted to set up Vim so that <a href="http://coffeescript.org/" target="_blank" rel="external">Coffeescript</a> files would use 2 space]]>
+    </summary>
+    
+      <category term="Vim" scheme="http://simplyian.com/categories/Vim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Setting up Virtual Hosts in Apache]]></title>
+    <link href="http://simplyian.com/2014/04/15/setting-up-virtual-hosts-in-apache/"/>
+    <id>http://simplyian.com/2014/04/15/setting-up-virtual-hosts-in-apache/</id>
+    <published>2014-04-16T04:17:35.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p>Today, I wanted to put my downloads on a different domain from my screenshots. Not wanting to manage multiple servers for no reason, I set up virtual hosts, also known as vhosts. Basically, depending on what domain you visit my web server from, you will get a different website. This is actually very simple to set up.</p>
+<p>First, navigate to your <code>apache2</code> directory and go to the <code>sites-available</code> directory within it. On my Debian system, this is at <code>/etc/apache2/sites-available/</code>. In this directory, you’ll see a bunch of files. Each one of these files is a config file that can be enabled or disabled individually; this is called a site.</p>
+<p>To set up vhosting, you should first disable the default website. Use the command <code>sudo a2dissite default</code> to do this.</p>
+<p>Next, add the rest of your websites. Here is the very simple config file I use:</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;VirtualHost *:80&gt;</span></span><br><span class="line">    <span class="keyword"><span class="common">ServerName</span></span> domain.you.want.to.use.com</span><br><span class="line">    <span class="keyword"><span class="common">DocumentRoot</span></span> /var/www/sitefiles/</span><br><span class="line">    <span class="tag">&lt;Directory /var/www/sitefiles/&gt;</span></span><br><span class="line">        <span class="keyword"><span class="common">Options</span></span> Indexes FollowSymLinks MultiViews</span><br><span class="line">        <span class="keyword"><span class="common">Order</span></span> allow,deny</span><br><span class="line">        <span class="keyword"><span class="common">Allow</span></span> from <span class="literal">all</span></span><br><span class="line">    <span class="tag">&lt;/Directory&gt;</span></span><br><span class="line"><span class="tag">&lt;/VirtualHost&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Save this to a file with the name of the site, no extension. I named my site <code>screenshots</code> for example.</p>
+<p>Obviously, replace <code>domain.you.want.to.use.com</code> with the domain you want to use for the website. (For my screenshot website, this is <code>s.giza.us</code>.) The document root is the folder that contains the files at the root of your website. For me that’s <code>/var/www/screenshots</code>.</p>
+<p>Lastly, type <code>sudo a2ensite sitename</code> where <code>sitename</code> is whatever you named that file. Then, restart apache with <code>sudo service apache2 restart</code>, and all is well. For any additional domains, create more config files with that information, replacing all of the relevant stuff. Enjoy your awesome new vhosted website!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Today, I wanted to put my downloads on a different domain from my screenshots. Not wanting to manage multiple servers for no reason, I se]]>
+    </summary>
+    
+      <category term="Apache" scheme="http://simplyian.com/categories/Apache/"/>
+    
+      <category term="Linux" scheme="http://simplyian.com/categories/Apache/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Including Dependencies in Your Gradle Build Script's Classpath]]></title>
+    <link href="http://simplyian.com/2014/04/10/including-dependencies-in-your-gradle-build-scripts-classpath/"/>
+    <id>http://simplyian.com/2014/04/10/including-dependencies-in-your-gradle-build-scripts-classpath/</id>
+    <published>2014-04-11T04:00:18.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p>In a <a href="https://github.com/simplyianm/bukkit-bootstrap" target="_blank" rel="external">recent project</a>, I wanted to use SnakeYAML in my Gradle build script. This is pretty easy to do; all you have to do is add the following to your script:</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">buildscript</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        mavenCentral()</span><br><span class="line">        <span class="comment">// ...etc</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">dependencies</span> &#123;</span><br><span class="line">        <span class="keyword">classpath</span> <span class="keyword">group</span>: <span class="string">'org.yaml'</span>, name: <span class="string">'snakeyaml'</span>, version: <span class="string">'1.5'</span></span><br><span class="line">        <span class="comment">// ..etc</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>This is the same as the <code>repositories {}</code> and <code>dependencies {}</code> sections of the build script. After doing this, feel free to use your libraries anywhere in your build script. Don’t forget to import the classes you use!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>In a <a href="https://github.com/simplyianm/bukkit-bootstrap" target="_blank" rel="external">recent project</a>, I wanted to use SnakeYAM]]>
+    </summary>
+    
+      <category term="Gradle" scheme="http://simplyian.com/categories/Gradle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Adding a Provided JAR as a Dependency in a Gradle Project]]></title>
+    <link href="http://simplyian.com/2014/04/04/adding-a-provided-jar-as-a-dependency-in-a-gradle-project/"/>
+    <id>http://simplyian.com/2014/04/04/adding-a-provided-jar-as-a-dependency-in-a-gradle-project/</id>
+    <published>2014-04-05T04:39:12.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p>Adding a JAR as a dependency is simple in <a href="http://gradle.org/" target="_blank" rel="external">Gradle</a>. In your <code>dependencies {}</code>, add the following line:</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="function"><span class="title">files</span><span class="params">(<span class="string">'file.jar'</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p>Where <code>file.jar</code> is the path to the JAR from the root directory of the repository. For example, if I had <code>Dependency.jar</code> at <code>./libs/Dependency.jar</code>, I would use <code>compile files(&#39;libs/Dependency.jar&#39;)</code>.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Adding a JAR as a dependency is simple in <a href="http://gradle.org/" target="_blank" rel="external">Gradle</a>. In your <code>dependenc]]>
+    </summary>
+    
+      <category term="Gradle" scheme="http://simplyian.com/categories/Gradle/"/>
+    
+      <category term="Java" scheme="http://simplyian.com/categories/Gradle/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[up - A Useful File Sharing Tool Using SCP]]></title>
+    <link href="http://simplyian.com/2014/04/02/up-a-useful-file-sharing-tool-using-scp/"/>
+    <id>http://simplyian.com/2014/04/02/up-a-useful-file-sharing-tool-using-scp/</id>
+    <published>2014-04-03T04:18:26.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p>I created a tool today called <a href="https://github.com/simplyianm/up" target="_blank" rel="external">up</a>. Although it’s really simple, it gets the job done and it’s really useful.</p>
+<p>Basically, to share a file, you just type <code>up MyFile</code> and it will upload that file to your remote server, returning the URL it is hosted at.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I created a tool today called <a href="https://github.com/simplyianm/up" target="_blank" rel="external">up</a>. Although it’s really simp]]>
+    </summary>
+    
+      <category term="Linux" scheme="http://simplyian.com/categories/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[How to Run a Command on Startup on Linux]]></title>
+    <link href="http://simplyian.com/2014/04/01/how-to-run-a-command-on-startup-on-linux/"/>
+    <id>http://simplyian.com/2014/04/01/how-to-run-a-command-on-startup-on-linux/</id>
+    <published>2014-04-02T04:43:26.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p>I recently purchased a VPS to run my IRC client in. I wanted to start my IRC client in tmux on startup. The answer is simple: crontabs.</p>
+<p>Run the following command on the user you want to run the command on:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab <span class="operator">-e</span></span><br></pre></td></tr></table></figure>
+<p>This will open up the crontab of your current user. A crontab is basically a file stating a bunch of tasks that you want to run on some sort of schedule.</p>
+<p>Next, add the following text to the file:</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@reboot &lt;<span class="command"><span class="keyword">command</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>where <code>&lt;command&gt;</code> is, of course, the command you want to run. For example, on boot, I run a shell script that starts up my tmux stuff, so I have <code>@reboot /usr/ian/tmux_start.sh</code>.</p>
+<p>Pretty simple, right? Crontabs have a lot more uses that you can probably find on Google.</p>
+<p>Source: <code>man cron</code> and <code>man crontab</code>.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I recently purchased a VPS to run my IRC client in. I wanted to start my IRC client in tmux on startup. The answer is simple: crontabs.</]]>
+    </summary>
+    
+      <category term="Linux" scheme="http://simplyian.com/categories/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[How to Change the Name of the JAR Produced in Gradle]]></title>
+    <link href="http://simplyian.com/2014/03/31/how-to-change-the-name-of-the-jar-produced-in-gradle/"/>
+    <id>http://simplyian.com/2014/03/31/how-to-change-the-name-of-the-jar-produced-in-gradle/</id>
+    <published>2014-04-01T04:19:07.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p>I don’t like the traditional JAR name assigned in Gradle. In Bukkit development, you usually make the JAR name the same as the plugin name. Here’s how you set the name of the JAR:</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jar<span class="class">.baseName</span> = <span class="string">'JarName'</span></span><br></pre></td></tr></table></figure>
+<p>Where <code>JarName</code> would be the name of the jar generated in <code>build/libs/</code>.</p>
+<p>Source: <a href="http://stackoverflow.com/questions/6768295/gradle-jar-file-name-in-java-plugin" target="_blank" rel="external">StackOverflow</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I don’t like the traditional JAR name assigned in Gradle. In Bukkit development, you usually make the JAR name the same as the plugin nam]]>
+    </summary>
+    
+      <category term="Gradle" scheme="http://simplyian.com/categories/Gradle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[How to Run a Specific Class Inside of a JAR]]></title>
+    <link href="http://simplyian.com/2014/03/30/how-to-run-a-specific-class-inside-of-a-jar/"/>
+    <id>http://simplyian.com/2014/03/30/how-to-run-a-specific-class-inside-of-a-jar/</id>
+    <published>2014-03-31T01:34:47.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p>My friend wanted me to test out his program, but it didn’t have a main class specified in the manifest. Here’s the solution:</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java  -cp yourjar<span class="class">.jar</span> com<span class="class">.yourpackage</span><span class="class">.YourClass</span></span><br></pre></td></tr></table></figure>
+<p>This will run the specified class as the main class.</p>
+<p>Source: <a href="http://stackoverflow.com/questions/5474666/how-to-run-a-class-from-jar-which-is-not-the-main-class-in-its-manifest-file" target="_blank" rel="external">StackOverflow</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>My friend wanted me to test out his program, but it didn’t have a main class specified in the manifest. Here’s the solution:</p>
+<figure ]]>
+    </summary>
+    
+      <category term="Java" scheme="http://simplyian.com/categories/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Using Tmux Remotely Within a Local Tmux Session]]></title>
+    <link href="http://simplyian.com/2014/03/29/using-tmux-remotely-within-a-local-tmux-session/"/>
+    <id>http://simplyian.com/2014/03/29/using-tmux-remotely-within-a-local-tmux-session/</id>
+    <published>2014-03-29T10:40:53.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p>I often SSH to remote servers, and those servers usually have tmux installed. (tmux is better than Screen in every way) However, conflicts arise when you want to manipulate a remote tmux session within a local one. <code>Ctrl-B</code> refers to the local tmux session, not the remote one, and you have to press <code>Ctrl-B</code> twice to manipulate the remote one. This is pretty annoying. Fortunately, there is a solution to this.</p>
+<img src="http://i.imgur.com/HQBdV1J.jpg">
+<p>There is one line you need to add to your <code>~/.tmux.conf</code> (if this file doesn’t exist, create it):</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bind</span>-key -n C<span class="operator">-a</span> send-prefix</span><br></pre></td></tr></table></figure>
+<p>This binds the command <code>send-prefix</code> to <code>Ctrl-A</code>. Basically, you are sending a <code>Ctrl-B</code> (assuming you’ve left tmux at its defaults) directly to the server when you press <code>Ctrl-A</code>. This will let you manipulate the remote session with <code>Ctrl-A</code> and still use your local session with <code>Ctrl-B</code>. Pretty nice, eh?</p>
+<p>Source: <a href="http://stackoverflow.com/questions/8518815/how-to-send-commands-when-opening-a-tmux-session-inside-another-tmux-session" target="_blank" rel="external">StackOverflow</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I often SSH to remote servers, and those servers usually have tmux installed. (tmux is better than Screen in every way) However, conflict]]>
+    </summary>
+    
+      <category term="tmux" scheme="http://simplyian.com/categories/tmux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[How to Change the Theme of the XFCE Terminal]]></title>
+    <link href="http://simplyian.com/2014/03/29/how-to-change-the-theme-of-the-xfce-terminal/"/>
+    <id>http://simplyian.com/2014/03/29/how-to-change-the-theme-of-the-xfce-terminal/</id>
+    <published>2014-03-29T10:20:52.000Z</published>
+    <updated>2015-04-23T19:03:16.000Z</updated>
+    <content type="html"><![CDATA[<p>I use <a href="http://xfce.org" target="_blank" rel="external">XFCE</a> as my primary desktop environment. It’s a fast, lightweight operating system that when combined with <a href="https://launchpad.net/synapse-project" target="_blank" rel="external">Synapse</a> provides a great, lag-free computing experience.</p>
+<p>As a typical developer and Linux user, I use the terminal quite a bit. XFCE’s terminal emulator has a pretty bland default theme. There is an awesome repository called <a href="https://github.com/chriskempson/base16-xfce4-terminal" target="_blank" rel="external">Base16</a> that provides a wide selection of themes for the terminal.</p>
+<p>To install one of these themes, you need ensure the existence of the directory <code>~/.config/Terminal/</code>. Then, run the following command:</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -<span class="constant">L </span><span class="symbol">https:</span>/<span class="regexp">/raw.githubusercontent.com/chriskempson</span><span class="regexp">/base16-xfce4-terminal/master</span><span class="regexp">/base16-default.dark.terminalrc &gt; ~/</span>.config/<span class="constant">Terminal/</span>terminalrc</span><br></pre></td></tr></table></figure>
+<p>Replace the URL with the raw of whatever theme you want to use. Check out the <a href="http://chriskempson.github.io/base16/" target="_blank" rel="external">Base16</a> website to preview all available themes. The changes should take effect next time you run a command; if not, just restart the terminal.</p>
+<p>These themes are a huge step up compared to the default. Personally, I use the “Bright” theme. Have fun with a nice looking terminal!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I use <a href="http://xfce.org" target="_blank" rel="external">XFCE</a> as my primary desktop environment. It’s a fast, lightweight opera]]>
+    </summary>
+    
+      <category term="XFCE" scheme="http://simplyian.com/categories/XFCE/"/>
+    
+  </entry>
+  
+</feed>
