@@ -4,7 +4,7 @@
   <subtitle><![CDATA[The musings of a young software engineer]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://simplyian.com/"/>
-  <updated>2015-04-23T19:18:54.000Z</updated>
+  <updated>2015-09-13T15:22:14.000Z</updated>
   <id>http://simplyian.com/</id>
   
   <author>
@@ -13,6 +13,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Doing homework assignments in Markdown using Pandoc and LaTeX]]></title>
+    <link href="http://simplyian.com/2015/09/13/Doing-homework-assignments-in-Markdown-using-Pandoc-and-LaTeX/"/>
+    <id>http://simplyian.com/2015/09/13/Doing-homework-assignments-in-Markdown-using-Pandoc-and-LaTeX/</id>
+    <published>2015-09-13T14:57:43.000Z</published>
+    <updated>2015-09-13T15:22:14.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="external">Markdown</a> is a really awesome format for text and prose. It’s really easy to manage in any text editor, and it’s quick to write. It has a lot of features, including <strong>bolding</strong>, <em>italicizing</em>, lists, quotes, embedded code, and more. It’s so easy to write that it’s the “language” of choice for many major websites such as StackOverflow and Reddit, it being much easier to implement and looking nicer than a WYSIWYG text editor. I’m even writing this blog post using Markdown. However, you can’t really send someone a Markdown document. It’s meant to be processed into a more readable format, most usually HTML.</p>
+<p><a href="http://www.latex-project.org/" target="_blank" rel="external">LaTeX</a> is a great tool for typesetting text. It has a lot of flexibility and standardizes how documents look. It’s so powerful that it has become the defacto tool to create research papers. However, there is definitely a learning curve in using the software, and the source doesn’t look very nice.</p>
+<p><a href="http://pandoc.org/" target="_blank" rel="external">Pandoc</a> brings the best of both worlds. It allows conversion of Markdown to a predefined LaTeX template, allowing you to use Markdown to write LaTeX documents in a format that works out 99% of the time if you’re just writing notes or submitting a linear homework assignment. Usage is simple:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pandoc input.md -o output.(pdf|tex)</span><br></pre></td></tr></table></figure>
+<p>This generates either a <code>.tex</code> or <code>.pdf</code> (compiled LaTeX) file that looks pretty good using the default settings.</p>
+<h2 id="Generating_PDFs_quickly">Generating PDFs quickly</h2><p>Since I use Markdown so much to generate PDFs, I’ve created the following shell function:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">md2pdf</span></span>() &#123;</span><br><span class="line">  pandoc <span class="variable">$1</span> -o `basename <span class="variable">$1</span> .md`.pdf</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>You can add this to your <code>.bashrc</code> or <code>.zshrc</code> to add a command like follows:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">md2pdf filename.md</span><br></pre></td></tr></table></figure>
+<p>This will generate a file named <code>filename.pdf</code> in your present working directory.</p>
+<p>You can use file watching tools to automatically generate a PDF and leave it open/refreshing in your PDF reader. I personally use a tool called <a href="http://entrproject.org/" target="_blank" rel="external">entr(1)</a>, which can be installed via Homebrew.</p>
+<h2 id="Writing_equations">Writing equations</h2><p>You may want to insert some math into your document. You can do this by surrounding your math in dollar signs (<code>$</code>) and writing in LaTeX form, for example:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## Euler&#39;s identity&#10;Below is Euler&#39;s identity.&#10;&#10;$e^&#123;i\pi&#125; + 1 = 0$&#10;&#10;Lorem ipsum dolor sit amet...</span><br></pre></td></tr></table></figure>
+<p>This produces the equation inline. Documentation for this feature of Pandoc is pretty spotty — if you know of more ways to embed LaTeX equations in Pandoc-generated documents, please let me know!</p>
+<h2 id="Setting_everything_up">Setting everything up</h2><p>All of the tools mentioned can be installed via Homebrew.</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew <span class="keyword">install</span> entr pandoc</span><br><span class="line">brew cask <span class="keyword">install</span> mactex</span><br></pre></td></tr></table></figure>
+<p>Writing Markdown instead of LaTeX allows me to iterate faster on my homework/notes and lets me worry more about my content than the formatting of my sections and subsections. It’s really easy to set everything up, and as a Vim user, it has increased my productivity quite a bit. I hope you find my workflow as useful as I have!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="external">Markdown</a> is a really awesome format for text an]]>
+    </summary>
+    
+      <category term="latex" scheme="http://simplyian.com/tags/latex/"/>
+    
+      <category term="markdown" scheme="http://simplyian.com/tags/markdown/"/>
+    
+      <category term="pandoc" scheme="http://simplyian.com/tags/pandoc/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Using form-horizontal with simple_form in Rails 4]]></title>
@@ -497,27 +533,6 @@
     </summary>
     
       <category term="tmux" scheme="http://simplyian.com/categories/tmux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[How to Change the Theme of the XFCE Terminal]]></title>
-    <link href="http://simplyian.com/2014/03/29/how-to-change-the-theme-of-the-xfce-terminal/"/>
-    <id>http://simplyian.com/2014/03/29/how-to-change-the-theme-of-the-xfce-terminal/</id>
-    <published>2014-03-29T10:20:52.000Z</published>
-    <updated>2015-04-23T19:03:16.000Z</updated>
-    <content type="html"><![CDATA[<p>I use <a href="http://xfce.org" target="_blank" rel="external">XFCE</a> as my primary desktop environment. It’s a fast, lightweight operating system that when combined with <a href="https://launchpad.net/synapse-project" target="_blank" rel="external">Synapse</a> provides a great, lag-free computing experience.</p>
-<p>As a typical developer and Linux user, I use the terminal quite a bit. XFCE’s terminal emulator has a pretty bland default theme. There is an awesome repository called <a href="https://github.com/chriskempson/base16-xfce4-terminal" target="_blank" rel="external">Base16</a> that provides a wide selection of themes for the terminal.</p>
-<p>To install one of these themes, you need ensure the existence of the directory <code>~/.config/Terminal/</code>. Then, run the following command:</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -<span class="constant">L </span><span class="symbol">https:</span>/<span class="regexp">/raw.githubusercontent.com/chriskempson</span><span class="regexp">/base16-xfce4-terminal/master</span><span class="regexp">/base16-default.dark.terminalrc &gt; ~/</span>.config/<span class="constant">Terminal/</span>terminalrc</span><br></pre></td></tr></table></figure>
-<p>Replace the URL with the raw of whatever theme you want to use. Check out the <a href="http://chriskempson.github.io/base16/" target="_blank" rel="external">Base16</a> website to preview all available themes. The changes should take effect next time you run a command; if not, just restart the terminal.</p>
-<p>These themes are a huge step up compared to the default. Personally, I use the “Bright” theme. Have fun with a nice looking terminal!</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>I use <a href="http://xfce.org" target="_blank" rel="external">XFCE</a> as my primary desktop environment. It’s a fast, lightweight opera]]>
-    </summary>
-    
-      <category term="XFCE" scheme="http://simplyian.com/categories/XFCE/"/>
     
   </entry>
   
