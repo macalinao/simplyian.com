@@ -1,10 +1,6 @@
-# Hexo Configuration
-## Docs: http://hexo.io/docs/configuration.html
-## Source: https://github.com/hexojs/hexo/
-
 # Site
-title: Simply Ian...
-subtitle: The musings of a young software engineer
+title: Simply Ian
+subtitle: A blog on software, technology, and life.
 description: The personal blog of Ian Macalinao, a software developer, designer, and entrepreneur from Dallas, Texas.
 author: Ian Macalinao
 email: me@ian.pw
