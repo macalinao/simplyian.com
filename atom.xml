@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[Simply Ian...]]></title>
-  <subtitle><![CDATA[The musings of a young software engineer]]></subtitle>
+  <title><![CDATA[Simply Ian]]></title>
+  <subtitle><![CDATA[A blog on software, technology, and life.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://simplyian.com/"/>
   <updated>2015-09-28T20:44:52.000Z</updated>
