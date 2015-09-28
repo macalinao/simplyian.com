@@ -12,11 +12,18 @@
   <link rel="stylesheet" type="text/css" href="/css/component.css" />
   <link rel="stylesheet" type="text/css" href="/css/screen.css" />
   <meta name="generator" content="Simply Ian">
+
+  
+  <meta name="description" content="I often SSH to remote servers, and those servers usually have tmux installed. (tmux is better than Screen in every way) However, conflicts arise when yo..." />
+  <meta name="og:description" content="I often SSH to remote servers, and those servers usually have tmux installed. (tmux is better than Screen in every way) However, conflicts arise when you want to manipulate a remote tmux session within a local one. Ctrl-B refers to the local tmux session, not the remote one, and you have to press Ct..." />
+  
+
   
   
   <link rel="alternate" type="application/atom+xml" title="Atom 0.3" href="atom.xml">
   
   
+
 
 </head>
 <body>
@@ -536,24 +543,20 @@
 
 <main class="content" role="main">
   <article class="post" >
-    <span class="post-meta">
-      <div class="tag-tile">
-          
+    <div class="post-time">
+      <span class="fa fa-clock-o"></span>
+      <time datetime="2014-03-29T10:40:53.000Z"
+                itemprop="datePublished">Mar 29 2014</time>
+    </div>
+    <h1 class="post-title" style="margin: 14px 0;color:#50585D">Using Tmux Remotely Within a Local Tmux Session</h1>
+    <div class="share-links">
+      <div class="share-twitter">
+        <a class="twitter-share-button" href="https://twitter.com/share">Tweet</a>
       </div>
-      <h1 class="post-title" style="margin: 14px 0;color:#50585D">Using Tmux Remotely Within a Local Tmux Session</h1>
-      <div class="post-meta">
-        Post on<span class="fa fa-clock-o"></span>
-        <time datetime="2014-03-29T10:40:53.000Z" itemprop="datePublished">Mar 29 2014</time>
+      <div class="share-facebook">
+        <iframe src="http://www.facebook.com/plugins/like.php?href=http://simplyian.com/2014/03/29/using-tmux-remotely-within-a-local-tmux-session/&layout=button_count" style="overflow:hidden;width:100%;height:20px;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
       </div>
-      <div class="share-links">
-        <div class="share-twitter">
-          <a class="twitter-share-button" href="https://twitter.com/share">Tweet</a>
-        </div>
-        <div class="share-facebook">
-          <iframe src="http://www.facebook.com/plugins/like.php?href=http://simplyian.com/2014/03/29/using-tmux-remotely-within-a-local-tmux-session/&layout=button_count" style="overflow:hidden;width:100%;height:20px;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-        </div>
-      </div>
-    </span>
+    </div>
 
     <section class="post-content">
       <p>I often SSH to remote servers, and those servers usually have tmux installed. (tmux is better than Screen in every way) However, conflicts arise when you want to manipulate a remote tmux session within a local one. <code>Ctrl-B</code> refers to the local tmux session, not the remote one, and you have to press <code>Ctrl-B</code> twice to manipulate the remote one. This is pretty annoying. Fortunately, there is a solution to this.</p>
