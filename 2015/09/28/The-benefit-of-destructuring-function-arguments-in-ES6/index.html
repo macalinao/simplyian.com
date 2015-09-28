@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Tag: preston | Simply Ian...</title>
+  <title>The benefit of destructuring function arguments in ES6 | Simply Ian...</title>
   <meta name="description" content="The musings of a young software engineer" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="MobileOptimized" content="320" />
@@ -511,7 +511,7 @@
                 
                 <div id="nav-container">
                     <div class="post-navbar" style="line-height: 63px;display:none">
-                        <li id="navbar-title"><a href="#">undefined</a></li>
+                        <li id="navbar-title"><a href="#">The benefit of destructuring function arguments in ES6</a></li>
                         <li id="navbar-toc" style="border-left: none">
                             <a style="padding-right: 15px">
                                 <span id="toc-content" >Introduction</span><i class="fa fa-chevron-down" ></i>
@@ -530,54 +530,94 @@
 
 
 <!-- -->
-<!--<body class="home-template">-->
+<!--<body class="post-template">-->
 <!---->
   
+
 <main class="content" role="main">
+  <article class="post" >
+    <span class="post-meta">
+      <div class="tag-tile">
+          
+          
+          <a data-pjax href='/tags/es6/' style='color:#D5D5D5'>es6</a>
+          
+          <a data-pjax href='/tags/javascript/' style='color:#D5D5D5'>javascript</a>
+          
+          
+      </div>
+      <h1 class="post-title" style="margin: 14px 0;color:#50585D">The benefit of destructuring function arguments in ES6</h1>
+      <div class="post-meta">
+        Post on<span class="fa fa-clock-o"></span>
+        <time datetime="2015-09-28T20:32:27.000Z" itemprop="datePublished">Sep 28 2015</time>
+      </div>
+      <div class="share-links">
+        <div class="share-twitter">
+          <a class="twitter-share-button" href="https://twitter.com/share">Tweet</a>
+        </div>
+        <div class="share-facebook">
+          <iframe src="http://www.facebook.com/plugins/like.php?href=http://simplyian.com/2015/09/28/The-benefit-of-destructuring-function-arguments-in-ES6/&layout=button_count" style="overflow:hidden;width:100%;height:20px;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+        </div>
+        <script type="text/javascript">
+        window.twttr=(function(d,s,id){var t,js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return}js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);return window.twttr||(t={_e:[],ready:function(f){t._e.push(f)}})}(document,"script","twitter-wjs"));
+        </script>
+      </div>
+    </span>
 
-    
-    <article class="post">
+    <section class="post-content">
+      <p>ES6 brings a lot of great features to JavaScript to make it a much more modern and powerful language to work with. The days of “JavaScript sucks because it was only built in a week” have passed. One really great feature in ES6 is destructuring.</p>
+<p>In statically typed languages, one can easily know what arguments are needed in a function by the types passed into it. For example, in Java, the following function definition is very clear:</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">sendMessage</span><span class="params">(Target <span class="keyword">target</span>, String message)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>It’s obvious that the receiver of a message should be a target. In a modern IDE, calls like <code>sendMessage(user, msg)</code> would obviously send messages to a <code>Target</code>, as it is known that <code>user</code> would be part of a certain class.</p>
+<p>However, in JavaScript or other dynamically typed languages, things are a little harder to decipher. <code>user</code> may be a user id, a user object, a username, etc.</p>
+<p>Furthermore, <code>user</code> is a variable name, so literally anything can be passed in. A call like <code>sendMessage(first, s)</code> can be tricky to understand.</p>
+<p>It’s also pretty easy to swap the positions of variables, and there is no compiler to check if you are sending in the correct arguments.</p>
+<h2 id="The_Solution">The Solution</h2><p>One way I’ve found to solve this problem using ES6 is function argument destructuring.</p>
+<p>In ES5, a function may look like this:</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendMessage</span><span class="params">(target, msg)</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line">sendMessage(usr, <span class="string">"Hello"</span>);</span><br></pre></td></tr></table></figure>
+<p>The same function using argument destructuring would look like this:</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">function</span> <span class="tag">sendMessage</span>(&#123; <span class="tag">target</span>, <span class="tag">msg</span> &#125;) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function">sendMessage</span>(&#123; <span class="attribute">target</span>: usr, <span class="attribute">msg</span>: <span class="string">"Hello"</span> &#125;);</span><br></pre></td></tr></table></figure>
+<p>Intent is much more clear in the second version than the first. This is very useful if you have many arguments to functions. If some are optional, you don’t even have to pass in every single argument, as arguments are not positional. For example:</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function sendMessage(&#123; target, msg, notifySms = <span class="literal">false</span>, notifyEmail = <span class="literal">false</span> &#125;) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line">sendMessage(&#123; <span class="string">target:</span> usr, <span class="string">msg:</span> <span class="string">"Hello"</span> &#125;);</span><br><span class="line">sendMessage(&#123; <span class="string">target:</span> other, <span class="string">msg:</span> <span class="string">"Look at your phone"</span>, <span class="string">notifySms:</span> <span class="literal">true</span> &#125;);</span><br><span class="line">sendMessage(&#123; <span class="string">target:</span> other, <span class="string">msg:</span> <span class="string">"Look at your email"</span>, <span class="string">notifyEmail:</span> <span class="literal">true</span> &#125;);</span><br></pre></td></tr></table></figure>
+<p>Now you can easily pass options into your functions without function calls having a lot of falsy/nil values.</p>
 
-        <header class="post-header">
-            <div class="tag-tile">
-                
-                
-                <a data-pjax href='/tags/MEAN/'>MEAN</a>
-                
-                <a data-pjax href='/tags/Node-js/'>Node.js</a>
-                
-                <a data-pjax href='/tags/preston/'>preston</a>
-                
-                <a data-pjax href='/tags/rest/'>rest</a>
-                
-                
-                <span class="fa fa-bookmark" style="float:right;color:#f39c12"></span>
-            </div>
-            <h1 class="post-title"><a data-pjax href="/2014/12/20/Creating-a-Todo-app-on-the-MEAN-stack-using-Preston/">Creating a Todo app on the MEAN stack using Preston</a>
-            </h1>
+    </section>
 
-            <div class="post-meta">
-                Post on<span class="fa fa-clock-o"></span>
-                <time datetime="2014-12-21T00:34:19.000Z"
-                      itemprop="datePublished">Dec 20 2014</time>
-            </div>
-        </header>
-        <section class="post-excerpt">
-            <p>
-                
-                Preston is an extremely powerful library for creating RESTful applications that use Mongoose models. In this tutorial, I’ll be hooking up the AngularJS TodoMVC app to a Preston-powered backend.
-First, I’ve created a repo
-                
-            </p>
-            
-        </section>
-    </article>
-    
-    <nav class="pagination" role="pagination">
-        
-        <span class="page-number">Page 1 of 1</span>
-        
+    <hr />
+
+    <section>
+      <p>Thanks for reading my post! If you enjoyed it or it helped you, please consider liking/tweeting this page, commenting, or following me on <a href="https://github.com/simplyianm" target="_blank">GitHub</a> or <a href="https://twitter.com/simplyianm">Twitter</a>!</p>
+      <div class="share-links">
+        <div class="share-twitter">
+          <a class="twitter-share-button" href="https://twitter.com/share">Tweet</a>
+        </div>
+        <div class="share-facebook">
+          <iframe src="http://www.facebook.com/plugins/like.php?href=http://simplyian.com/2015/09/28/The-benefit-of-destructuring-function-arguments-in-ES6/&layout=button_count" style="overflow:hidden;width:100%;height:20px;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+        </div>
+        <script type="text/javascript">
+        window.twttr=(function(d,s,id){var t,js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return}js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);return window.twttr||(t={_e:[],ready:function(f){t._e.push(f)}})}(document,"script","twitter-wjs"));
+        </script>
+      </div>
+    </section>
+
+    <hr />
+
+    <nav class="pagination" style="width:auto" role="pagination">
+      
+      <a style="cursor:default" class="newer-posts" href="#">This is the First Post</a>
+      
+      <a class="share-button" data-original-title title>Share this Post</a>
+      
+      <a data-pjax class="older-posts" href="/2015/09/13/Doing-homework-assignments-in-Markdown-using-Pandoc-and-LaTeX/">Next Post →</a>
+      
     </nav>
+
+    <section id="comment">
+      <div id="disqus_thread"></div>
+      <div id="comment-box"></div>
+    </section>
+
+  </article>
 </main>
 
 

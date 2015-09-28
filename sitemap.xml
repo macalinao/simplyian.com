@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://simplyian.com/2015/09/28/The-benefit-of-destructuring-function-arguments-in-ES6/</loc>
+    <lastmod>2015-09-28T20:44:52.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://simplyian.com/2015/09/13/Doing-homework-assignments-in-Markdown-using-Pandoc-and-LaTeX/</loc>
     <lastmod>2015-09-13T15:22:14.000Z</lastmod>
   </url>

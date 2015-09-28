@@ -4,7 +4,7 @@
   <subtitle><![CDATA[The musings of a young software engineer]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://simplyian.com/"/>
-  <updated>2015-09-13T15:22:14.000Z</updated>
+  <updated>2015-09-28T20:44:52.000Z</updated>
   <id>http://simplyian.com/</id>
   
   <author>
@@ -13,6 +13,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[The benefit of destructuring function arguments in ES6]]></title>
+    <link href="http://simplyian.com/2015/09/28/The-benefit-of-destructuring-function-arguments-in-ES6/"/>
+    <id>http://simplyian.com/2015/09/28/The-benefit-of-destructuring-function-arguments-in-ES6/</id>
+    <published>2015-09-28T20:32:27.000Z</published>
+    <updated>2015-09-28T20:44:52.000Z</updated>
+    <content type="html"><![CDATA[<p>ES6 brings a lot of great features to JavaScript to make it a much more modern and powerful language to work with. The days of “JavaScript sucks because it was only built in a week” have passed. One really great feature in ES6 is destructuring.</p>
+<p>In statically typed languages, one can easily know what arguments are needed in a function by the types passed into it. For example, in Java, the following function definition is very clear:</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">sendMessage</span><span class="params">(Target <span class="keyword">target</span>, String message)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>It’s obvious that the receiver of a message should be a target. In a modern IDE, calls like <code>sendMessage(user, msg)</code> would obviously send messages to a <code>Target</code>, as it is known that <code>user</code> would be part of a certain class.</p>
+<p>However, in JavaScript or other dynamically typed languages, things are a little harder to decipher. <code>user</code> may be a user id, a user object, a username, etc.</p>
+<p>Furthermore, <code>user</code> is a variable name, so literally anything can be passed in. A call like <code>sendMessage(first, s)</code> can be tricky to understand.</p>
+<p>It’s also pretty easy to swap the positions of variables, and there is no compiler to check if you are sending in the correct arguments.</p>
+<h2 id="The_Solution">The Solution</h2><p>One way I’ve found to solve this problem using ES6 is function argument destructuring.</p>
+<p>In ES5, a function may look like this:</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendMessage</span><span class="params">(target, msg)</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line">sendMessage(usr, <span class="string">"Hello"</span>);</span><br></pre></td></tr></table></figure>
+<p>The same function using argument destructuring would look like this:</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">function</span> <span class="tag">sendMessage</span>(&#123; <span class="tag">target</span>, <span class="tag">msg</span> &#125;) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function">sendMessage</span>(&#123; <span class="attribute">target</span>: usr, <span class="attribute">msg</span>: <span class="string">"Hello"</span> &#125;);</span><br></pre></td></tr></table></figure>
+<p>Intent is much more clear in the second version than the first. This is very useful if you have many arguments to functions. If some are optional, you don’t even have to pass in every single argument, as arguments are not positional. For example:</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function sendMessage(&#123; target, msg, notifySms = <span class="literal">false</span>, notifyEmail = <span class="literal">false</span> &#125;) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line">sendMessage(&#123; <span class="string">target:</span> usr, <span class="string">msg:</span> <span class="string">"Hello"</span> &#125;);</span><br><span class="line">sendMessage(&#123; <span class="string">target:</span> other, <span class="string">msg:</span> <span class="string">"Look at your phone"</span>, <span class="string">notifySms:</span> <span class="literal">true</span> &#125;);</span><br><span class="line">sendMessage(&#123; <span class="string">target:</span> other, <span class="string">msg:</span> <span class="string">"Look at your email"</span>, <span class="string">notifyEmail:</span> <span class="literal">true</span> &#125;);</span><br></pre></td></tr></table></figure>
+<p>Now you can easily pass options into your functions without function calls having a lot of falsy/nil values.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>ES6 brings a lot of great features to JavaScript to make it a much more modern and powerful language to work with. The days of “JavaScrip]]>
+    </summary>
+    
+      <category term="es6" scheme="http://simplyian.com/tags/es6/"/>
+    
+      <category term="javascript" scheme="http://simplyian.com/tags/javascript/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Doing homework assignments in Markdown using Pandoc and LaTeX]]></title>
@@ -512,27 +544,6 @@
     </summary>
     
       <category term="Java" scheme="http://simplyian.com/categories/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Using Tmux Remotely Within a Local Tmux Session]]></title>
-    <link href="http://simplyian.com/2014/03/29/using-tmux-remotely-within-a-local-tmux-session/"/>
-    <id>http://simplyian.com/2014/03/29/using-tmux-remotely-within-a-local-tmux-session/</id>
-    <published>2014-03-29T10:40:53.000Z</published>
-    <updated>2015-04-23T19:03:16.000Z</updated>
-    <content type="html"><![CDATA[<p>I often SSH to remote servers, and those servers usually have tmux installed. (tmux is better than Screen in every way) However, conflicts arise when you want to manipulate a remote tmux session within a local one. <code>Ctrl-B</code> refers to the local tmux session, not the remote one, and you have to press <code>Ctrl-B</code> twice to manipulate the remote one. This is pretty annoying. Fortunately, there is a solution to this.</p>
-<img src="http://i.imgur.com/HQBdV1J.jpg">
-<p>There is one line you need to add to your <code>~/.tmux.conf</code> (if this file doesn’t exist, create it):</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bind</span>-key -n C<span class="operator">-a</span> send-prefix</span><br></pre></td></tr></table></figure>
-<p>This binds the command <code>send-prefix</code> to <code>Ctrl-A</code>. Basically, you are sending a <code>Ctrl-B</code> (assuming you’ve left tmux at its defaults) directly to the server when you press <code>Ctrl-A</code>. This will let you manipulate the remote session with <code>Ctrl-A</code> and still use your local session with <code>Ctrl-B</code>. Pretty nice, eh?</p>
-<p>Source: <a href="http://stackoverflow.com/questions/8518815/how-to-send-commands-when-opening-a-tmux-session-inside-another-tmux-session" target="_blank" rel="external">StackOverflow</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>I often SSH to remote servers, and those servers usually have tmux installed. (tmux is better than Screen in every way) However, conflict]]>
-    </summary>
-    
-      <category term="tmux" scheme="http://simplyian.com/categories/tmux/"/>
     
   </entry>
   
