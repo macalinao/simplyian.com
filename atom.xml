@@ -3,9 +3,9 @@
   <title><![CDATA[Simply Ian]]></title>
   <subtitle><![CDATA[A blog on software, technology, and life.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="http://simplyian.com/"/>
-  <updated>2015-09-28T20:44:52.000Z</updated>
-  <id>http://simplyian.com/</id>
+  <link href="https://simplyian.com/"/>
+  <updated>2015-11-07T04:53:18.000Z</updated>
+  <id>https://simplyian.com/</id>
   
   <author>
     <name><![CDATA[Ian Macalinao]]></name>
@@ -15,9 +15,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Ruby WTF? Escaping single quotes in Ruby using gsub]]></title>
+    <link href="https://simplyian.com/2015/10/19/Ruby-WTF-Escaping-single-quotes-in-Ruby-using-gsub/"/>
+    <id>https://simplyian.com/2015/10/19/Ruby-WTF-Escaping-single-quotes-in-Ruby-using-gsub/</id>
+    <published>2015-10-19T15:59:27.000Z</published>
+    <updated>2015-11-07T04:53:18.000Z</updated>
+    <content type="html"><![CDATA[<p>I’m currently working on a project which requires me to escape JavaScript (don’t ask why). To get it working, I had to escape single quotes. I was encountering weird behavior in my code, so I ran the following in IRB.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">2.2.1 :002 &gt;</span> <span class="string">"Doesn't work"</span>.gsub(<span class="string">"'"</span>, <span class="string">"\\'"</span>)</span><br><span class="line"><span class="status"> =&gt;</span> <span class="string">"Doesnt workt work"</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://www.destroyallsoftware.com/talks/wat" target="_blank" rel="external">WAT.</a></p>
+<p>I did a bit of investigation (read: <a href="http://stackoverflow.com/questions/2180322/ruby-gsub-doesnt-escape-single-quotes" target="_blank" rel="external">Stack Overflow</a>) and found that <code>\&#39;</code> is a special escape sequence in the gsub replacement — it’s a backreference that represents <code>$&#39;</code>, the characters that match after the single quote.</p>
+<p>In order to fix this bug, you must escape the backslash within gsub as so:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">2.2.1 :003 &gt;</span> <span class="string">"Doesn't work"</span>.gsub(<span class="string">"'"</span>, <span class="string">"\\\\'"</span>)</span><br><span class="line"><span class="status"> =&gt;</span> <span class="string">"Doesn\\'t work"</span></span><br></pre></td></tr></table></figure>
+<p><em>Nota bene: The double backslash returned by IRB is actually a single escaped backslash — it hasn’t generated another one.</em></p>
+<p>gsub first escapes everything as a Ruby string, then it parses the result of that string as a regex. It’s not documented well at all — I couldn’t find anything on this in the documentation.</p>
+<p>Ruby’s such a weird language.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I’m currently working on a project which requires me to escape JavaScript (don’t ask why). To get it working, I had to escape single quot]]>
+    </summary>
+    
+      <category term="Ruby" scheme="https://simplyian.com/tags/Ruby/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[The benefit of destructuring function arguments in ES6]]></title>
-    <link href="http://simplyian.com/2015/09/28/The-benefit-of-destructuring-function-arguments-in-ES6/"/>
-    <id>http://simplyian.com/2015/09/28/The-benefit-of-destructuring-function-arguments-in-ES6/</id>
+    <link href="https://simplyian.com/2015/09/28/The-benefit-of-destructuring-function-arguments-in-ES6/"/>
+    <id>https://simplyian.com/2015/09/28/The-benefit-of-destructuring-function-arguments-in-ES6/</id>
     <published>2015-09-28T20:32:27.000Z</published>
     <updated>2015-09-28T20:44:52.000Z</updated>
     <content type="html"><![CDATA[<p>ES6 brings a lot of great features to JavaScript to make it a much more modern and powerful language to work with. The days of “JavaScript sucks because it was only built in a week” have passed. One really great feature in ES6 is destructuring.</p>
@@ -40,16 +64,16 @@
     <![CDATA[<p>ES6 brings a lot of great features to JavaScript to make it a much more modern and powerful language to work with. The days of “JavaScrip]]>
     </summary>
     
-      <category term="es6" scheme="http://simplyian.com/tags/es6/"/>
+      <category term="es6" scheme="https://simplyian.com/tags/es6/"/>
     
-      <category term="javascript" scheme="http://simplyian.com/tags/javascript/"/>
+      <category term="javascript" scheme="https://simplyian.com/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Doing homework assignments in Markdown using Pandoc and LaTeX]]></title>
-    <link href="http://simplyian.com/2015/09/13/Doing-homework-assignments-in-Markdown-using-Pandoc-and-LaTeX/"/>
-    <id>http://simplyian.com/2015/09/13/Doing-homework-assignments-in-Markdown-using-Pandoc-and-LaTeX/</id>
+    <link href="https://simplyian.com/2015/09/13/Doing-homework-assignments-in-Markdown-using-Pandoc-and-LaTeX/"/>
+    <id>https://simplyian.com/2015/09/13/Doing-homework-assignments-in-Markdown-using-Pandoc-and-LaTeX/</id>
     <published>2015-09-13T14:57:43.000Z</published>
     <updated>2015-09-13T15:22:14.000Z</updated>
     <content type="html"><![CDATA[<p><a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="external">Markdown</a> is a really awesome format for text and prose. It’s really easy to manage in any text editor, and it’s quick to write. It has a lot of features, including <strong>bolding</strong>, <em>italicizing</em>, lists, quotes, embedded code, and more. It’s so easy to write that it’s the “language” of choice for many major websites such as StackOverflow and Reddit, it being much easier to implement and looking nicer than a WYSIWYG text editor. I’m even writing this blog post using Markdown. However, you can’t really send someone a Markdown document. It’s meant to be processed into a more readable format, most usually HTML.</p>
@@ -74,18 +98,18 @@
     <![CDATA[<p><a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="external">Markdown</a> is a really awesome format for text an]]>
     </summary>
     
-      <category term="latex" scheme="http://simplyian.com/tags/latex/"/>
+      <category term="latex" scheme="https://simplyian.com/tags/latex/"/>
     
-      <category term="markdown" scheme="http://simplyian.com/tags/markdown/"/>
+      <category term="markdown" scheme="https://simplyian.com/tags/markdown/"/>
     
-      <category term="pandoc" scheme="http://simplyian.com/tags/pandoc/"/>
+      <category term="pandoc" scheme="https://simplyian.com/tags/pandoc/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Using form-horizontal with simple_form in Rails 4]]></title>
-    <link href="http://simplyian.com/2015/04/23/Using-form-horizontal-with-simple-form-in-Rails-4/"/>
-    <id>http://simplyian.com/2015/04/23/Using-form-horizontal-with-simple-form-in-Rails-4/</id>
+    <link href="https://simplyian.com/2015/04/23/Using-form-horizontal-with-simple-form-in-Rails-4/"/>
+    <id>https://simplyian.com/2015/04/23/Using-form-horizontal-with-simple-form-in-Rails-4/</id>
     <published>2015-04-23T19:14:44.000Z</published>
     <updated>2015-04-23T19:18:54.000Z</updated>
     <content type="html"><![CDATA[<p><a href="https://github.com/plataformatec/simple_form" target="_blank" rel="external">simple_form</a> is a really great gem for generating bootstrap forms. However, you have to<br>do a little extra to get it working with <a href="http://getbootstrap.com/" target="_blank" rel="external">Bootstrap’s</a> <code>form-horizontal</code> class. The<br>README doesn’t mention this, but it’s built in. Just write your form declaration like this:</p>
@@ -97,16 +121,16 @@
     <![CDATA[<p><a href="https://github.com/plataformatec/simple_form" target="_blank" rel="external">simple_form</a> is a really great gem for generatin]]>
     </summary>
     
-      <category term="rails" scheme="http://simplyian.com/tags/rails/"/>
+      <category term="rails" scheme="https://simplyian.com/tags/rails/"/>
     
-      <category term="web" scheme="http://simplyian.com/tags/web/"/>
+      <category term="web" scheme="https://simplyian.com/tags/web/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[How to skip all Yaourt prompts on Arch Linux]]></title>
-    <link href="http://simplyian.com/2015/02/15/How-to-skip-all-Yaourt-prompts-on-Arch-Linux/"/>
-    <id>http://simplyian.com/2015/02/15/How-to-skip-all-Yaourt-prompts-on-Arch-Linux/</id>
+    <link href="https://simplyian.com/2015/02/15/How-to-skip-all-Yaourt-prompts-on-Arch-Linux/"/>
+    <id>https://simplyian.com/2015/02/15/How-to-skip-all-Yaourt-prompts-on-Arch-Linux/</id>
     <published>2015-02-15T22:39:31.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p><a href="https://wiki.archlinux.org/index.php/yaourt" target="_blank" rel="external">Yaourt</a> is probably the best tool to automatically download and install packages from the <a href="https://aur.archlinux.org/" target="_blank" rel="external">Arch User Repository</a>, also known as AUR. It’s really powerful; however, by default, it prompts you a <strong>LOT</strong> for confirmations of different things, such as checking if you want to install something, if you want to edit the <code>PKGBUILD</code>, etc. As a result, Yaourt is pretty annoying if you’re used to the hands-free nature of most other package managers.</p>
@@ -122,16 +146,16 @@
     <![CDATA[<p><a href="https://wiki.archlinux.org/index.php/yaourt" target="_blank" rel="external">Yaourt</a> is probably the best tool to automaticall]]>
     </summary>
     
-      <category term="arch" scheme="http://simplyian.com/tags/arch/"/>
+      <category term="arch" scheme="https://simplyian.com/tags/arch/"/>
     
-      <category term="linux" scheme="http://simplyian.com/tags/linux/"/>
+      <category term="linux" scheme="https://simplyian.com/tags/linux/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Why hard work doesn't matter]]></title>
-    <link href="http://simplyian.com/2015/02/03/Why-hard-work-doesn-t-matter/"/>
-    <id>http://simplyian.com/2015/02/03/Why-hard-work-doesn-t-matter/</id>
+    <link href="https://simplyian.com/2015/02/03/Why-hard-work-doesn-t-matter/"/>
+    <id>https://simplyian.com/2015/02/03/Why-hard-work-doesn-t-matter/</id>
     <published>2015-02-03T16:47:19.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p><strong>Hard work pays off.</strong> That expression is always said in today’s society, and it’s considered a good trait to have. However, many people every day work hard, yet they still find themselves struggling to pay bills or live.</p>
@@ -154,8 +178,8 @@
   
   <entry>
     <title><![CDATA[Why abstraction is important when constructing algorithms]]></title>
-    <link href="http://simplyian.com/2015/02/02/Why-abstraction-is-important-when-constructing-algorithms/"/>
-    <id>http://simplyian.com/2015/02/02/Why-abstraction-is-important-when-constructing-algorithms/</id>
+    <link href="https://simplyian.com/2015/02/02/Why-abstraction-is-important-when-constructing-algorithms/"/>
+    <id>https://simplyian.com/2015/02/02/Why-abstraction-is-important-when-constructing-algorithms/</id>
     <published>2015-02-02T15:09:16.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p>In order to get better at algorithms (my greatest weakness), I’m currently going through the <a href="https://www.coursera.org/course/algo" target="_blank" rel="external">Stanford algorithm design course</a>. To learn the concepts better, I decided to implement <a href="http://en.wikipedia.org/wiki/Karatsuba_algorithm" target="_blank" rel="external">Karatsuba multiplication</a> in JavaScript. <a href="https://github.com/simplyianm/node-misc-problems/blob/master/src/karatsuba.js" target="_blank" rel="external">(The fruits of my labor can be found on my miscellaneous algorithm GitHub repository.)</a>.</p>
@@ -169,14 +193,14 @@
     <![CDATA[<p>In order to get better at algorithms (my greatest weakness), I’m currently going through the <a href="https://www.coursera.org/course/alg]]>
     </summary>
     
-      <category term="programming" scheme="http://simplyian.com/tags/programming/"/>
+      <category term="programming" scheme="https://simplyian.com/tags/programming/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[The real reason why Caps Lock and Escape are in terrible positions]]></title>
-    <link href="http://simplyian.com/2015/01/08/The-real-reason-why-Caps-Lock-and-Escape-are-in-terrible-positions/"/>
-    <id>http://simplyian.com/2015/01/08/The-real-reason-why-Caps-Lock-and-Escape-are-in-terrible-positions/</id>
+    <link href="https://simplyian.com/2015/01/08/The-real-reason-why-Caps-Lock-and-Escape-are-in-terrible-positions/"/>
+    <id>https://simplyian.com/2015/01/08/The-real-reason-why-Caps-Lock-and-Escape-are-in-terrible-positions/</id>
     <published>2015-01-08T19:41:08.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p>It is a truth universally acknowledged that <strong>the Caps Lock key is completely useless.</strong> I use it about once or twice a year, and that definitely does not warrant it a spot right next to my pinky finger on the home row. It’s in a place that is just as convenient as the Enter key, despite being completely useless.</p>
@@ -206,14 +230,14 @@
     <![CDATA[<p>It is a truth universally acknowledged that <strong>the Caps Lock key is completely useless.</strong> I use it about once or twice a year]]>
     </summary>
     
-      <category term="vim" scheme="http://simplyian.com/tags/vim/"/>
+      <category term="vim" scheme="https://simplyian.com/tags/vim/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Hacking Gmail to use custom domains for free]]></title>
-    <link href="http://simplyian.com/2015/01/07/Hacking-GMail-to-use-custom-domains-for-free/"/>
-    <id>http://simplyian.com/2015/01/07/Hacking-GMail-to-use-custom-domains-for-free/</id>
+    <link href="https://simplyian.com/2015/01/07/Hacking-GMail-to-use-custom-domains-for-free/"/>
+    <id>https://simplyian.com/2015/01/07/Hacking-GMail-to-use-custom-domains-for-free/</id>
     <published>2015-01-07T19:00:22.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p>It’s pretty much common knowledge that Gmail is awesome. It’s fast, connects seamlessly with the rest of your Google services such as Drive, has a cool app called <a href="http://www.google.com/inbox/" target="_blank" rel="external">Inbox</a>, and is overall an extremely powerful email service. However, to use it with a custom domain, you need to purchase <a href="https://www.google.com/work/apps/business/" target="_blank" rel="external">Google Apps</a> for either $5 or $10/month, which for casual users is a bit unnecessary. On top of that, you don’t even get all of the features a personal account gets, e.g. Inbox.</p>
@@ -252,20 +276,20 @@
     <![CDATA[<p>It’s pretty much common knowledge that Gmail is awesome. It’s fast, connects seamlessly with the rest of your Google services such as Dri]]>
     </summary>
     
-      <category term="frugal" scheme="http://simplyian.com/tags/frugal/"/>
+      <category term="frugal" scheme="https://simplyian.com/tags/frugal/"/>
     
-      <category term="gmail" scheme="http://simplyian.com/tags/gmail/"/>
+      <category term="gmail" scheme="https://simplyian.com/tags/gmail/"/>
     
-      <category term="hack" scheme="http://simplyian.com/tags/hack/"/>
+      <category term="hack" scheme="https://simplyian.com/tags/hack/"/>
     
-      <category term="mailgun" scheme="http://simplyian.com/tags/mailgun/"/>
+      <category term="mailgun" scheme="https://simplyian.com/tags/mailgun/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Creating a Todo app on the MEAN stack using Preston]]></title>
-    <link href="http://simplyian.com/2014/12/20/Creating-a-Todo-app-on-the-MEAN-stack-using-Preston/"/>
-    <id>http://simplyian.com/2014/12/20/Creating-a-Todo-app-on-the-MEAN-stack-using-Preston/</id>
+    <link href="https://simplyian.com/2014/12/20/Creating-a-Todo-app-on-the-MEAN-stack-using-Preston/"/>
+    <id>https://simplyian.com/2014/12/20/Creating-a-Todo-app-on-the-MEAN-stack-using-Preston/</id>
     <published>2014-12-21T00:34:19.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p><a href="http://prestonjs.com" target="_blank" rel="external">Preston</a> is an extremely powerful library for creating RESTful applications that use Mongoose models. In this tutorial, I’ll be hooking up the <a href="http://todomvc.com/examples/angularjs/#/" target="_blank" rel="external">AngularJS TodoMVC app</a> to a Preston-powered backend.</p>
@@ -308,20 +332,20 @@
     <![CDATA[<p><a href="http://prestonjs.com" target="_blank" rel="external">Preston</a> is an extremely powerful library for creating RESTful applicati]]>
     </summary>
     
-      <category term="MEAN" scheme="http://simplyian.com/tags/MEAN/"/>
+      <category term="MEAN" scheme="https://simplyian.com/tags/MEAN/"/>
     
-      <category term="Node.js" scheme="http://simplyian.com/tags/Node-js/"/>
+      <category term="Node.js" scheme="https://simplyian.com/tags/Node-js/"/>
     
-      <category term="preston" scheme="http://simplyian.com/tags/preston/"/>
+      <category term="preston" scheme="https://simplyian.com/tags/preston/"/>
     
-      <category term="rest" scheme="http://simplyian.com/tags/rest/"/>
+      <category term="rest" scheme="https://simplyian.com/tags/rest/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Getting Django To Work With Vagrant]]></title>
-    <link href="http://simplyian.com/2014/11/10/getting-django-to-work-with-vagrant/"/>
-    <id>http://simplyian.com/2014/11/10/getting-django-to-work-with-vagrant/</id>
+    <link href="https://simplyian.com/2014/11/10/getting-django-to-work-with-vagrant/"/>
+    <id>https://simplyian.com/2014/11/10/getting-django-to-work-with-vagrant/</id>
     <published>2014-11-10T19:13:35.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p>I was having problems getting Django working with Vagrant, then I stumbled upon this <a href="http://stackoverflow.com/questions/5984217/vagrants-port-forwarding-not-working" target="_blank" rel="external">StackOverflow answer</a>.</p>
@@ -338,8 +362,8 @@
   
   <entry>
     <title><![CDATA[The Coffeescript Keyword Nobody's Heard Of: 'by']]></title>
-    <link href="http://simplyian.com/2014/11/04/the-coffeescript-keyword-nobodys-heard-of-by/"/>
-    <id>http://simplyian.com/2014/11/04/the-coffeescript-keyword-nobodys-heard-of-by/</id>
+    <link href="https://simplyian.com/2014/11/04/the-coffeescript-keyword-nobodys-heard-of-by/"/>
+    <id>https://simplyian.com/2014/11/04/the-coffeescript-keyword-nobodys-heard-of-by/</id>
     <published>2014-11-04T14:22:44.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p>Coffeescript is an amazing language. As a matter of fact, it’s one of my favorite languages, second only to JavaScript. Here’s some recent code I used to split up one array into a multidimensional array with a certain number of columns.</p>
@@ -361,8 +385,8 @@
   
   <entry>
     <title><![CDATA[JSON Backends Are The Next Big Thing]]></title>
-    <link href="http://simplyian.com/2014/08/07/json-backends-are-the-next-big-thing/"/>
-    <id>http://simplyian.com/2014/08/07/json-backends-are-the-next-big-thing/</id>
+    <link href="https://simplyian.com/2014/08/07/json-backends-are-the-next-big-thing/"/>
+    <id>https://simplyian.com/2014/08/07/json-backends-are-the-next-big-thing/</id>
     <published>2014-08-07T17:19:32.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p><a href="http://angularjs.org" target="_blank" rel="external">AngularJS</a> is an awesome web framework made by Google<br>to create “structured web apps”. In this framework, templating is done client-side,<br>so all the server needs to do is send data to the client via HTTP. Thus, no templating<br>needs to be done on the backend and the web browser handles all of the data.<br>All the backend needs to do is send JSON.</p>
@@ -379,14 +403,14 @@
     <![CDATA[<p><a href="http://angularjs.org" target="_blank" rel="external">AngularJS</a> is an awesome web framework made by Google<br>to create “stru]]>
     </summary>
     
-      <category term="Web" scheme="http://simplyian.com/categories/Web/"/>
+      <category term="Web" scheme="https://simplyian.com/categories/Web/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[How to Have Language-Specific Settings in Vim]]></title>
-    <link href="http://simplyian.com/2014/04/28/how-to-have-language-specific-settings-in-vim/"/>
-    <id>http://simplyian.com/2014/04/28/how-to-have-language-specific-settings-in-vim/</id>
+    <link href="https://simplyian.com/2014/04/28/how-to-have-language-specific-settings-in-vim/"/>
+    <id>https://simplyian.com/2014/04/28/how-to-have-language-specific-settings-in-vim/</id>
     <published>2014-04-29T01:50:27.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p>I wanted to set up Vim so that <a href="http://coffeescript.org/" target="_blank" rel="external">Coffeescript</a> files would use 2 spaces for indentation. This was very simple:</p>
@@ -400,14 +424,14 @@
     <![CDATA[<p>I wanted to set up Vim so that <a href="http://coffeescript.org/" target="_blank" rel="external">Coffeescript</a> files would use 2 space]]>
     </summary>
     
-      <category term="Vim" scheme="http://simplyian.com/categories/Vim/"/>
+      <category term="Vim" scheme="https://simplyian.com/categories/Vim/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Setting up Virtual Hosts in Apache]]></title>
-    <link href="http://simplyian.com/2014/04/15/setting-up-virtual-hosts-in-apache/"/>
-    <id>http://simplyian.com/2014/04/15/setting-up-virtual-hosts-in-apache/</id>
+    <link href="https://simplyian.com/2014/04/15/setting-up-virtual-hosts-in-apache/"/>
+    <id>https://simplyian.com/2014/04/15/setting-up-virtual-hosts-in-apache/</id>
     <published>2014-04-16T04:17:35.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p>Today, I wanted to put my downloads on a different domain from my screenshots. Not wanting to manage multiple servers for no reason, I set up virtual hosts, also known as vhosts. Basically, depending on what domain you visit my web server from, you will get a different website. This is actually very simple to set up.</p>
@@ -423,16 +447,16 @@
     <![CDATA[<p>Today, I wanted to put my downloads on a different domain from my screenshots. Not wanting to manage multiple servers for no reason, I se]]>
     </summary>
     
-      <category term="Apache" scheme="http://simplyian.com/categories/Apache/"/>
+      <category term="Apache" scheme="https://simplyian.com/categories/Apache/"/>
     
-      <category term="Linux" scheme="http://simplyian.com/categories/Apache/Linux/"/>
+      <category term="Linux" scheme="https://simplyian.com/categories/Apache/Linux/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Including Dependencies in Your Gradle Build Script's Classpath]]></title>
-    <link href="http://simplyian.com/2014/04/10/including-dependencies-in-your-gradle-build-scripts-classpath/"/>
-    <id>http://simplyian.com/2014/04/10/including-dependencies-in-your-gradle-build-scripts-classpath/</id>
+    <link href="https://simplyian.com/2014/04/10/including-dependencies-in-your-gradle-build-scripts-classpath/"/>
+    <id>https://simplyian.com/2014/04/10/including-dependencies-in-your-gradle-build-scripts-classpath/</id>
     <published>2014-04-11T04:00:18.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p>In a <a href="https://github.com/simplyianm/bukkit-bootstrap" target="_blank" rel="external">recent project</a>, I wanted to use SnakeYAML in my Gradle build script. This is pretty easy to do; all you have to do is add the following to your script:</p>
@@ -443,14 +467,14 @@
     <![CDATA[<p>In a <a href="https://github.com/simplyianm/bukkit-bootstrap" target="_blank" rel="external">recent project</a>, I wanted to use SnakeYAM]]>
     </summary>
     
-      <category term="Gradle" scheme="http://simplyian.com/categories/Gradle/"/>
+      <category term="Gradle" scheme="https://simplyian.com/categories/Gradle/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Adding a Provided JAR as a Dependency in a Gradle Project]]></title>
-    <link href="http://simplyian.com/2014/04/04/adding-a-provided-jar-as-a-dependency-in-a-gradle-project/"/>
-    <id>http://simplyian.com/2014/04/04/adding-a-provided-jar-as-a-dependency-in-a-gradle-project/</id>
+    <link href="https://simplyian.com/2014/04/04/adding-a-provided-jar-as-a-dependency-in-a-gradle-project/"/>
+    <id>https://simplyian.com/2014/04/04/adding-a-provided-jar-as-a-dependency-in-a-gradle-project/</id>
     <published>2014-04-05T04:39:12.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p>Adding a JAR as a dependency is simple in <a href="http://gradle.org/" target="_blank" rel="external">Gradle</a>. In your <code>dependencies {}</code>, add the following line:</p>
@@ -461,16 +485,16 @@
     <![CDATA[<p>Adding a JAR as a dependency is simple in <a href="http://gradle.org/" target="_blank" rel="external">Gradle</a>. In your <code>dependenc]]>
     </summary>
     
-      <category term="Gradle" scheme="http://simplyian.com/categories/Gradle/"/>
+      <category term="Gradle" scheme="https://simplyian.com/categories/Gradle/"/>
     
-      <category term="Java" scheme="http://simplyian.com/categories/Gradle/Java/"/>
+      <category term="Java" scheme="https://simplyian.com/categories/Gradle/Java/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[up - A Useful File Sharing Tool Using SCP]]></title>
-    <link href="http://simplyian.com/2014/04/02/up-a-useful-file-sharing-tool-using-scp/"/>
-    <id>http://simplyian.com/2014/04/02/up-a-useful-file-sharing-tool-using-scp/</id>
+    <link href="https://simplyian.com/2014/04/02/up-a-useful-file-sharing-tool-using-scp/"/>
+    <id>https://simplyian.com/2014/04/02/up-a-useful-file-sharing-tool-using-scp/</id>
     <published>2014-04-03T04:18:26.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p>I created a tool today called <a href="https://github.com/simplyianm/up" target="_blank" rel="external">up</a>. Although it’s really simple, it gets the job done and it’s really useful.</p>
@@ -480,14 +504,14 @@
     <![CDATA[<p>I created a tool today called <a href="https://github.com/simplyianm/up" target="_blank" rel="external">up</a>. Although it’s really simp]]>
     </summary>
     
-      <category term="Linux" scheme="http://simplyian.com/categories/Linux/"/>
+      <category term="Linux" scheme="https://simplyian.com/categories/Linux/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[How to Run a Command on Startup on Linux]]></title>
-    <link href="http://simplyian.com/2014/04/01/how-to-run-a-command-on-startup-on-linux/"/>
-    <id>http://simplyian.com/2014/04/01/how-to-run-a-command-on-startup-on-linux/</id>
+    <link href="https://simplyian.com/2014/04/01/how-to-run-a-command-on-startup-on-linux/"/>
+    <id>https://simplyian.com/2014/04/01/how-to-run-a-command-on-startup-on-linux/</id>
     <published>2014-04-02T04:43:26.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p>I recently purchased a VPS to run my IRC client in. I wanted to start my IRC client in tmux on startup. The answer is simple: crontabs.</p>
@@ -504,14 +528,14 @@
     <![CDATA[<p>I recently purchased a VPS to run my IRC client in. I wanted to start my IRC client in tmux on startup. The answer is simple: crontabs.</]]>
     </summary>
     
-      <category term="Linux" scheme="http://simplyian.com/categories/Linux/"/>
+      <category term="Linux" scheme="https://simplyian.com/categories/Linux/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[How to Change the Name of the JAR Produced in Gradle]]></title>
-    <link href="http://simplyian.com/2014/03/31/how-to-change-the-name-of-the-jar-produced-in-gradle/"/>
-    <id>http://simplyian.com/2014/03/31/how-to-change-the-name-of-the-jar-produced-in-gradle/</id>
+    <link href="https://simplyian.com/2014/03/31/how-to-change-the-name-of-the-jar-produced-in-gradle/"/>
+    <id>https://simplyian.com/2014/03/31/how-to-change-the-name-of-the-jar-produced-in-gradle/</id>
     <published>2014-04-01T04:19:07.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p>I don’t like the traditional JAR name assigned in Gradle. In Bukkit development, you usually make the JAR name the same as the plugin name. Here’s how you set the name of the JAR:</p>
@@ -523,27 +547,7 @@
     <![CDATA[<p>I don’t like the traditional JAR name assigned in Gradle. In Bukkit development, you usually make the JAR name the same as the plugin nam]]>
     </summary>
     
-      <category term="Gradle" scheme="http://simplyian.com/categories/Gradle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[How to Run a Specific Class Inside of a JAR]]></title>
-    <link href="http://simplyian.com/2014/03/30/how-to-run-a-specific-class-inside-of-a-jar/"/>
-    <id>http://simplyian.com/2014/03/30/how-to-run-a-specific-class-inside-of-a-jar/</id>
-    <published>2014-03-31T01:34:47.000Z</published>
-    <updated>2015-04-23T19:03:16.000Z</updated>
-    <content type="html"><![CDATA[<p>My friend wanted me to test out his program, but it didn’t have a main class specified in the manifest. Here’s the solution:</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java  -cp yourjar<span class="class">.jar</span> com<span class="class">.yourpackage</span><span class="class">.YourClass</span></span><br></pre></td></tr></table></figure>
-<p>This will run the specified class as the main class.</p>
-<p>Source: <a href="http://stackoverflow.com/questions/5474666/how-to-run-a-class-from-jar-which-is-not-the-main-class-in-its-manifest-file" target="_blank" rel="external">StackOverflow</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>My friend wanted me to test out his program, but it didn’t have a main class specified in the manifest. Here’s the solution:</p>
-<figure ]]>
-    </summary>
-    
-      <category term="Java" scheme="http://simplyian.com/categories/Java/"/>
+      <category term="Gradle" scheme="https://simplyian.com/categories/Gradle/"/>
     
   </entry>
   
