@@ -1,0 +1,31 @@
+---
+layout: post
+title: MySQL check difference in days
+date: 2012-02-06 20:32:50.000000000 -06:00
+type: post
+published: true
+status: publish
+categories:
+- Programming
+tags:
+- sql
+meta:
+  _edit_last: '1'
+  robotsmeta: index,follow
+  _prlipro-post-options: a:7:{s:15:"send_auto_tweet";s:0:"";s:14:"requested_slug";s:3:"986";s:25:"requested_twitter_message";s:26:"{%title%}
+    {%url%} {%hash%}";s:19:"hide_twitter_button";s:0:"";s:19:"hide_social_buttons";s:0:"";s:21:"hide_twitter_comments";s:0:"";s:20:"disable_replacements";s:0:"";}
+  _pretty-link: '85'
+  thesis_thumb_width: '66'
+  thesis_thumb_height: '66'
+author:
+  login: admin
+  email: ian@simplyian.com
+  display_name: simplyianm
+  first_name: Ian
+  last_name: Macalinao
+---
+<p><span class="drop_cap">I</span>'ve encountered this problem recently and here's how I figured it out:</p>
+<pre lang="sql">
+SELECT COUNT(*) FROM pvp_kills WHERE death_killer='Camaroow' AND DATEDIFF(CURRENT_TIMESTAMP(), death_time) <= 1;
+</pre>
+<p>There is no period at the end of this blog post</p>

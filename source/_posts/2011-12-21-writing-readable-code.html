@@ -1,0 +1,55 @@
+---
+layout: post
+title: Writing Readable Code
+date: 2011-12-21 16:22:12.000000000 -06:00
+type: post
+published: true
+status: publish
+categories:
+- Programming
+tags:
+- java
+- minecraft
+meta:
+  _edit_last: '1'
+  robotsmeta: index,follow
+  _slidedeck_slide_title: Writing Readable Code
+  _prlipro-post-options: a:7:{s:15:"send_auto_tweet";s:0:"";s:14:"requested_slug";s:3:"n1m";s:25:"requested_twitter_message";s:26:"{%title%}
+    {%url%} {%hash%}";s:19:"hide_twitter_button";s:0:"";s:19:"hide_social_buttons";s:0:"";s:21:"hide_twitter_comments";s:0:"";s:20:"disable_replacements";s:0:"";}
+  _pretty-link: '81'
+author:
+  login: admin
+  email: ian@simplyian.com
+  display_name: simplyianm
+  first_name: Ian
+  last_name: Macalinao
+---
+<p><span class="drop_cap">W</span>riting readable code is something you don't really see. After all, it's <strong>code</strong>. Take HTML for example. Lots of strange tags to remember, formatting, and lots of trial and error. HTML/XML isn't really the most readable thing.<br />
+<!--more--><br />
+Or take the following:</p>
+<pre lang="java">public class SkillCharge extends TargettedSkill {
+    public SkillCharge(Heroes plugin) {
+        super(plugin, "Charge");
+        setDescription("Charges towards your target");
+        setUsage("/skill charge");
+        setArgumentRange(0, 1);
+        setIdentifiers("skill charge");
+        setTypes(SkillType.PHYSICAL, SkillType.MOVEMENT, SkillType.HARMFUL);
+    }
+}</pre>
+<p>I mean, it's decent. But it isn't readable to <strong>anyone</strong> who sees the file. By anyone, I mean a non-programmer. Now take this:</p>
+<pre lang="java">public class FlameShield extends Skill {
+	public FlameShield(Attribute attribute) {
+		super(attribute);
+
+		id(0x02);
+		name("Flame Shield");
+		description("For 10...45 seconds (linear), anything that harms you is set ablaze for 2...5 seconds (linear).");
+	}
+}</pre>
+<p>The only really confusing thing there is the id, but I'm a programmer, so naturally I feel good with hex. But look at this:</p>
+<blockquote><p>For 10...45 seconds (linear), anything that harms you is set ablaze for 2...5 seconds (linear).</p></blockquote>
+<p>Does that seem like code to you? Here's what it does: it draws a line between 10 and 45 and compares your level as a percentage between those two numbers. But it's readable to the normal human!</p>
+<p>The only problem with this is having more advanced logic behind the scenes. I had to write something that takes a percentage and turns it into something based on a graph. But that doesn't matter. Why?</p>
+<h2>As much of your code as possible should be written for humans.</h2>
+<p>The brain reads faster in its native language -- usually plain English. Plus, when other people need to use your code, they'll understand it. Of course, you shouldn't sacrifice readability for a large performance hit.</p>

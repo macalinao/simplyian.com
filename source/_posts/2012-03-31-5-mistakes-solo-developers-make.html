@@ -1,0 +1,53 @@
+---
+layout: post
+title: 5 Mistakes Solo Developers Often Make
+date: 2012-03-31 15:42:03.000000000 -05:00
+type: post
+published: true
+status: publish
+categories:
+- Programming
+tags: []
+meta:
+  _edit_last: '1'
+  robotsmeta: index,follow
+  _slidedeck_slide_title: 5 Mistakes Solo Developers Make
+  _prlipro-post-options: a:7:{s:15:"send_auto_tweet";s:0:"";s:14:"requested_slug";s:0:"";s:25:"requested_twitter_message";s:26:"{%title%}
+    {%url%} {%hash%}";s:19:"hide_twitter_button";s:0:"";s:19:"hide_social_buttons";s:0:"";s:21:"hide_twitter_comments";s:0:"";s:20:"disable_replacements";s:0:"";}
+  _pretty-link: '86'
+author:
+  login: admin
+  email: ian@simplyian.com
+  display_name: simplyianm
+  first_name: Ian
+  last_name: Macalinao
+---
+<p><span class="drop_cap">D</span>evelopers often code differently when not in a team. They deem many tools unnecessary for projects as "small" as what they're doing. These tools are really actually pretty useful for solo projects, even necessary.</p>
+<h2>Mistake 1: Solo programmers think of version control as a publishing system.</h2>
+<p><img class="alignleft" title="Git" src="{{ site.baseurl }}/assets/git-logo.png" alt="" width="483" height="121" />These people write maybe 1,000 lines or more of code, then commit with a message of "pushing version 0.3" or something like that.</p>
+<p>First of all, the point of version control is as it says in its name -- version control of your source code. It allows you to see every individual part of your code and your thought processes at the time (via commit messages, which are important too). When you make huge commits like this, you are not allowing selected changes to be rolled back.</p>
+<p>Version control really is to manage your code's history. It's not just for showing off your code to the world. Commit early, and commit often. Don't store your work on flash drives. If you lose the drive, your project is dead.</p>
+<p>If an issue crops up, you won't be able to roll back the specific part of code that messed everything up. Instead, you'd have to change everything manually, searching for what was wrong. This wastes time and energy and produces frustration.</p>
+<h2>Mistake 2: Solo programmers don't write unit tests.</h2>
+<p><img class="alignright" title="Tests" src="{{ site.baseurl }}/assets/testing.jpg" alt="" width="240" height="180" />Programmers like this probably debug using print statements and go through the code flow. This usually happens due to laziness and/or a feeling of "I'm the only one messing with my code, so it should work the way I made it work".</p>
+<p>No -- this is not the answer at all. Instead of wasting time doing this, how about writing individual tests for each METHOD? Compare the actual result with the expected one and make sure the code is working properly through a myriad of use cases. Furthermore, when you change something, if something breaks, you will know what broke something since your tests broke right after that commit.</p>
+<p>This makes everything easier to see. When you don't write unit tests, not only are you not sure if the code works, but you are wasting valuable time as your project grows debugging and making sure everything still works. An immense refactor could break one thing, but you would have to dig for hours finding what exactly broke and where.</p>
+<p>Although, it's easy to forget to build your project after you change something and commit it, or it takes a lot of time, which leads me to the following statement.</p>
+<h2>Mistake 3: Solo programmers don't use continuous integration.</h2>
+<p><img class="alignleft" title="Travis CI" src="{{ site.baseurl }}/assets/travis.png" alt="" width="244" height="244" />Continuous Integration, "CI" for short, is basically a process where your project is built from your latest source code. Whenever you modify your repository, the CI system basically builds your project, runs tests, and makes sure everything is in order.</p>
+<p>People normally don't use this because it seems like overkill for a simple project. Your project is small and pretty much personal. You can test it all on your own system since you're the only one building your code. This is pretty naive. There are times where you forget to compile, or you don't have an IDE handy and don't see your mistakes right away.</p>
+<p>An immediate benefit from this is that it saves time. You don't have to manually wait to compile your code; as shown in this picture, compiling really takes out time from your programming and breaks your train of thought. Furthermore, it makes sure all builds are run in the same fashion, so that you know code will compile for everyone.</p>
+<p>Now, maybe 2 years ago, that wasn't really an option. You had to purchase a VPS and configure it with Jenkins or some other thing, etc. But now there's a really nice distributed build system, a FREE one, called Travis. It supports a number of languages, from Ruby to Java to Node to Groovy -- it's constantly getting more and more support for more and more languages.</p>
+<p>Travis also emails you when a build breaks and gets fixed, so I get a notification when I make a mistake in my code.</p>
+<p>But CI really isn't useful if you don't have a nice, automated build script. This brings me to...</p>
+<h2>Mistake 4: Solo programmers don't use build automation.</h2>
+<p><img class="alignright" title="Maven" src="{{ site.baseurl }}/assets/maventxt_logo_200.gif" alt="" width="462" height="106" />There are a whole lot of people I have seen who decide to commit their .project in Eclipse or their nbproject folder into source control, thinking that that's all they really need to have a well-made project.</p>
+<p>But the problem is, Eclipse users can't use Netbeans projects and Netbeans users vice-versa. People have to work to get other people's code working in their development environment.</p>
+<p>That's where build scripts come in. I am a huge fan of Apache Maven. It automatically downloads dependencies and builds your JAR in the way you want it. Best part, it's universal. I works in all ides and text editors. Everyone just has to type "mvn clean install". It's that simple. And by everyone, that includes your trusty friends Jenkins and Travis, too.</p>
+<p>By using build scripts, everyone can jump into your code right away. When alone, you can transfer code between computers easily. Furthermore, build scripts usually have other tools part of them, such as replacing variables within files such as version numbers. It really makes things a lot easier and consistent.</p>
+<h2>Mistake 5: Programmers don't plan.</h2>
+<p><img class="alignleft" title="Google Docs" src="{{ site.baseurl }}/assets/GoogleDocs.jpg" alt="" width="360" height="240" />They just code. While it's nice to be on a spree of ideas, you need to engineer your code before you write it. A few months back, I dropped a project because it was too much to maintain -- the code was all just too messy and unorganized. I had random classes left and right, all because I didn't plan the architecture. Good design is important.</p>
+<p>Personally, I use Google Docs to manage everything. It's a nice cloud based service that allows you to work on documents in real-time with others. A text file in a Git projects works too, but Google Docs is probably a better choice.</p>
+<h2>Conclusion</h2>
+<p>I think the reason many people don't follow these rules is because as an independent programmer, they think they're free to do whatever they want and handle everything on their own. The thing is, they're not. It's much, much better to follow the same practices as they're not called "best practices" for nothing.</p>
+<p>People should treat all of their projects as they do group projects -- carefully planned, well-made, etc. You shouldn't be programming in the dark. Commit your code when you write it and treat it as a quality project, not just a bunch of ideas whipped together into a bunch of code.</p>

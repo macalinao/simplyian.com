@@ -1,0 +1,57 @@
+---
+layout: post
+title: How to Set Up an Offline PHP IDE on Your Mac in 15 Minutes
+date: 2011-04-12 19:43:21.000000000 -05:00
+type: post
+published: true
+status: publish
+categories:
+- PHP
+- Programming
+tags:
+- development
+- ide
+- integrated development environment
+- offline
+- php
+meta:
+  _edit_last: '1'
+  robotsmeta: index,follow
+  _prlipro-post-options: a:7:{s:15:"send_auto_tweet";s:0:"";s:14:"requested_slug";s:0:"";s:25:"requested_twitter_message";s:26:"{%title%}
+    {%url%} {%hash%}";s:19:"hide_twitter_button";s:0:"";s:19:"hide_social_buttons";s:0:"";s:21:"hide_twitter_comments";s:0:"";s:20:"disable_replacements";s:1:"0";}
+  _pretty-link: '63'
+  _slidedeck_slide_title: How to Set Up an Offline PHP IDE on Your Mac in 15 Minutes
+author:
+  login: admin
+  email: ian@simplyian.com
+  display_name: simplyianm
+  first_name: Ian
+  last_name: Macalinao
+---
+<p><span class="drop_cap"><a rel="attachment wp-att-856" href="http://i.dcritic.com/2011/04/12/how-to-set-up-an-offline-web-ide-on-your-mac-in-15-minutes/macbook-pro/"><img class="alignleft size-medium wp-image-856" title="Macbook Pro" src="{{ site.baseurl }}/assets/macbook-pro-300x157.png" alt="" width="300" height="157" /></a>O</span>ne of the things every developer needs is an awesome development environment. With a few downloads and a bit of knowledge, this tutorial on <strong>offline web development</strong> is easy to follow. (Should be...)</p>
+<p><!--more--></p>
+<h2>Step 1: Install a few things</h2>
+<ul>
+<li><a href="http://netbeans.org/downloads/index.html">Netbeans</a> - Choose whichever version you want. I went for the all-inclusive version because I develop in many languages, but you can just pick PHP for now. You can always add more later.</li>
+<li><a href="http://sourceforge.net/projects/xampp/files/LAMPP/0.9.4/">XAMPP</a> - You should be downloading a file ending in .dmg.</li>
+</ul>
+<p>To install, double-click on both files and drag-and-drop to your applications folder.</p>
+<h2>Step 2: Start XAMPP</h2>
+<p>Open up your Applications folder, click XAMPP, and click on the orange icon. A window should pop up.</p>
+<p><a rel="attachment wp-att-837" href="http://i.dcritic.com/2011/04/12/how-to-set-up-an-offline-web-ide-on-your-mac-in-15-minutes/xampp-control-panel-mac/"><img class="size-full wp-image-837" title="XAMPP Control Panel on Mac" src="{{ site.baseurl }}/assets/xampp-control-panel-mac.png" alt="XAMPP Control Panel on Mac" width="238" height="169" /></a></p>
+<p>Start all of these services and enter your password. XAMPP should now be running.</p>
+<h2>Step 3: Start Netbeans</h2>
+<p>Navigate to Applications and open it up. Simple, eh?</p>
+<h2>Step 4: Make a Project</h2>
+<p>Open up Netbeans and click "File &gt; New Project" or "Shift+Command+N". Here, you will be given a prompt. Select the "PHP" category and on the right pane select "PHP Application With Existing Sources". Then select "Next".</p>
+<p><a rel="attachment wp-att-838" href="http://i.dcritic.com/2011/04/12/how-to-set-up-an-offline-web-ide-on-your-mac-in-15-minutes/choose-source-folder/"><img class="size-full wp-image-838" title="Choose Source Folder" src="{{ site.baseurl }}/assets/choose-source-folder.png" alt="Choose Source Folder" width="517" height="382" /></a></p>
+<p>For the sources folder, navigate to your Applications folder and click on your XAMPP folder. Then select the "htdocs" folder. This will be where all of your files go. Type in any project name and press "Next".</p>
+<p>Make the Project URL "http://localhost/". (Without the quotes, of course.) Click "Finish".</p>
+<h2>Step 5: Connect the MySQL Database</h2>
+<p>Although we can make PHP scripts and all, we of course need a database. Navigate to the "Services" tab, right-click "Databases" and select "Register MySQL Server". (Sorry if the picture is a bit misleading...)</p>
+<p><a rel="attachment wp-att-839" href="http://i.dcritic.com/2011/04/12/how-to-set-up-an-offline-web-ide-on-your-mac-in-15-minutes/database-new-connection/"><img class="size-full wp-image-839" title="Database New Connection" src="{{ site.baseurl }}/assets/database-new-connection.png" alt="Database New Connection" width="376" height="313" /></a></p>
+<p>The settings are correct; check "Save Password" and "Finish". Now you have awesome database access built in to your IDE! :o</p>
+<h2>Conclusion</h2>
+<p>Of course, while <strong>Netbeans is by far the BEST IDE OUT THERE for PHP</strong> in my opinion, you could opt for a different one like Dreamweaver. (yuck...) Netbeans is free and easy to handle.</p>
+<p>For an FTP client, try Filezilla. For a browser, Google Chrome. Both are fast and easy to use.</p>
+<p>Don't forget to drag your programs to the dock!</p>

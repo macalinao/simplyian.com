@@ -1,0 +1,45 @@
+---
+layout: post
+title: The Mystical Coffeescript 'by' Keyword Explained
+date: 2012-06-13 17:08:15.000000000 -05:00
+type: post
+published: true
+status: publish
+categories:
+- Programming
+tags:
+- coffeescript
+- hidden features
+meta:
+  _edit_last: '1'
+  robotsmeta: index,follow
+  _prlipro-post-options: a:7:{s:15:"send_auto_tweet";s:0:"";s:14:"requested_slug";s:0:"";s:25:"requested_twitter_message";s:26:"{%title%}
+    {%url%} {%hash%}";s:19:"hide_twitter_button";s:0:"";s:19:"hide_social_buttons";s:0:"";s:21:"hide_twitter_comments";s:0:"";s:20:"disable_replacements";s:0:"";}
+  _syntaxhighlighter_encoded: '1'
+  _pretty-link: '87'
+author:
+  login: admin
+  email: ian@simplyian.com
+  display_name: simplyianm
+  first_name: Ian
+  last_name: Macalinao
+---
+<p>Coffeescript is an amazing language. As a matter of fact, it's my favorite language. Here's some recent code I used to split up one array into a multidimensional array with a certain number of columns.</p>
+<p>[code lang="ruby"]<br />
+matrix.push arr[i..(i + cols - 1)] for i in [0..arr.length - 1] by cols<br />
+[/code]</p>
+<p>Notice the second to last keyword: <code>by</code>.</p>
+<p>The `by` keyword basically changes the increment of the generated for loop. Without the `by`, you'd have `i++` as the increment of your for loop. However, with the `by`, you'd instead have `i += 3` if you had `by 3`.</p>
+<p>Here's a simple example where I am getting money out of my bank account in the form of 5 dollar bills.</p>
+<p>[code lang="ruby"]<br />
+console.log &quot;I have #{i} dollars.&quot; for i in [0..100] by 5<br />
+[/code]</p>
+<p>This translates to the following Javascript:</p>
+<p>[code lang="js"]<br />
+var i;<br />
+for (i = 0; i &lt;= 100; i += 5) {<br />
+  console.log(&quot;I have &quot; + i + &quot; dollars.&quot;);<br />
+}<br />
+[/code]</p>
+<p>As you can see, the increment of the loop is now 5 rather than just 1.</p>
+<p>Now the question is, are there any other hidden features of Coffeescript like this?</p>

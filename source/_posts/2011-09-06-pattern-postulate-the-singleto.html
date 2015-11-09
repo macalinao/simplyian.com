@@ -1,0 +1,47 @@
+---
+layout: post
+title: Pattern Postulate - The Singleton
+date: 2011-09-06 00:35:08.000000000 -05:00
+type: post
+published: true
+status: publish
+categories:
+- Theory
+tags:
+- design patterns
+- pattern
+- pattern postulate
+- postulate
+- singleton
+meta:
+  _edit_last: '1'
+  robotsmeta: index,follow
+  _prlipro-post-options: a:7:{s:15:"send_auto_tweet";s:0:"";s:14:"requested_slug";s:3:"mi2";s:25:"requested_twitter_message";s:26:"{%title%}
+    {%url%} {%hash%}";s:19:"hide_twitter_button";s:0:"";s:19:"hide_social_buttons";s:0:"";s:21:"hide_twitter_comments";s:0:"";s:20:"disable_replacements";s:0:"";}
+  _pretty-link: '73'
+author:
+  login: admin
+  email: ian@simplyian.com
+  display_name: simplyianm
+  first_name: Ian
+  last_name: Macalinao
+---
+<p><span class="drop_cap">I</span> decided to flip through a little book called "Head First Design Patterns" today. It was 700 pages long, so I assumed it contained something good. In reality, it was about 700 pages of bulk. I guess for people who don't understand something immediately, they'd have 50 pages to learn it... The design patterns in the book were kind of outdated and bulky, too. So I've decided to make an easy-to-read blog post series on design patterns. Welcome to the first post of Pattern Postulate! (I don't even know what a postulate is, but it sounds catchy)<br />
+<!--more--><br />
+A singleton is an object that only has one instance of itself. Now you may be wondering, "Why can't I just make a static class?" The answer lies in the fact that static classes are messy for holding things like variables. They can't use the "this" keyword to reference themselves. They can be initialized, but multiple times. It's just kind of funky to refer to a set of methods as something other than an object.</p>
+<p>On the other hand, singletons <strong>are</strong> objects. They can be passed through methods, etc. and even be EXTENDED! Whoa. But they still only have one instance. It's part object, part static class, and all fun! (That's a pun on a saying from my Latin class) So anyways, to make a singleton, you have to write something like this:</p>
+<pre>
+public class MySingleton {
+   private static MySingleton instance = new MySingleton();
+   private MySingleton() {
+      
+   }
+
+   public static MySingleton getInstance() {
+      return instance;
+   }
+}
+</pre>
+<p>We initialize the singleton in a private, static variable and retrieve it through a public, static method. Thus we can easily get the only instance of MySingleton ever created and ever will be created through "MySingleton.getInstance()". We have an object that we can use as one, instead of an annoying static class.</p>
+<p>I'm in no way saying that this is always the correct thing to do. For a Math class, for example, you don't want to make a new Math object and do object.sin(). That's just weird. For util-style functions like that, you should be using static methods. You should also use static methods for factories that don't require any class parameters. (I'll cover factories soon) But for something like a database class that would hold something like a JDBC url or if you have a resource manager class that requires you to store a few Maps of resources, you'd want a singleton.</p>
+<p>And that's it! 4 paragraphs of information as opposed to 20 Head First pages.</p>

@@ -1,0 +1,44 @@
+---
+layout: post
+title: Project Euler Problem 6
+date: 2011-04-14 21:53:26.000000000 -05:00
+type: post
+published: true
+status: publish
+categories:
+- Project Euler
+tags:
+- php
+- programming
+- project euler
+- tutorial
+meta:
+  _edit_last: '1'
+  robotsmeta: index,follow
+  _slidedeck_slide_title: Project Euler Problem 6
+  _prlipro-post-options: a:7:{s:15:"send_auto_tweet";s:0:"";s:14:"requested_slug";s:0:"";s:25:"requested_twitter_message";s:26:"{%title%}
+    {%url%} {%hash%}";s:19:"hide_twitter_button";s:0:"";s:19:"hide_social_buttons";s:0:"";s:21:"hide_twitter_comments";s:0:"";s:20:"disable_replacements";s:0:"";}
+  _pretty-link: '65'
+author:
+  login: admin
+  email: ian@simplyian.com
+  display_name: simplyianm
+  first_name: Ian
+  last_name: Macalinao
+---
+<p><a href="http://i.dcritic.com/2011/04/14/project-euler-problem-6/code/" rel="attachment wp-att-872"><img src="{{ site.baseurl }}/assets/code-300x187.jpg" alt="" title="code" width="300" height="187" class="alignright size-medium wp-image-872" /></a><span class="drop_cap">T</span>he sum of the squares of the first ten natural numbers is, 12 + 22 + ... + 102 = 385<br />
+The square of the sum of the first ten natural numbers is, (1 + 2 + ... + 10)2 = 552 = 3025<br />
+Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025  385 = 2640.<br />
+<!--more--><br />
+Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.</p>
+<pre name="code" class="php">
+$i = 1;
+$n = 0;
+while ($i < 101) {
+      $n += $i;
+      $sum += pow($i, 2);
+      $i++;  
+}  
+$number = pow($n, 2); 
+echo $number - $sum;</pre>
+<p>This was extremely easy. What did you get?</p>

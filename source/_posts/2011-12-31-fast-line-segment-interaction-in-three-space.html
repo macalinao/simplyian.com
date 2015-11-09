@@ -1,0 +1,58 @@
+---
+layout: post
+title: Fast line segment interaction in three-space
+date: 2011-12-31 01:07:19.000000000 -06:00
+type: post
+published: true
+status: publish
+categories:
+- Programming
+tags: []
+meta:
+  _pretty-link: '82'
+  robotsmeta: index,follow
+  _prlipro-post-options: a:7:{s:15:"send_auto_tweet";s:0:"";s:14:"requested_slug";s:3:"ewy";s:25:"requested_twitter_message";s:26:"{%title%}
+    {%url%} {%hash%}";s:19:"hide_twitter_button";s:0:"";s:19:"hide_social_buttons";s:0:"";s:21:"hide_twitter_comments";s:0:"";s:20:"disable_replacements";s:0:"";}
+  _edit_last: '1'
+author:
+  login: admin
+  email: ian@simplyian.com
+  display_name: simplyianm
+  first_name: Ian
+  last_name: Macalinao
+---
+<p>I'm pretty proud of this code, seeing that I just learned the basics of linear algebra and vector math yesterday.</p>
+<pre lang="java">	/**
+	 * Checks for a collision between two line segments.
+	 * RoyAwesome says rays are line segments.
+	 *
+	 *  Perhaps Roy needs to brush up on geometry then
+	 *
+	 * Code based on http://www.bryceboe.com/2006/10/23/line-segment-intersection-algorithm/
+	 *
+	 * @param a
+	 * @param b
+	 * @return
+	 */
+	public static boolean checkCollision(Segment a, Segment b) {
+		return (ccw(a.origin, b.origin, b.endpoint) != ccw(a.endpoint, b.origin, b.endpoint))
+			&amp;&amp; (ccw(b.origin, a.origin, a.endpoint) != ccw(b.endpoint, a.origin, a.endpoint));
+	}
+
+	/**
+	 * Checks if 3 points are counterclockwise.
+	 * (A helper for a helper method)
+	 * @param a
+	 * @param b
+	 * @param c
+	 * @return
+	 */
+	private static boolean ccw(Vector3 a, Vector3 b, Vector3 c) {
+		//This is Java lisp
+		return (c.getY() - a.getY()) * (b.getX() - a.getX())
+			&lt; (b.getY() - a.getY()) * (c.getX() - a.getX())
+			|| (c.getY() - a.getY()) * (b.getZ() - a.getZ())
+			&lt; ((b.getY() - a.getY()) * (c.getZ() - a.getZ()));
+
+	}</pre>
+<p>As it says in the comments, I borrowed the original idea from <a href="http://www.bryceboe.com/2006/10/23/line-segment-intersection-algorithm/">this guy</a>.</p>

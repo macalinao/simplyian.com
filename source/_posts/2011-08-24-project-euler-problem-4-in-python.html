@@ -1,0 +1,55 @@
+---
+layout: post
+title: Project Euler Problem 4 in Python
+date: 2011-08-24 16:17:45.000000000 -05:00
+type: post
+published: true
+status: publish
+categories:
+- Project Euler
+- Python
+tags: []
+meta:
+  _edit_last: '1'
+  robotsmeta: index,follow
+  _slidedeck_slide_title: Project Euler Problem 4 in Python
+  _prlipro-post-options: a:7:{s:15:"send_auto_tweet";s:0:"";s:14:"requested_slug";s:0:"";s:25:"requested_twitter_message";s:26:"{%title%}
+    {%url%} {%hash%}";s:19:"hide_twitter_button";s:0:"";s:19:"hide_social_buttons";s:0:"";s:21:"hide_twitter_comments";s:0:"";s:20:"disable_replacements";s:0:"";}
+  _pretty-link: '71'
+author:
+  login: admin
+  email: ian@simplyian.com
+  display_name: simplyianm
+  first_name: Ian
+  last_name: Macalinao
+---
+<p><a href="http://i.dcritic.com/wp-content/uploads/2011/04/code.jpg"><img class="alignright size-medium wp-image-872" title="code" src="{{ site.baseurl }}/assets/code-300x187.jpg" alt="" width="300" height="187" /></a><span class="drop_cap">I</span>'ve decided to take up Python as a hobby. Why? In school, we use Macs. Netbeans is hard to close quickly, but the terminal has almost instant loading. I can basically just type "python test.py" and there you go, the file is running. Plus, I've always wanted to use Vim. (I actually use MacVim; the built in Vim has no syntax highlighting, full screen mode, etc.) So to learn Python faster, I'm doing all of the Project Euler problems when class gets really slow.<br />
+<!--more--><br />
+The code:</p>
+<pre>
+import time
+starttime = time.time()
+
+def isPalindrome(s):
+	if s == s[::-1]:
+		return True
+	else:
+		return False
+
+i = 100
+j = 100
+greatest = 0
+while (i &lt;= 999):
+	while (j &lt;= 999):
+		product = i * j
+		if (product &gt; greatest and isPalindrome(str(product))):
+			greatest = product
+		j += 1
+	j = 100
+	i += 1
+print "Greatest value found: " + str(greatest)
+finishtime = time.time()
+print "Execution time: " + str(finishtime - starttime) + " seconds"
+</pre>
+<p>If you have any suggestions for how I could improve this, I'd appreciate it.</p>
+<p>If you have a good syntax highlighting plugin for Wordpress, that'd be good too.</p>

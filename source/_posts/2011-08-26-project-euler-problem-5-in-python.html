@@ -1,0 +1,52 @@
+---
+layout: post
+title: Project Euler Problem 5 in Python
+date: 2011-08-26 00:42:17.000000000 -05:00
+type: post
+published: true
+status: publish
+categories:
+- Programming
+- Project Euler
+- Python
+tags:
+- project euler
+- python
+meta:
+  _edit_last: '1'
+  robotsmeta: index,follow
+  _slidedeck_slide_title: Project Euler Problem 5 in Python
+  _prlipro-post-options: a:7:{s:15:"send_auto_tweet";s:0:"";s:14:"requested_slug";s:3:"og0";s:25:"requested_twitter_message";s:26:"{%title%}
+    {%url%} {%hash%}";s:19:"hide_twitter_button";s:0:"";s:19:"hide_social_buttons";s:0:"";s:21:"hide_twitter_comments";s:0:"";s:20:"disable_replacements";s:0:"";}
+  _pretty-link: '72'
+author:
+  login: admin
+  email: ian@simplyian.com
+  display_name: simplyianm
+  first_name: Ian
+  last_name: Macalinao
+---
+<p><span class="drop_cap">T</span>his one runs really fast.<br />
+<!--more--></p>
+<pre>
+import time
+starttime = time.time()
+
+num = 0
+number = 2520
+while (True):
+	i = 11
+	while (i <= 20):
+		if (number % i != 0):
+			break
+		if (i == 20):
+			num = number
+		i += 1
+	if (num != 0) :
+		break
+	number += 2520
+
+print str(num)
+finishtime = time.time()
+print "Executed in " + str(finishtime - starttime) + " seconds."
+</pre>

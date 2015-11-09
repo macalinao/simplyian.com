@@ -1,0 +1,73 @@
+---
+layout: post
+title: How to Add Parameters to Your PHP Class (Constructor Tutorial)
+date: 2010-04-17 12:29:41.000000000 -05:00
+type: post
+published: true
+status: publish
+categories:
+- PHP
+- Programming
+tags:
+- class
+- php
+meta:
+  _edit_last: '1'
+  robotsmeta: index,follow
+  _prlipro-post-options: a:7:{s:15:"send_auto_tweet";s:0:"";s:14:"requested_slug";s:0:"";s:25:"requested_twitter_message";s:26:"{%title%}
+    {%url%} {%hash%}";s:19:"hide_twitter_button";s:0:"";s:19:"hide_social_buttons";s:0:"";s:21:"hide_twitter_comments";s:0:"";s:20:"disable_replacements";s:1:"0";}
+  _wp_old_slug: how-to-add-parameters-to-your-php-class-constructor-tutoria
+  _pretty-link: '52'
+author:
+  login: admin
+  email: ian@simplyian.com
+  display_name: simplyianm
+  first_name: Ian
+  last_name: Macalinao
+---
+<p><a href="http://i.dcritic.com/wp-content/uploads/2010/04/php.gif"><img class="alignright size-full wp-image-707" title="PHP" src="{{ site.baseurl }}/assets/php.gif" alt="PHP" width="120" height="67" /></a><span class="drop_cap">T</span>here are not many tutorials on this other than forum posts. The other day, I was searching for "<strong>PHP class add parameters</strong>" and nothing came up. It was after reading about <strong>how to use PHP class constructors</strong> that I was actually able to do this. Constructors define how your class is created and can also have parameters. In essence, they make your classes modifiable.<br />
+<!--more--> Constructors can be used for a variety of reasons. In my case, I needed it to connect to a database. Instead of using a function and a class, I combined my function into a constructor. For this reason, I will show you how to use a class to connect to a database as an example.</p>
+<h2>Step 1: Create the __construct() function in your class</h2>
+<p>I named my class icdb. You can, however, name it anything you want.</p>
+<pre name="code" class="php">class icdb {
+	function __construct() {
+	}
+}</pre>
+<h2>Step 2: Add parameters to the __construct() function</h2>
+<p>Add parameters to this like any other function.</p>
+<pre name="code" class="php">function __construct($db_host, $db_user, $db_pass, $db_name) {
+}</pre>
+<h2>Step 3: Make your function</h2>
+<p>Do whatever you want. Here I am connecting to a database, obviously.</p>
+<pre name="code" class="php">function __construct($db_host, $db_user, $db_pass, $db_name) {
+	global $db_prefix;
+	$link = mysql_connect($db_host, $db_user, $db_pass);
+	$db = mysql_select_db($db_name);
+	$this-&gt;prefix = $db_prefix;
+	return $link;
+}</pre>
+<h2>Step 4: Add legacy support for PHP4</h2>
+<p>PHP 4 handles constructors differently. You must create a function with the name of your class within your class. Here, I must make the function icdb().</p>
+<pre name="code" class="php">function icdb() {
+	$this-&gt;__construct();
+}</pre>
+<h2>Final Code</h2>
+<p>You're now done! Here's all of the code put together.</p>
+<pre name="code" class="php">class icdb {
+	function icdb() {
+		$this-&gt;__construct();
+	}
+
+	function __construct($db_host, $db_user, $db_pass, $db_name) {
+		global $db_prefix;
+		$link = mysql_connect($db_host, $db_user, $db_pass);
+		$db = mysql_select_db($db_name);
+		$this-&gt;prefix = $db_prefix;
+		return $link;
+	}
+}</pre>
+<p>And to initialize the class:</p>
+<pre name="code" class="php">$icdb = new icdb("localhost", "myUser", "myPass", "myDb");</pre>
+<p>And that's it! You are now connected to a database. Now all you need is to add functions to the class to work with the database!</p>
+<p>You can use this method to add parameters to any PHP class.</p>
+<p><em>This is my first tutorial, so please tell me if it doesn't make sense. :p</em></p>
