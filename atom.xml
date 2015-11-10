@@ -4,7 +4,7 @@
   <subtitle><![CDATA[A blog on software, technology, and life.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="https://simplyian.com/"/>
-  <updated>2015-11-07T04:53:18.000Z</updated>
+  <updated>2015-11-10T16:02:22.000Z</updated>
   <id>https://simplyian.com/</id>
   
   <author>
@@ -13,6 +13,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[The secret to getting good at anything with minimal effort]]></title>
+    <link href="https://simplyian.com/2015/11/09/The-secret-to-getting-good-at-anything-with-minimal-effort/"/>
+    <id>https://simplyian.com/2015/11/09/The-secret-to-getting-good-at-anything-with-minimal-effort/</id>
+    <published>2015-11-10T00:37:58.000Z</published>
+    <updated>2015-11-10T16:02:22.000Z</updated>
+    <content type="html"><![CDATA[<p>I never intended to go into software during high school. I thought I was going to be a doctor, yet on the side, I managed to amass a good amount of <a href="https://github.com/simplyianm" target="_blank" rel="external">experience</a> in all sorts of <a href="https://ian.pw/resume" target="_blank" rel="external">technologies</a>. While learning all of these things, I never really tried. How is this possible?</p>
+<h2 id="A_experiment_with_rats">A experiment with rats</h2><p>As a pre-health student, I took a class on Behavioral Neuroscience. (It continues to be my favorite college class of my career, despite my major change.) One of the topics we covered happened to be learning environments.</p>
+<p>In one experiment we covered in class, rats were placed in 3 different environments: one standard, one impoverished, and one enriched.</p>
+<p><img src="/img/bad-environment.png" alt="Bad environments"></p>
+<p><img src="/img/good-environment.png" alt="Good environment"></p>
+<p>The rats that were raised in the enriched environments made many more neural pathways than the other two. They were able to learn more because they were exposed to more stimuli.</p>
+<p><img src="/img/enriched.png" alt="Drawing" style="width: 300px;"></p>
+<h2 id="I_used_to_be_terrible">I used to be terrible</h2><p>I usually give two dates as the time I began programming: in elementary school, when I discovered that you could create websites for your virtual pet, and in high school, when I found the modding community for a game called Minecraft.</p>
+<p>In elementary school, I learned everything on my own. I had a book on HTML 4 by Wendy Willard and scoured Google for anything I could find about HTML, CSS, and PHP. I had no guidance and basically copied and pasted scripts to make things work. I had some okay projects out there, but overall, I didn’t really have understanding of how things worked.</p>
+<h2 id="How_I_got_good_at_programming">How I got good at programming</h2><p>Things changed when I found <a href="http://bukkit.org" target="_blank" rel="external">Bukkit</a>, a Minecraft modding community. From the forums and IRC, I met some really cool people online and created games with them. We would code together all night while sharing different ideas, techniques, and technologies.</p>
+<p>I learned even more when I found <a href="http://spout.org" target="_blank" rel="external">Spout</a>, an open source Minecraft clone. I joined a “team” of developers called VolumetricPixels, which over time evolved into a sort of support group for people to talk about their projects. We discussed things ranging from Rust to managing a Jenkins CI server. The group taught me more than any of those W3Schools-like websites taught me, as I was put in an enriching environment surrounded by people who loved to code.</p>
+<p>Even better was the opportunity to contribute to the Spout project. I learned so much about 3D rendering and game engines from the incredible mentorship I received from more senior members of the community. I had people that I could talk to that would tell me where my shortcomings were, and I would improve rapidly because of it.</p>
+<h2 id="The_people_who_surround_you_determine_your_life">The people who surround you determine your life</h2><p>VolumetricPixels set me on a path to become pretty good at programming, and I didn’t even realize that I was working. I was just playing around on the computer making games! The people I would talk to every day helped me realize what I could improve on, as everyone in the group had their own strengths and weaknesses.</p>
+<p>The people you talk to the most generally influence the way you think and do things, so it was no surprise that I would become a person who loves programming after spending so much time talking to other teenage developers.</p>
+<h2 id="Choose_your_friends_wisely">Choose your friends wisely</h2><p>Every single person you decide to spend your time with influences your interests and decisions.</p>
+<pre><code><span class="comment">"You are the average of the five people you spend the most time with."</span> -- <span class="class">Jim</span> <span class="class">Rohn</span>
+</code></pre><p>Your choice of friends and the people you surround yourself with can either make or break your success. Pick people whom you know will help you become better in what you want to do in your life, and the knowledge and “discipline” will follow.</p>
+<p>I say “discipline” in quotes because you do not feel like something is a chore when all your friends do it for fun. You don’t think of playing sports as a chore if all of your friends are doing it, despite it being exercise. Likewise, if all your friends are passionate about something and have fun doing it, you will absorb that energy and be able to love what they do as well.</p>
+<p>Hence, the secret to getting good at anything is obvious: have fun doing it and you won’t notice even how hard you’re working. The results will come in without you even realizing it.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I never intended to go into software during high school. I thought I was going to be a doctor, yet on the side, I managed to amass a good]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Ruby WTF? Escaping single quotes in Ruby using gsub]]></title>
@@ -529,25 +561,6 @@
     </summary>
     
       <category term="Linux" scheme="https://simplyian.com/categories/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[How to Change the Name of the JAR Produced in Gradle]]></title>
-    <link href="https://simplyian.com/2014/03/31/how-to-change-the-name-of-the-jar-produced-in-gradle/"/>
-    <id>https://simplyian.com/2014/03/31/how-to-change-the-name-of-the-jar-produced-in-gradle/</id>
-    <published>2014-04-01T04:19:07.000Z</published>
-    <updated>2015-04-23T19:03:16.000Z</updated>
-    <content type="html"><![CDATA[<p>I don’t like the traditional JAR name assigned in Gradle. In Bukkit development, you usually make the JAR name the same as the plugin name. Here’s how you set the name of the JAR:</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jar<span class="class">.baseName</span> = <span class="string">'JarName'</span></span><br></pre></td></tr></table></figure>
-<p>Where <code>JarName</code> would be the name of the jar generated in <code>build/libs/</code>.</p>
-<p>Source: <a href="http://stackoverflow.com/questions/6768295/gradle-jar-file-name-in-java-plugin" target="_blank" rel="external">StackOverflow</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>I don’t like the traditional JAR name assigned in Gradle. In Bukkit development, you usually make the JAR name the same as the plugin nam]]>
-    </summary>
-    
-      <category term="Gradle" scheme="https://simplyian.com/categories/Gradle/"/>
     
   </entry>
   
