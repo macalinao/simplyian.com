@@ -3,7 +3,7 @@
   "version": "2.8.3",
   "private": true,
   "dependencies": {
-    "hexo": "^3.0.1",
+    "hexo": "^3.1.1",
     "hexo-deployer-git": "0.0.4",
     "hexo-generator-archive": "^0.1.1",
     "hexo-generator-feed": "^1.0.1",
