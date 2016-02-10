@@ -4,7 +4,7 @@
   <subtitle><![CDATA[A blog on software, technology, and life.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="https://simplyian.com/"/>
-  <updated>2015-11-10T16:02:22.000Z</updated>
+  <updated>2016-02-10T03:49:53.000Z</updated>
   <id>https://simplyian.com/</id>
   
   <author>
@@ -15,10 +15,46 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Using Underscore.js templates within ERB]]></title>
+    <link href="https://simplyian.com/2016/02/09/Using-Underscore-js-templates-within-ERB/"/>
+    <id>https://simplyian.com/2016/02/09/Using-Underscore-js-templates-within-ERB/</id>
+    <published>2016-02-09T18:11:36.000Z</published>
+    <updated>2016-02-10T03:49:53.000Z</updated>
+    <content type="html"><![CDATA[<p>You don’t always have React to create a new feature on a website. Recently, I used Underscore and jQuery within a Rails application to create a dynamic page.</p>
+<h2 id="Underscore_+_jQuery_-&gt;_Easy_templating">Underscore + jQuery -&gt; Easy templating</h2><p>If you specify an unknown script type in a script tag, you can insert code blocks into your code that aren’t rendered. For example, here I’ll define a quick template:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">id</span>=<span class="value">"myTemplate"</span> <span class="attribute">type</span>=<span class="value">"text/template"</span>&gt;</span><span class="handlebars"><span class="xml"></span><br><span class="line">Hello, <span class="tag">&lt;<span class="title">%=</span> <span class="attribute">target</span> %&gt;</span>!</span><br><span class="line"></span></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>You can then access the contents of this script tag easily using jQuery:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> templateStr = $(<span class="string">'#myTemplate'</span>).html();</span><br></pre></td></tr></table></figure>
+<p>Using Underscore, we can compile this into a template function like so:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> template = _.template($(<span class="string">'#myTemplate'</span>).html())</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(template(&#123; target: <span class="string">'world'</span> &#125;)) <span class="comment">// prints 'Hello, world!'</span></span><br></pre></td></tr></table></figure>
+<p>With jQuery, we can render this template to the page very easily.</p>
+<p>First, let’s declare a div to render this content within:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"mount"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Then, let’s write our code to render stuff:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> template = _.template($(<span class="string">'#myTemplate'</span>).html());</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  $(<span class="string">'#mount'</span>).html(template(&#123;</span><br><span class="line">    target: <span class="string">'world'</span> <span class="comment">// Of course, we can get these variables from anywhere</span></span><br><span class="line">  &#125;))</span><br><span class="line">&#125;</span><br><span class="line">render();</span><br></pre></td></tr></table></figure>
+<p>Now, any time you want to rerender the template, you can just call “render()”.</p>
+<h2 id="Within_Rails">Within Rails</h2><p>The main problem with using Underscore templates within a Rails application is that ERB and Underscore by default use the same template tags, <code>&lt;%</code> and <code>%&gt;</code>. You can get around this by using the following code:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_.templateSettings = &#123;</span><br><span class="line">  interpolate: <span class="regexp">/\&#123;\&#123;\=(.+?)\&#125;\&#125;/g</span>,</span><br><span class="line">  evaluate: <span class="regexp">/\&#123;\&#123;(.+?)\&#125;\&#125;/g</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>This will allow you to use templates as follows:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/template"</span>&gt;</span><span class="handlebars"><span class="xml"></span><br><span class="line"></span><span class="expression">&#123;&#123; <span class="variable">users.forEach</span>(<span class="variable">function</span> (<span class="variable">user</span>) &#123; &#125;&#125;</span><span class="xml"></span><br><span class="line">    <span class="tag">&lt;<span class="title">p</span>&gt;</span></span><span class="expression">&#123;&#123;= <span class="variable">user.name</span> &#125;&#125;</span><span class="xml"></span><br><span class="line"></span><span class="expression">&#123;&#123; &#125;) &#125;&#125;</span><span class="xml"></span><br><span class="line"></span></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+The "interpolate" property (here set to "{{= expr }}") defines how to do interpolation (inserting values), and the "evaluate" property (here set to "{{ code }}") defines how to run arbitrary Javascript.
+
+<p>Next time you’re unable to use modern web technologies to make a simple dynamic web page, consider this approach!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>You don’t always have React to create a new feature on a website. Recently, I used Underscore and jQuery within a Rails application to cr]]>
+    </summary>
+    
+      <category term="erb, web, underscore" scheme="https://simplyian.com/tags/erb-web-underscore/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[The secret to getting good at anything with minimal effort]]></title>
     <link href="https://simplyian.com/2015/11/09/The-secret-to-getting-good-at-anything-with-minimal-effort/"/>
     <id>https://simplyian.com/2015/11/09/The-secret-to-getting-good-at-anything-with-minimal-effort/</id>
-    <published>2015-11-10T00:37:58.000Z</published>
+    <published>2015-11-10T02:37:58.000Z</published>
     <updated>2015-11-10T16:02:22.000Z</updated>
     <content type="html"><![CDATA[<p>I never intended to go into software during high school. I thought I was going to be a doctor, yet on the side, I managed to amass a good amount of <a href="https://github.com/simplyianm" target="_blank" rel="external">experience</a> in all sorts of <a href="https://ian.pw/resume" target="_blank" rel="external">technologies</a>. While learning all of these things, I never really tried. How is this possible?</p>
 <h2 id="A_experiment_with_rats">A experiment with rats</h2><p>As a pre-health student, I took a class on Behavioral Neuroscience. (It continues to be my favorite college class of my career, despite my major change.) One of the topics we covered happened to be learning environments.</p>
@@ -50,14 +86,14 @@
     <title><![CDATA[Ruby WTF? Escaping single quotes in Ruby using gsub]]></title>
     <link href="https://simplyian.com/2015/10/19/Ruby-WTF-Escaping-single-quotes-in-Ruby-using-gsub/"/>
     <id>https://simplyian.com/2015/10/19/Ruby-WTF-Escaping-single-quotes-in-Ruby-using-gsub/</id>
-    <published>2015-10-19T15:59:27.000Z</published>
+    <published>2015-10-19T17:59:27.000Z</published>
     <updated>2015-11-07T04:53:18.000Z</updated>
     <content type="html"><![CDATA[<p>I’m currently working on a project which requires me to escape JavaScript (don’t ask why). To get it working, I had to escape single quotes. I was encountering weird behavior in my code, so I ran the following in IRB.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">2.2.1 :002 &gt;</span> <span class="string">"Doesn't work"</span>.gsub(<span class="string">"'"</span>, <span class="string">"\\'"</span>)</span><br><span class="line"><span class="status"> =&gt;</span> <span class="string">"Doesnt workt work"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2.2.1 :002 &#62; &#34;Doesn&#39;t work&#34;.gsub(&#34;&#39;&#34;, &#34;\\&#39;&#34;)&#10; =&#62; &#34;Doesnt workt work&#34;</span><br></pre></td></tr></table></figure>
 <p><a href="https://www.destroyallsoftware.com/talks/wat" target="_blank" rel="external">WAT.</a></p>
 <p>I did a bit of investigation (read: <a href="http://stackoverflow.com/questions/2180322/ruby-gsub-doesnt-escape-single-quotes" target="_blank" rel="external">Stack Overflow</a>) and found that <code>\&#39;</code> is a special escape sequence in the gsub replacement — it’s a backreference that represents <code>$&#39;</code>, the characters that match after the single quote.</p>
 <p>In order to fix this bug, you must escape the backslash within gsub as so:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">2.2.1 :003 &gt;</span> <span class="string">"Doesn't work"</span>.gsub(<span class="string">"'"</span>, <span class="string">"\\\\'"</span>)</span><br><span class="line"><span class="status"> =&gt;</span> <span class="string">"Doesn\\'t work"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2.2.1 :003 &#62; &#34;Doesn&#39;t work&#34;.gsub(&#34;&#39;&#34;, &#34;\\\\&#39;&#34;)&#10; =&#62; &#34;Doesn\\&#39;t work&#34;</span><br></pre></td></tr></table></figure>
 <p><em>Nota bene: The double backslash returned by IRB is actually a single escaped backslash — it hasn’t generated another one.</em></p>
 <p>gsub first escapes everything as a Ruby string, then it parses the result of that string as a regex. It’s not documented well at all — I couldn’t find anything on this in the documentation.</p>
 <p>Ruby’s such a weird language.</p>
@@ -74,22 +110,22 @@
     <title><![CDATA[The benefit of destructuring function arguments in ES6]]></title>
     <link href="https://simplyian.com/2015/09/28/The-benefit-of-destructuring-function-arguments-in-ES6/"/>
     <id>https://simplyian.com/2015/09/28/The-benefit-of-destructuring-function-arguments-in-ES6/</id>
-    <published>2015-09-28T20:32:27.000Z</published>
-    <updated>2015-09-28T20:44:52.000Z</updated>
+    <published>2015-09-28T22:32:27.000Z</published>
+    <updated>2015-09-28T21:28:30.000Z</updated>
     <content type="html"><![CDATA[<p>ES6 brings a lot of great features to JavaScript to make it a much more modern and powerful language to work with. The days of “JavaScript sucks because it was only built in a week” have passed. One really great feature in ES6 is destructuring.</p>
 <p>In statically typed languages, one can easily know what arguments are needed in a function by the types passed into it. For example, in Java, the following function definition is very clear:</p>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">sendMessage</span><span class="params">(Target <span class="keyword">target</span>, String message)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void sendMessage(Target target, String message);</span><br></pre></td></tr></table></figure>
 <p>It’s obvious that the receiver of a message should be a target. In a modern IDE, calls like <code>sendMessage(user, msg)</code> would obviously send messages to a <code>Target</code>, as it is known that <code>user</code> would be part of a certain class.</p>
 <p>However, in JavaScript or other dynamically typed languages, things are a little harder to decipher. <code>user</code> may be a user id, a user object, a username, etc.</p>
 <p>Furthermore, <code>user</code> is a variable name, so literally anything can be passed in. A call like <code>sendMessage(first, s)</code> can be tricky to understand.</p>
 <p>It’s also pretty easy to swap the positions of variables, and there is no compiler to check if you are sending in the correct arguments.</p>
 <h2 id="The_Solution">The Solution</h2><p>One way I’ve found to solve this problem using ES6 is function argument destructuring.</p>
 <p>In ES5, a function may look like this:</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendMessage</span><span class="params">(target, msg)</span> </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line">sendMessage(usr, <span class="string">"Hello"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function sendMessage(target, msg) &#123; /* ... */ &#125;&#10;&#10;sendMessage(usr, &#34;Hello&#34;);</span><br></pre></td></tr></table></figure>
 <p>The same function using argument destructuring would look like this:</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">function</span> <span class="tag">sendMessage</span>(&#123; <span class="tag">target</span>, <span class="tag">msg</span> &#125;) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function">sendMessage</span>(&#123; <span class="attribute">target</span>: usr, <span class="attribute">msg</span>: <span class="string">"Hello"</span> &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function sendMessage(&#123; target, msg &#125;) &#123; /* ... */ &#125;&#10;&#10;sendMessage(&#123; target: usr, msg: &#34;Hello&#34; &#125;);</span><br></pre></td></tr></table></figure>
 <p>Intent is much more clear in the second version than the first. This is very useful if you have many arguments to functions. If some are optional, you don’t even have to pass in every single argument, as arguments are not positional. For example:</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function sendMessage(&#123; target, msg, notifySms = <span class="literal">false</span>, notifyEmail = <span class="literal">false</span> &#125;) &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line">sendMessage(&#123; <span class="string">target:</span> usr, <span class="string">msg:</span> <span class="string">"Hello"</span> &#125;);</span><br><span class="line">sendMessage(&#123; <span class="string">target:</span> other, <span class="string">msg:</span> <span class="string">"Look at your phone"</span>, <span class="string">notifySms:</span> <span class="literal">true</span> &#125;);</span><br><span class="line">sendMessage(&#123; <span class="string">target:</span> other, <span class="string">msg:</span> <span class="string">"Look at your email"</span>, <span class="string">notifyEmail:</span> <span class="literal">true</span> &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function sendMessage(&#123; target, msg, notifySms = false, notifyEmail = false &#125;) &#123; /* ... */ &#125;&#10;&#10;sendMessage(&#123; target: usr, msg: &#34;Hello&#34; &#125;);&#10;sendMessage(&#123; target: other, msg: &#34;Look at your phone&#34;, notifySms: true &#125;);&#10;sendMessage(&#123; target: other, msg: &#34;Look at your email&#34;, notifyEmail: true &#125;);</span><br></pre></td></tr></table></figure>
 <p>Now you can easily pass options into your functions without function calls having a lot of falsy/nil values.</p>
 ]]></content>
     <summary type="html">
@@ -106,7 +142,7 @@
     <title><![CDATA[Doing homework assignments in Markdown using Pandoc and LaTeX]]></title>
     <link href="https://simplyian.com/2015/09/13/Doing-homework-assignments-in-Markdown-using-Pandoc-and-LaTeX/"/>
     <id>https://simplyian.com/2015/09/13/Doing-homework-assignments-in-Markdown-using-Pandoc-and-LaTeX/</id>
-    <published>2015-09-13T14:57:43.000Z</published>
+    <published>2015-09-13T16:57:43.000Z</published>
     <updated>2015-09-13T15:22:14.000Z</updated>
     <content type="html"><![CDATA[<p><a href="http://daringfireball.net/projects/markdown/" target="_blank" rel="external">Markdown</a> is a really awesome format for text and prose. It’s really easy to manage in any text editor, and it’s quick to write. It has a lot of features, including <strong>bolding</strong>, <em>italicizing</em>, lists, quotes, embedded code, and more. It’s so easy to write that it’s the “language” of choice for many major websites such as StackOverflow and Reddit, it being much easier to implement and looking nicer than a WYSIWYG text editor. I’m even writing this blog post using Markdown. However, you can’t really send someone a Markdown document. It’s meant to be processed into a more readable format, most usually HTML.</p>
 <p><a href="http://www.latex-project.org/" target="_blank" rel="external">LaTeX</a> is a great tool for typesetting text. It has a lot of flexibility and standardizes how documents look. It’s so powerful that it has become the defacto tool to create research papers. However, there is definitely a learning curve in using the software, and the source doesn’t look very nice.</p>
@@ -123,7 +159,7 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## Euler&#39;s identity&#10;Below is Euler&#39;s identity.&#10;&#10;$e^&#123;i\pi&#125; + 1 = 0$&#10;&#10;Lorem ipsum dolor sit amet...</span><br></pre></td></tr></table></figure>
 <p>This produces the equation inline. Documentation for this feature of Pandoc is pretty spotty — if you know of more ways to embed LaTeX equations in Pandoc-generated documents, please let me know!</p>
 <h2 id="Setting_everything_up">Setting everything up</h2><p>All of the tools mentioned can be installed via Homebrew.</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew <span class="keyword">install</span> entr pandoc</span><br><span class="line">brew cask <span class="keyword">install</span> mactex</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install entr pandoc&#10;brew cask install mactex</span><br></pre></td></tr></table></figure>
 <p>Writing Markdown instead of LaTeX allows me to iterate faster on my homework/notes and lets me worry more about my content than the formatting of my sections and subsections. It’s really easy to set everything up, and as a Vim user, it has increased my productivity quite a bit. I hope you find my workflow as useful as I have!</p>
 ]]></content>
     <summary type="html">
@@ -142,10 +178,10 @@
     <title><![CDATA[Using form-horizontal with simple_form in Rails 4]]></title>
     <link href="https://simplyian.com/2015/04/23/Using-form-horizontal-with-simple-form-in-Rails-4/"/>
     <id>https://simplyian.com/2015/04/23/Using-form-horizontal-with-simple-form-in-Rails-4/</id>
-    <published>2015-04-23T19:14:44.000Z</published>
+    <published>2015-04-23T21:14:44.000Z</published>
     <updated>2015-04-23T19:18:54.000Z</updated>
     <content type="html"><![CDATA[<p><a href="https://github.com/plataformatec/simple_form" target="_blank" rel="external">simple_form</a> is a really great gem for generating bootstrap forms. However, you have to<br>do a little extra to get it working with <a href="http://getbootstrap.com/" target="_blank" rel="external">Bootstrap’s</a> <code>form-horizontal</code> class. The<br>README doesn’t mention this, but it’s built in. Just write your form declaration like this:</p>
-<figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span>&lt;%=<span class="ruby"> simple_form_for [<span class="symbol">:admin</span>, <span class="variable">@c</span>], <span class="symbol">html:</span> &#123; <span class="class"><span class="keyword">class</span>: '<span class="title">form</span>-<span class="title">horizontal</span>' &#125;,</span></span><br><span class="line">  <span class="symbol">wrapper:</span> <span class="symbol">:horizontal_form</span> <span class="keyword">do</span> |f| </span>%&gt;<span class="xml"></span><br><span class="line"></span><br><span class="line"># ...form...</span><br><span class="line"></span><br><span class="line"></span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml"></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;%= simple_form_for [:admin, @c], html: &#123; class: &#39;form-horizontal&#39; &#125;,&#10;  wrapper: :horizontal_form do |f| %&#62;&#10;&#10;# ...form...&#10;&#10;&#60;% end %&#62;</span><br></pre></td></tr></table></figure>
 <p>Note the <code>wrapper</code> attribute. This isn’t described in the README, and I had to dig through the<br>code to figure it out.</p>
 <p>Hope this helps someone!</p>
 ]]></content>
@@ -163,12 +199,12 @@
     <title><![CDATA[How to skip all Yaourt prompts on Arch Linux]]></title>
     <link href="https://simplyian.com/2015/02/15/How-to-skip-all-Yaourt-prompts-on-Arch-Linux/"/>
     <id>https://simplyian.com/2015/02/15/How-to-skip-all-Yaourt-prompts-on-Arch-Linux/</id>
-    <published>2015-02-15T22:39:31.000Z</published>
+    <published>2015-02-16T00:39:31.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p><a href="https://wiki.archlinux.org/index.php/yaourt" target="_blank" rel="external">Yaourt</a> is probably the best tool to automatically download and install packages from the <a href="https://aur.archlinux.org/" target="_blank" rel="external">Arch User Repository</a>, also known as AUR. It’s really powerful; however, by default, it prompts you a <strong>LOT</strong> for confirmations of different things, such as checking if you want to install something, if you want to edit the <code>PKGBUILD</code>, etc. As a result, Yaourt is pretty annoying if you’re used to the hands-free nature of most other package managers.</p>
 <p>As it turns out, there is a file you can create called <code>~/.yaourtrc</code> that can change the behavior of Yaourt.</p>
 <p>To turn off all of the prompts, type the following into a new file called <code>~/.yaourtrc</code>:</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="setting">NOCONFIRM=<span class="value"><span class="number">1</span></span></span></span><br><span class="line"><span class="setting">BUILD_NOCONFIRM=<span class="value"><span class="number">1</span></span></span></span><br><span class="line"><span class="setting">EDITFILES=<span class="value"><span class="number">0</span></span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NOCONFIRM=1&#10;BUILD_NOCONFIRM=1&#10;EDITFILES=0</span><br></pre></td></tr></table></figure>
 <p>The first line will skip the messages confirming if you really want to install the package.</p>
 <p>The second line will skip the messages asking you if you want to continue the build.</p>
 <p>The third and last line will skip the messages asking if you want to edit the <code>PKGBUILD</code> files.</p>
@@ -188,7 +224,7 @@
     <title><![CDATA[Why hard work doesn't matter]]></title>
     <link href="https://simplyian.com/2015/02/03/Why-hard-work-doesn-t-matter/"/>
     <id>https://simplyian.com/2015/02/03/Why-hard-work-doesn-t-matter/</id>
-    <published>2015-02-03T16:47:19.000Z</published>
+    <published>2015-02-03T18:47:19.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p><strong>Hard work pays off.</strong> That expression is always said in today’s society, and it’s considered a good trait to have. However, many people every day work hard, yet they still find themselves struggling to pay bills or live.</p>
 <p>I don’t believe that hard work is what you should strive for. Rather, it should be <strong>valuable work.</strong></p>
@@ -212,7 +248,7 @@
     <title><![CDATA[Why abstraction is important when constructing algorithms]]></title>
     <link href="https://simplyian.com/2015/02/02/Why-abstraction-is-important-when-constructing-algorithms/"/>
     <id>https://simplyian.com/2015/02/02/Why-abstraction-is-important-when-constructing-algorithms/</id>
-    <published>2015-02-02T15:09:16.000Z</published>
+    <published>2015-02-02T17:09:16.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p>In order to get better at algorithms (my greatest weakness), I’m currently going through the <a href="https://www.coursera.org/course/algo" target="_blank" rel="external">Stanford algorithm design course</a>. To learn the concepts better, I decided to implement <a href="http://en.wikipedia.org/wiki/Karatsuba_algorithm" target="_blank" rel="external">Karatsuba multiplication</a> in JavaScript. <a href="https://github.com/simplyianm/node-misc-problems/blob/master/src/karatsuba.js" target="_blank" rel="external">(The fruits of my labor can be found on my miscellaneous algorithm GitHub repository.)</a>.</p>
 <p><strong>This algorithm, only 43 lines, took me about an hour to code.</strong> I already knew the details of the algorithm from the video. Why? Because I was prepending the wrong number of zeroes to the number when figuring out where to split the number.</p>
@@ -233,7 +269,7 @@
     <title><![CDATA[The real reason why Caps Lock and Escape are in terrible positions]]></title>
     <link href="https://simplyian.com/2015/01/08/The-real-reason-why-Caps-Lock-and-Escape-are-in-terrible-positions/"/>
     <id>https://simplyian.com/2015/01/08/The-real-reason-why-Caps-Lock-and-Escape-are-in-terrible-positions/</id>
-    <published>2015-01-08T19:41:08.000Z</published>
+    <published>2015-01-08T21:41:08.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p>It is a truth universally acknowledged that <strong>the Caps Lock key is completely useless.</strong> I use it about once or twice a year, and that definitely does not warrant it a spot right next to my pinky finger on the home row. It’s in a place that is just as convenient as the Enter key, despite being completely useless.</p>
 <p>Conversely, the Escape key is extremely useful. I use it when watching full screen videos on YouTube, closing chats on Facebook, and using commands in Vim. However, it often is in the worst spot possible to be used extremely frequently: the top left of the keyboard. And on many laptops, it’s tiny.</p>
@@ -252,7 +288,7 @@
 <p>This is an incredibly convenient position. You don’t have to move your hand in order to hit the key, and the key is big, unlike the tiny squares on a current laptop keyboard. It’s too bad that keyboards aren’t built like that today.</p>
 <h2 id="Solutions?">Solutions?</h2><p>On Chromebooks, you can change your keyboard settings to map the “Search” button to the Escape key.</p>
 <p>The easiest and cheapest solution is to swap Caps Lock and Escape. On systems running the X Window System, you can put the following into <code>~/.Xmodmap</code>.</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">! Swap caps <span class="operator"><span class="keyword">lock</span> <span class="keyword">and</span> <span class="keyword">escape</span></span><br><span class="line">remove <span class="keyword">Lock</span> = Caps_Lock</span><br><span class="line">keysym <span class="keyword">Escape</span> = Caps_Lock</span><br><span class="line">keysym Caps_Lock = <span class="keyword">Escape</span></span><br><span class="line"><span class="keyword">add</span> <span class="keyword">Lock</span> = Caps_Lock</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">! Swap caps lock and escape&#10;remove Lock = Caps_Lock&#10;keysym Escape = Caps_Lock&#10;keysym Caps_Lock = Escape&#10;add Lock = Caps_Lock</span><br></pre></td></tr></table></figure>
 <p>There are many other solutions on how to do this, but the above is the one I currently use as a Linux user.</p>
 <p>However, you still have the issue of mislabeled keys. Additionally, this fix does not work on Windows.</p>
 <p>There are several keyboards out there that you can purchase that have the keys in a nice spot, e.g. the <a href="http://www.amazon.com/gp/product/B000EXZ0VC/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=390957&amp;creativeASIN=B000EXZ0VC&amp;linkCode=as2&amp;tag=colleged07a-20&amp;linkId=NZT5S47X3O26UYYH" target="_blank" rel="external">Happy Hacking Keyboard</a>. However, they’re usually a bit expensive as they’re produced in very limited quantities due to the low demand.</p>
@@ -270,7 +306,7 @@
     <title><![CDATA[Hacking Gmail to use custom domains for free]]></title>
     <link href="https://simplyian.com/2015/01/07/Hacking-GMail-to-use-custom-domains-for-free/"/>
     <id>https://simplyian.com/2015/01/07/Hacking-GMail-to-use-custom-domains-for-free/</id>
-    <published>2015-01-07T19:00:22.000Z</published>
+    <published>2015-01-07T21:00:22.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p>It’s pretty much common knowledge that Gmail is awesome. It’s fast, connects seamlessly with the rest of your Google services such as Drive, has a cool app called <a href="http://www.google.com/inbox/" target="_blank" rel="external">Inbox</a>, and is overall an extremely powerful email service. However, to use it with a custom domain, you need to purchase <a href="https://www.google.com/work/apps/business/" target="_blank" rel="external">Google Apps</a> for either $5 or $10/month, which for casual users is a bit unnecessary. On top of that, you don’t even get all of the features a personal account gets, e.g. Inbox.</p>
 <p>However, there’s a free way to use your Gmail account with a custom domain: <a href="https://mailgun.com/" target="_blank" rel="external">Mailgun</a>.</p>
@@ -322,38 +358,38 @@
     <title><![CDATA[Creating a Todo app on the MEAN stack using Preston]]></title>
     <link href="https://simplyian.com/2014/12/20/Creating-a-Todo-app-on-the-MEAN-stack-using-Preston/"/>
     <id>https://simplyian.com/2014/12/20/Creating-a-Todo-app-on-the-MEAN-stack-using-Preston/</id>
-    <published>2014-12-21T00:34:19.000Z</published>
+    <published>2014-12-21T02:34:19.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p><a href="http://prestonjs.com" target="_blank" rel="external">Preston</a> is an extremely powerful library for creating RESTful applications that use Mongoose models. In this tutorial, I’ll be hooking up the <a href="http://todomvc.com/examples/angularjs/#/" target="_blank" rel="external">AngularJS TodoMVC app</a> to a Preston-powered backend.</p>
 <p>First, I’ve created a repo that is based off of the AngularJS Todo app. You can clone the first step like so:</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone <span class="string">https:</span><span class="comment">//github.com/simplyianm/todomvc-preston-angular.git</span></span><br><span class="line">git checkout angular</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/simplyianm/todomvc-preston-angular.git&#10;git checkout angular</span><br></pre></td></tr></table></figure>
 <p>This is the TodoMVC app with a few changes for simplicity:</p>
 <ol>
 <li>It uses a CDN rather than Bower.</li>
 <li>It uses Express to serve the app rather than being static HTML. This makes the differences between pure Angular to Angular+Preston much more pronounced.</li>
 </ol>
 <h2 id="Backend">Backend</h2><p>To create our backend, we must first install Mongoose, Preston, and <a href="https://github.com/expressjs/body-parser" target="_blank" rel="external">body-parser</a> like so:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> <span class="comment">--save preston mongoose</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save preston mongoose</span><br></pre></td></tr></table></figure>
 <p>Once this is done, we’re ready to start writing the code for our app. We’ll write all of our backend code in <code>app.js</code>. First, let’s require Mongoose and Preston, so we can use them in our code.</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="reserved">var</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"><span class="reserved">var</span> preston = <span class="built_in">require</span>(<span class="string">'preston'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var mongoose = require(&#39;mongoose&#39;);&#10;var preston = require(&#39;preston&#39;);</span><br></pre></td></tr></table></figure>
 <p>Next, let’s connect to our MongoDB database. I’m using MongoHQ since this will be on Heroku, but you can use whatever MongoDB database you want.</p>
-<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongoose.connect(process.<span class="keyword">env</span>.MONGOHQ_URL || <span class="string">'mongodb://localhost:27017'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongoose.connect(process.env.MONGOHQ_URL || &#39;mongodb://localhost:27017&#39;);</span><br></pre></td></tr></table></figure>
 <p>Once Mongoose is connected, let’s define our model for our todos. We can define it like so:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Todo = mongoose.model(<span class="string">'Todo'</span>, <span class="keyword">new</span> mongoose.Schema(&#123;</span><br><span class="line">  title: <span class="built_in">String</span>,</span><br><span class="line">  completed: <span class="built_in">Boolean</span></span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var Todo = mongoose.model(&#39;Todo&#39;, new mongoose.Schema(&#123;&#10;  title: String,&#10;  completed: Boolean&#10;&#125;));</span><br></pre></td></tr></table></figure>
 <p>Next, let’s add Preston into this. There are only three lines of code needed to create a fully functional JSON RESTful backend with Preston:</p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="keyword">use</span>(<span class="keyword">require</span>(<span class="string">'body-parser'</span>).json());</span><br><span class="line">preston(Todo);</span><br><span class="line">app.<span class="keyword">use</span>(<span class="string">'/api'</span>, preston.middleware());</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(require(&#39;body-parser&#39;).json());&#10;preston(Todo);&#10;app.use(&#39;/api&#39;, preston.middleware());</span><br></pre></td></tr></table></figure>
 <p>The first line of code is required to parse the JSON request bodies which Preston depends on.</p>
 <p>The second line of code tells Preston that we want to create routes for the <code>Todo</code> model. By default, all 5 methods (query, create, get, update, destroy) are exposed with full access. *Note: if you don’t want this in your own application, Preston has the power to control what gets sent in every one of those methods. <a href="https://github.com/simplyianm/preston" target="_blank" rel="external">Read the docs</a> for more details.</p>
 <p>The last line tells Express to serve any registered models on the <code>/api</code> route. Thus, routes under <code>/api/todos</code> are created.</p>
 <p>We’re going to add one more line of code to show what routes are created, for the sake of example:</p>
-<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">preston.printRoutes<span class="literal">()</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">preston.printRoutes();</span><br></pre></td></tr></table></figure>
 <p>This just prints all generated routes, without their prefixes.</p>
 <h2 id="Frontend_(Angular)">Frontend (Angular)</h2><p>Fortunately, most of the AngularJS app is done. The TodoMVC example provides a sample connection to a sample RESTful backend (like ours). This is part of what makes Preston so powerful — <strong>it speaks the universal language of REST.</strong> There are tons of libraries out there to interface with REST: <a href="https://github.com/mgonto/restangular" target="_blank" rel="external">Restangular</a>, <a href="https://github.com/platanus/angular-restmod" target="_blank" rel="external">restmod</a>, etc.</p>
 <p>To get the frontend working, you must populate the todos list and ignore the 404 check. You can do this with the following:</p>
 <p>In <code>client/js/services/todoStorage.js</code>, make the <code>todoStorage</code> factory return the following:</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> $injector.<span class="keyword">get</span>(<span class="string">'api'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return $injector.get(&#39;api&#39;);</span><br></pre></td></tr></table></figure>
 <p>In <code>client/js/app.js</code>, make the <code>resolve.store</code> function return <code>todoStorage</code>. Furthermore, add the following to <code>TodoCtrl</code>:</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$http.get(<span class="string">'/api/todos'</span>).<span class="keyword">then</span>(<span class="function"><span class="keyword">function</span><span class="params">(data)</span></span> &#123;</span><br><span class="line">  <span class="type">data</span>.<span class="type">data</span>.map(<span class="function"><span class="keyword">function</span><span class="params">(todo)</span></span> &#123;</span><br><span class="line">    store.todos.push(todo);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$http.get(&#39;/api/todos&#39;).then(function(data) &#123;&#10;  data.data.map(function(todo) &#123;&#10;    store.todos.push(todo);&#10;  &#125;);&#10;&#125;);</span><br></pre></td></tr></table></figure>
 <p>Don’t forget to inject <code>$http</code> into the controller. <a href="https://github.com/simplyianm/todomvc-preston-angular/commit/40ddf0212a252f99dc2974b3e6c63e4c8cfe5b48" target="_blank" rel="external">The entire diff of these changes can be found here.</a> If you were too lazy to follow this tutorial, you can also type <code>git checkout master</code> into your terminal to get to the latest version.</p>
 <p>If you’re hosting the app on Heroku, you’ll also need to type <code>heroku addons:add mongohq</code> to get a database hooked up to your code.</p>
 <p>The entire backend is now hooked up to Angular with little effort. <a href="https://todomvc-preston-angular.herokuapp.com/" target="_blank" rel="external">Try it here!</a></p>
@@ -383,7 +419,7 @@
     <content type="html"><![CDATA[<p>I was having problems getting Django working with Vagrant, then I stumbled upon this <a href="http://stackoverflow.com/questions/5984217/vagrants-port-forwarding-not-working" target="_blank" rel="external">StackOverflow answer</a>.</p>
 <p>The problem with the port forwarding is not with Vagrant, but with Django itself. You need to bind to <code>0.0.0.0</code>, not <code>127.0.0.1</code>.</p>
 <p>So you’d run this command:</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">python</span> migrate.py runserver <span class="number">0.0.0.0:8000</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python migrate.py runserver 0.0.0.0:8000</span><br></pre></td></tr></table></figure>
 <p>That will fix all of your issues.</p>
 ]]></content>
     <summary type="html">
@@ -403,9 +439,9 @@
 <p>Notice the second to last keyword: by.</p>
 <p>The <code>by</code> keyword basically changes the increment of the generated for loop. Without the <code>by</code>, you’d have <code>i++</code> as the increment of your for loop. However, with the <code>by</code>, you’d instead have <code>i += 3</code> if you had <code>by 3</code>.</p>
 <p>Here’s a simple example where I am getting money out of my bank account in the form of 5 dollar bills.</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log <span class="string">"I have <span class="subst">#&#123;i&#125;</span> dollars."</span> <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span>.<span class="number">100</span>] <span class="keyword">by</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log <span class="string">"I have <span class="subst">#&#123;i&#125;</span> dollars."</span> <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">0.</span><span class="number">.100</span>] <span class="keyword">by</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
 <p>This translates to the following Javascript:</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="reserved">var</span> i;</span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt;= <span class="number">100</span>; i += <span class="number">5</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"I have "</span> + i + <span class="string">" dollars."</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var i;</span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt;= <span class="number">100</span>; i += <span class="number">5</span>) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"I have "</span> + i + <span class="string">" dollars."</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>As you can see, the increment of the loop is now 5 rather than just 1.</p>
 <p>Now the question is, are there any other hidden features of Coffeescript like this?</p>
 ]]></content>
@@ -470,7 +506,7 @@
 <p>First, navigate to your <code>apache2</code> directory and go to the <code>sites-available</code> directory within it. On my Debian system, this is at <code>/etc/apache2/sites-available/</code>. In this directory, you’ll see a bunch of files. Each one of these files is a config file that can be enabled or disabled individually; this is called a site.</p>
 <p>To set up vhosting, you should first disable the default website. Use the command <code>sudo a2dissite default</code> to do this.</p>
 <p>Next, add the rest of your websites. Here is the very simple config file I use:</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;VirtualHost *:80&gt;</span></span><br><span class="line">    <span class="keyword"><span class="common">ServerName</span></span> domain.you.want.to.use.com</span><br><span class="line">    <span class="keyword"><span class="common">DocumentRoot</span></span> /var/www/sitefiles/</span><br><span class="line">    <span class="tag">&lt;Directory /var/www/sitefiles/&gt;</span></span><br><span class="line">        <span class="keyword"><span class="common">Options</span></span> Indexes FollowSymLinks MultiViews</span><br><span class="line">        <span class="keyword"><span class="common">Order</span></span> allow,deny</span><br><span class="line">        <span class="keyword"><span class="common">Allow</span></span> from <span class="literal">all</span></span><br><span class="line">    <span class="tag">&lt;/Directory&gt;</span></span><br><span class="line"><span class="tag">&lt;/VirtualHost&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;VirtualHost *:80&#62;&#10;    ServerName domain.you.want.to.use.com&#10;    DocumentRoot /var/www/sitefiles/&#10;    &#60;Directory /var/www/sitefiles/&#62;&#10;        Options Indexes FollowSymLinks MultiViews&#10;        Order allow,deny&#10;        Allow from all&#10;    &#60;/Directory&#62;&#10;&#60;/VirtualHost&#62;</span><br></pre></td></tr></table></figure>
 <p>Save this to a file with the name of the site, no extension. I named my site <code>screenshots</code> for example.</p>
 <p>Obviously, replace <code>domain.you.want.to.use.com</code> with the domain you want to use for the website. (For my screenshot website, this is <code>s.giza.us</code>.) The document root is the folder that contains the files at the root of your website. For me that’s <code>/var/www/screenshots</code>.</p>
 <p>Lastly, type <code>sudo a2ensite sitename</code> where <code>sitename</code> is whatever you named that file. Then, restart apache with <code>sudo service apache2 restart</code>, and all is well. For any additional domains, create more config files with that information, replacing all of the relevant stuff. Enjoy your awesome new vhosted website!</p>
@@ -492,7 +528,7 @@
     <published>2014-04-11T04:00:18.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p>In a <a href="https://github.com/simplyianm/bukkit-bootstrap" target="_blank" rel="external">recent project</a>, I wanted to use SnakeYAML in my Gradle build script. This is pretty easy to do; all you have to do is add the following to your script:</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">buildscript</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        mavenCentral()</span><br><span class="line">        <span class="comment">// ...etc</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">dependencies</span> &#123;</span><br><span class="line">        <span class="keyword">classpath</span> <span class="keyword">group</span>: <span class="string">'org.yaml'</span>, name: <span class="string">'snakeyaml'</span>, version: <span class="string">'1.5'</span></span><br><span class="line">        <span class="comment">// ..etc</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;&#10;    repositories &#123;&#10;        mavenCentral()&#10;        // ...etc&#10;    &#125;&#10;&#10;    dependencies &#123;&#10;        classpath group: &#39;org.yaml&#39;, name: &#39;snakeyaml&#39;, version: &#39;1.5&#39;&#10;        // ..etc&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>This is the same as the <code>repositories {}</code> and <code>dependencies {}</code> sections of the build script. After doing this, feel free to use your libraries anywhere in your build script. Don’t forget to import the classes you use!</p>
 ]]></content>
     <summary type="html">
@@ -510,7 +546,7 @@
     <published>2014-04-05T04:39:12.000Z</published>
     <updated>2015-04-23T19:03:16.000Z</updated>
     <content type="html"><![CDATA[<p>Adding a JAR as a dependency is simple in <a href="http://gradle.org/" target="_blank" rel="external">Gradle</a>. In your <code>dependencies {}</code>, add the following line:</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile <span class="function"><span class="title">files</span><span class="params">(<span class="string">'file.jar'</span>)</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile files(&#39;file.jar&#39;)</span><br></pre></td></tr></table></figure>
 <p>Where <code>file.jar</code> is the path to the JAR from the root directory of the repository. For example, if I had <code>Dependency.jar</code> at <code>./libs/Dependency.jar</code>, I would use <code>compile files(&#39;libs/Dependency.jar&#39;)</code>.</p>
 ]]></content>
     <summary type="html">
@@ -534,30 +570,6 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>I created a tool today called <a href="https://github.com/simplyianm/up" target="_blank" rel="external">up</a>. Although it’s really simp]]>
-    </summary>
-    
-      <category term="Linux" scheme="https://simplyian.com/categories/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[How to Run a Command on Startup on Linux]]></title>
-    <link href="https://simplyian.com/2014/04/01/how-to-run-a-command-on-startup-on-linux/"/>
-    <id>https://simplyian.com/2014/04/01/how-to-run-a-command-on-startup-on-linux/</id>
-    <published>2014-04-02T04:43:26.000Z</published>
-    <updated>2015-04-23T19:03:16.000Z</updated>
-    <content type="html"><![CDATA[<p>I recently purchased a VPS to run my IRC client in. I wanted to start my IRC client in tmux on startup. The answer is simple: crontabs.</p>
-<p>Run the following command on the user you want to run the command on:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab <span class="operator">-e</span></span><br></pre></td></tr></table></figure>
-<p>This will open up the crontab of your current user. A crontab is basically a file stating a bunch of tasks that you want to run on some sort of schedule.</p>
-<p>Next, add the following text to the file:</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@reboot &lt;<span class="command"><span class="keyword">command</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>where <code>&lt;command&gt;</code> is, of course, the command you want to run. For example, on boot, I run a shell script that starts up my tmux stuff, so I have <code>@reboot /usr/ian/tmux_start.sh</code>.</p>
-<p>Pretty simple, right? Crontabs have a lot more uses that you can probably find on Google.</p>
-<p>Source: <code>man cron</code> and <code>man crontab</code>.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>I recently purchased a VPS to run my IRC client in. I wanted to start my IRC client in tmux on startup. The answer is simple: crontabs.</]]>
     </summary>
     
       <category term="Linux" scheme="https://simplyian.com/categories/Linux/"/>
