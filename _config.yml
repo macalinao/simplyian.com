@@ -82,6 +82,6 @@ exclude_generator:
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/simplyianm/simplyian.com.git
+  repo: git@github.com:simplyianm/simplyian.com.git
   branch: gh-pages
   message: Deploy
