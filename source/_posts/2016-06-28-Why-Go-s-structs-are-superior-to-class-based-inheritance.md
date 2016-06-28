@@ -5,9 +5,7 @@ tags:
 - Go
 ---
 
-When people first try Go and learn that there are no traditional classes, they usually have a negative reaction. How can you have no classes in a modern object-oriented programming language?
-
-Go instead has two awesome features that make its model of polymorphism way more powerful than classical inheritance: interfaces and struct embedding.
+Go is unique from a lot of object-oriented languages in that it doesn't have classes. Instead, Go has two awesome features that make its model of polymorphism way more powerful than classical inheritance: interfaces and struct embedding.
 
 ## Interfaces
 
