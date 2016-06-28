@@ -2,6 +2,7 @@ title: Should you test private methods?
 date: 2016-06-28 15:22:06
 tags:
 - software
+- testing
 ---
 
 At the last place I worked, I was told not to test private methods since it was an “implementation detail”. Some of these methods involved complex math or tons of branching.
