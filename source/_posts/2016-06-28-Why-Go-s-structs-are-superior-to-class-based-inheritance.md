@@ -93,7 +93,7 @@ func main() {
 
 This calls the `Name` method on the embedded `*Dog` to do this.
 
-Side note: even though we didn't initialize the `\*Dog`, we won't get a null pointer exception here. This is because `\*Dog#name` doesn't access any struct attributes. Nifty, huh?
+Side note: even though we didn't initialize the `*Dog`, we won't get a null pointer exception here. This is because `*Dog#name` doesn't access any struct attributes. Nifty, huh?
 
 Now what if we do something like this:
 
