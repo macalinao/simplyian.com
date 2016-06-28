@@ -145,7 +145,7 @@ You need to inherit all behavior from base classes in a class based inheritance 
 
 ## Favor composition over inheritance
 
-There is a famous statement in object oriented programming to [favor composition over inheritance][https://en.wikipedia.org/wiki/Composition_over_inheritance]. Making complex, multi-tiered class inheritance structures is a bad idea in general, as it makes your code more resistance to change.
+There is a famous statement in object oriented programming to [favor composition over inheritance](https://en.wikipedia.org/wiki/Composition_over_inheritance). Making complex, multi-tiered class inheritance structures is a bad idea in general, as it makes your code more resistance to change.
 
 With composition, you can pick different features rather than classes. You can compose your Brick of Block and Unburnable rather than making changes to a rigid class hierarchy. Class inheritance forces you to use an existing structure that may not be the best for your use case.
 
