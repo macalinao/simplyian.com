@@ -65,7 +65,14 @@ type PartyAnimal interface {
 }
 ```
 
-This defines an interface `PartyAnimal` which must satisfy all methods of Animal on top of satisfying `Party()`.
+This defines an interface `PartyAnimal` which must satisfy all methods of Animal on top of satisfying `Party()`, thus the following is equivalent:
+
+```go
+type PartyAnimal interface {
+    Name() string
+    Party()
+}
+```
 
 ## Struct embedding
 
