@@ -73,7 +73,9 @@ Let's try a different one: `Sun, 10 Jul 2016 18:43:00`. Try to do both this time
 
 In strftime: `%a, %e %b %Y %H:%M:%S`.
 
-In Go: `Mon, 02 Jan 2006 15:04:05`. You probably didn't know you were supposed to use `Mon` -- just remember Go does the most obvious thing, which should have been the first day of the week internationally. You can just remember the RFC3339 string `Mon, 02 Jan 2006 15:04:05 -0700` to remember what the placeholders are.
+In Go: `Mon, 02 Jan 2006 15:04:05`.
+
+You probably didn't know you were supposed to use `Mon` -- just remember Go does the most obvious thing, which should have been the first day of the week internationally. You can just remember the RFC3339 string `Mon, 02 Jan 2006 15:04:05 -0700` to remember what the placeholders are.
 
 Which one was easier to come up with? Chances are you had to read through a long man page of some sort to figure out the first one. No wonder websites like [For a Good Strftime](http://www.foragoodstrftime.com/) exist!
 
