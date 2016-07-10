@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://simplyian.com/"/>
-  <updated>2016-07-10T19:03:50.000Z</updated>
+  <updated>2016-07-10T19:04:10.000Z</updated>
   <id>https://simplyian.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://simplyian.com/2016/07/10/How-Go-solves-date-and-time-formatting/"/>
     <id>https://simplyian.com/2016/07/10/How-Go-solves-date-and-time-formatting/</id>
     <published>2016-07-10T18:25:41.000Z</published>
-    <updated>2016-07-10T19:03:50.000Z</updated>
+    <updated>2016-07-10T19:04:10.000Z</updated>
     
     <content type="html">&lt;p&gt;Recently, I’ve had the &lt;a href=&quot;http://www.dadhacker.com/blog/?p=1585&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pleasure&lt;/a&gt; of working with date and time in a side project written in Go.&lt;/p&gt;
 &lt;p&gt;I had to parse some dates in YYYY-mm-dd (ISO 8601) format. I read the &lt;a href=&quot;https://golang.org/pkg/time/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Go documentation&lt;/a&gt; on the &lt;code&gt;time&lt;/code&gt; package and found the &lt;code&gt;time.Parse&lt;/code&gt; method. The examples were really weird:&lt;/p&gt;
@@ -43,7 +43,8 @@
 &lt;p&gt;Now, how would you write this in Go? Remember the 1, 2, 3, 4, 5, 6 mnemonic. The answer is &lt;code&gt;01/02/2006 15:04PM&lt;/code&gt;. (15 since we’re using 24 hour time, and that is 3PM). You just need to memorize 7 numbers and what they mean and you’ll be able to format any date.&lt;/p&gt;
 &lt;p&gt;Let’s try a different one: &lt;code&gt;Sun, 10 Jul 2016 18:43:00&lt;/code&gt;. Try to do both this time.&lt;/p&gt;
 &lt;p&gt;In strftime: &lt;code&gt;%a, %e %b %Y %H:%M:%S&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;In Go: &lt;code&gt;Mon, 02 Jan 2006 15:04:05&lt;/code&gt;. You probably didn’t know you were supposed to use &lt;code&gt;Mon&lt;/code&gt; – just remember Go does the most obvious thing, which should have been the first day of the week internationally. You can just remember the RFC3339 string &lt;code&gt;Mon, 02 Jan 2006 15:04:05 -0700&lt;/code&gt; to remember what the placeholders are.&lt;/p&gt;
+&lt;p&gt;In Go: &lt;code&gt;Mon, 02 Jan 2006 15:04:05&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You probably didn’t know you were supposed to use &lt;code&gt;Mon&lt;/code&gt; – just remember Go does the most obvious thing, which should have been the first day of the week internationally. You can just remember the RFC3339 string &lt;code&gt;Mon, 02 Jan 2006 15:04:05 -0700&lt;/code&gt; to remember what the placeholders are.&lt;/p&gt;
 &lt;p&gt;Which one was easier to come up with? Chances are you had to read through a long man page of some sort to figure out the first one. No wonder websites like &lt;a href=&quot;http://www.foragoodstrftime.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;For a Good Strftime&lt;/a&gt; exist!&lt;/p&gt;
 &lt;p&gt;You may be a Java programmer. Honestly, I think &lt;a href=&quot;http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SimpleDateFormat&lt;/a&gt; is just as bad. Try this exercise with this instead of strftime and see the results.&lt;/p&gt;
 &lt;p&gt;While unconventional, Go does time and date formatting really well. Yet another reason why Go is an amazing language.&lt;/p&gt;

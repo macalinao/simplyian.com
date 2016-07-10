@@ -1793,7 +1793,8 @@
 <p>Now, how would you write this in Go? Remember the 1, 2, 3, 4, 5, 6 mnemonic. The answer is <code>01/02/2006 15:04PM</code>. (15 since we’re using 24 hour time, and that is 3PM). You just need to memorize 7 numbers and what they mean and you’ll be able to format any date.</p>
 <p>Let’s try a different one: <code>Sun, 10 Jul 2016 18:43:00</code>. Try to do both this time.</p>
 <p>In strftime: <code>%a, %e %b %Y %H:%M:%S</code>.</p>
-<p>In Go: <code>Mon, 02 Jan 2006 15:04:05</code>. You probably didn’t know you were supposed to use <code>Mon</code> – just remember Go does the most obvious thing, which should have been the first day of the week internationally. You can just remember the RFC3339 string <code>Mon, 02 Jan 2006 15:04:05 -0700</code> to remember what the placeholders are.</p>
+<p>In Go: <code>Mon, 02 Jan 2006 15:04:05</code>.</p>
+<p>You probably didn’t know you were supposed to use <code>Mon</code> – just remember Go does the most obvious thing, which should have been the first day of the week internationally. You can just remember the RFC3339 string <code>Mon, 02 Jan 2006 15:04:05 -0700</code> to remember what the placeholders are.</p>
 <p>Which one was easier to come up with? Chances are you had to read through a long man page of some sort to figure out the first one. No wonder websites like <a href="http://www.foragoodstrftime.com/" target="_blank" rel="external">For a Good Strftime</a> exist!</p>
 <p>You may be a Java programmer. Honestly, I think <a href="http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html" target="_blank" rel="external">SimpleDateFormat</a> is just as bad. Try this exercise with this instead of strftime and see the results.</p>
 <p>While unconventional, Go does time and date formatting really well. Yet another reason why Go is an amazing language.</p>
