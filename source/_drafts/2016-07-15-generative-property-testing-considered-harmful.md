@@ -7,7 +7,7 @@ There has been a small movement to employ generative property testing in test su
 
 ## What is property testing?
 
-Property testing serves to [check your work][check-your-work] thousands of times in many ways by generating many random values and ensuring that they all meet certain invariants. Property does not refer to an attribute on an object, but it refers to an invariant, like a mathematical property.
+Property testing serves to [check your work][check-your-work] thousands of times in many ways by generating many random values and ensuring that they all meet certain invariants. To the non-functional programmers: "property" does not refer to an attribute on an object, but it refers to an invariant, like a mathematical property.
 
 For example, let's test a string reversal function:
 
