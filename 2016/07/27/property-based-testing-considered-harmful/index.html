@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Archives: 2010/12 | Simply Ian</title>
+  <title>Property-based testing considered harmful | Simply Ian</title>
   <meta name="description" content="A blog on software, technology, and life." />
   <meta name="HandheldFriendly" content="True" />
   <meta name="MobileOptimized" content="320" />
@@ -13,6 +13,9 @@
   <link rel="stylesheet" type="text/css" href="/css/screen.css" />
   <meta name="generator" content="Simply Ian">
 
+  
+  <meta name="description" content="There has been a small movement to employ property-based testing in test suites, which is very dangerous...." />
+  <meta name="og:description" content="There has been a small movement to employ property-based testing in test suites, which is very dangerous...." />
   
 
   
@@ -1736,7 +1739,7 @@
                 
                 <div id="nav-container">
                     <div class="post-navbar" style="line-height: 63px;display:none">
-                        <li id="navbar-title"><a href="#">undefined</a></li>
+                        <li id="navbar-title"><a href="#">Property-based testing considered harmful</a></li>
                         <li id="navbar-toc" style="border-left: none">
                             <a style="padding-right: 15px">
                                 <span id="toc-content" >Introduction</span><i class="fa fa-chevron-down" ></i>
@@ -1755,64 +1758,129 @@
 
 
 <!-- -->
-<!--<body class="home-template">-->
+<!--<body class="post-template">-->
 <!---->
   
+
 <main class="content" role="main">
+  <article class="post" >
+    <div class="post-time">
+      <span class="fa fa-clock-o"></span>
+      <time datetime="2016-07-27T17:27:11.000Z"
+                itemprop="datePublished">Jul 27 2016</time>
+    </div>
+    <h1 class="post-title" style="margin: 14px 0;color:#50585D">Property-based testing considered harmful</h1>
+    <div class="share-links">
+      <div class="share-twitter">
+        <a class="twitter-share-button" href="https://twitter.com/share">Tweet</a>
+      </div>
+      <div class="share-facebook">
+        <iframe src="https://www.facebook.com/plugins/like.php?href=https://simplyian.com/2016/07/27/property-based-testing-considered-harmful/&layout=button_count" style="overflow:hidden;width:100%;height:20px;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+      </div>
+    </div>
 
-    
-    <article class="post">
+    <section class="post-content">
+      <p>There has been a small movement to employ property-based testing in test suites, which is very dangerous.</p>
+<p>For those who haven’t heard of this, property-based testing is a testing methodology which employs <strong>generative testing</strong> of a large set of values to test properties[1] that your functions should hold. That is, it runs your function randomly and makes sure the output makes sense.</p>
+<p>You can also think of this as <a href="https://blog.8thlight.com/connor-mendenhall/2013/10/31/check-your-work.html" target="_blank" rel="external">checking your work</a> (like in high school math class) thousands of times with all sort of inputs.</p>
+<p>Take the following test of a string reversal function:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">'should reverse'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> expected = <span class="string">"mada m'i madam"</span>;</span><br><span class="line">    <span class="keyword">var</span> result = reverse(<span class="string">"madam i'm adam"</span>)</span><br><span class="line">    t.assertEqual(expected, result);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>With a property test, you may have something that looks like this:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">'reverse should be reverse'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">t</span>) </span>&#123;</span><br><span class="line">    generateStrings(<span class="function"><span class="keyword">function</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">      t.assert(reverse(reverse(str)) === str)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>The idea is that this function will be run thousands of times to catch weird, random edge cases.</p>
+<p>One of the earliest instances of property-based testing is <a href="https://wiki.haskell.org/Introduction_to_QuickCheck1" target="_blank" rel="external">QuickCheck</a>, which is popular in Haskell. Since recently, many variants have spawned for modern languages, including <a href="https://github.com/jsverify/jsverify" target="_blank" rel="external">JSVerify</a> for JavaScript.</p>
+<h2 id="Why-do-people-use-this"><a href="#Why-do-people-use-this" class="headerlink" title="Why do people use this?"></a>Why do people use this?</h2><p>From the README of <a href="https://github.com/TheSeamau5/elm-check" target="_blank" rel="external">elm-check</a>, a property-based testing framework for the Elm programming language:</p>
+<blockquote>
+<p>1) Writing assertions is a very boring and tedious process.<br>2) More often than not, the inputs chosen to test are completely arbitrary and may give little insight to the correctness of your system.<br>3) Even if a unit test did fail, the failed unit may or may not be helpful to diagnose your problem.</p>
+</blockquote>
+<p>These all sound like plausible arguments, but there are a few major problems that make this testing methodology unfeasible.</p>
+<h2 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h2><h3 id="Test-results-are-non-deterministic"><a href="#Test-results-are-non-deterministic" class="headerlink" title="Test results are non-deterministic"></a>Test results are non-deterministic</h3><p>Non-deterministic tests, also known as flaky, flappy, and random tests, should be avoided in a codebase.</p>
+<p>According to <a href="http://martinfowler.com/articles/nonDeterminism.html" target="_blank" rel="external">Martin Fowler</a>, the primary benefit of automated tests is to “provide bug detection mechanism by acting as regression tests”. When a non-deterministic test goes red, you aren’t sure if you broke something or if it’s just the non-determinism of the test that is causing problems.</p>
+<p>Fowler has a lot of great arguments as to why non-deterministic tests are bad – <a href="http://martinfowler.com/articles/nonDeterminism.html" target="_blank" rel="external">you should read his article on this</a>.</p>
+<h3 id="It’s-harder-to-cover-edge-cases"><a href="#It’s-harder-to-cover-edge-cases" class="headerlink" title="It’s harder to cover edge cases"></a>It’s harder to cover edge cases</h3><p>Take the following function.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (str === <span class="string">'magic'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> str;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> reverse(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Let’s say your search space is all strings. If you never pass in the string ‘magic’, an entire code path will never get triggered.</p>
+<p>Obviously this is a very simple example, but one can imagine a case where a very specific input can cause a detrimental bug to be triggered. Property testing forces you to think about solely the larger picture, not the individual code paths.</p>
+<blockquote>
+<p>“But you can write test cases to cover these things?”</p>
+</blockquote>
+<p>Sure, but you need to find the edge cases in the first place to do this. If you only consider property testing in your initial test suite, you may never trigger the edge case in your generative tests.</p>
+<h3 id="Slower"><a href="#Slower" class="headerlink" title="Slower"></a>Slower</h3><p>Your tests will inevitably run slower if you’re running each function 10,000 times instead of once. Test speed is very important for a great feedback loop when practicing TDD or fixing a bug.</p>
+<h3 id="You-have-to-think-harder"><a href="#You-have-to-think-harder" class="headerlink" title="You have to think harder"></a>You have to think harder</h3><p>Writing tests shouldn’t force you to think hard about all the different invariants your Fibonnacci function must hold for it to be correct. We are software engineers before we are mathematicians.</p>
+<p>An algorithm can be defined by expected inputs and expected outputs. Thinking of generative tests that prove correctness is hard, as it forces you to reason about how your algorithm should respond rather than how your algorithm works. With unit testing, you test specific classes of inputs and outputs to cover known code paths rather than trying to come up with everything.</p>
+<p>Furthermore, tests should be documentation. It’s easy to think “this function should always satisfy this property” rather than “when I use this function, the result should satisfy x y z.”</p>
+<h2 id="A-possible-solution-Table-driven-testing"><a href="#A-possible-solution-Table-driven-testing" class="headerlink" title="A possible solution: Table-driven testing"></a>A possible solution: Table-driven testing</h2><p>This is in response to the first bullet point made by the author of <a href="https://github.com/TheSeamau5/elm-check" target="_blank" rel="external">elm-check</a></p>
+<blockquote>
+<p>1) Writing assertions is a very boring and tedious process.</p>
+</blockquote>
+<p><a href="https://github.com/golang/go/wiki/TableDrivenTests" target="_blank" rel="external">Table-driven tests</a> are fast to write, add a ton of test cases with litle code, and are most importantly deterministic.</p>
+<p>Below is an example taken directly from the above link:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`var flagtests = []struct &#123;</span><br><span class="line">    in  string</span><br><span class="line">    out string</span><br><span class="line">&#125;&#123;</span><br><span class="line">    &#123;"%a", "[%a]"&#125;,</span><br><span class="line">    &#123;"%-a", "[%-a]"&#125;,</span><br><span class="line">    &#123;"%+a", "[%+a]"&#125;,</span><br><span class="line">    &#123;"%#a", "[%#a]"&#125;,</span><br><span class="line">    &#123;"% a", "[% a]"&#125;,</span><br><span class="line">    &#123;"%0a", "[%0a]"&#125;,</span><br><span class="line">    &#123;"%1.2a", "[%1.2a]"&#125;,</span><br><span class="line">    &#123;"%-1.2a", "[%-1.2a]"&#125;,</span><br><span class="line">    &#123;"%+1.2a", "[%+1.2a]"&#125;,</span><br><span class="line">    &#123;"%-+1.2a", "[%+-1.2a]"&#125;,</span><br><span class="line">    &#123;"%-+1.2abc", "[%+-1.2a]bc"&#125;,</span><br><span class="line">    &#123;"%-1.2abc", "[%-1.2a]bc"&#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func TestFlagParser(t *testing.T) &#123;</span><br><span class="line">    var flagprinter flagPrinter</span><br><span class="line">    for _, tt := range flagtests &#123;</span><br><span class="line">        s := Sprintf(tt.in, &amp;flagprinter)</span><br><span class="line">        if s != tt.out &#123;</span><br><span class="line">            t.Errorf("Sprintf(%q, &amp;flagprinter) =&gt; %q, want %q", tt.in, s, tt.out)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>The test is rather terse for the amount of code it is testing. I am convinced that this is one of the better testing strategies, as it minimizes copy and paste and is easy to extend.</p>
+<h2 id="Using-property-based-tests-without-compromising-determinism"><a href="#Using-property-based-tests-without-compromising-determinism" class="headerlink" title="Using property-based tests without compromising determinism"></a>Using property-based tests without compromising determinism</h2><p>You can write separate “generative” fuzz tests, but don’t make them part of your main test suite.</p>
+<p>Go makes this easy with <code>testing.B</code> – they are meant to serve as benchmarks but actually run you code thousands of times. Perfect for fuzz testing and doesn’t interfere with your tests.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Generative testing looks cool and new, but it doesn’t mean it’s good. It may be a great supplement, but you should not consider it part of your main test suite.</p>
+<h2 id="Additional-reading"><a href="#Additional-reading" class="headerlink" title="Additional reading"></a>Additional reading</h2><ul>
+<li><a href="https://www.schoolofhaskell.com/user/pbv/an-introduction-to-quickcheck-testing" target="_blank" rel="external">https://www.schoolofhaskell.com/user/pbv/an-introduction-to-quickcheck-testing</a></li>
+<li><a href="http://ferd.ca/property-based-testing-basics.html" target="_blank" rel="external">http://ferd.ca/property-based-testing-basics.html</a></li>
+</ul>
+<p>1: To the non-functional programmers: “property” does not refer to an attribute on an object, but it refers to an invariant, like a mathematical property. For example, sqrt(x) &gt; 0 is a property that must always hold if we are dealing with real numbers.</p>
 
-        <header class="post-header">
-          <div class="post-time">
-            <span class="fa fa-clock-o"></span>
-            <time datetime="2010-12-13T09:56:23.000Z"
-                      itemprop="datePublished">Dec 13 2010</time>
-          </div>
-          <h1 class="post-title"><a data-pjax href="/2010/12/13/the-ultimate-guide-to-studying/">The Ultimate Guide to Studying</a></h1>
-        </header>
-        <section class="post-excerpt">
-          <p>
-            
-              <p>[caption id="attachment_814" align="alignleft" width="208" caption="Some Owl Dude doing Intense Studying"]<a href="http://i.dcritic.com/wp-content/uploads/2010/11/studying.gif"><img class="size-full wp-image-814 " title="Owl Dude Studying" src="/assets/studying.gif" alt="Owl Dude Studying" width="208" height="217" /></a>[/caption]</p>
-<p><span class="drop_cap">"I</span> can't study.<br />
-"Studying is so hard!"<br />
-"When I'm studying, I fall asleep."<br />
-"How to study?"<br />
-"Google: Things to do when you are bored."<br />
-"Facebook prevents me from studying."<br />
-A question I am asked frequently is this: How do you make good grades? The answer is, essentially, to pay attention, study, and work hard. This answer is not sufficient for most people -- including me. In learning information, I have compiled a list of some very good ways to recall information.<br />
-            
-          </p>
-        </section>
-    </article>
-    
-    <article class="post">
+    </section>
 
-        <header class="post-header">
-          <div class="post-time">
-            <span class="fa fa-clock-o"></span>
-            <time datetime="2010-12-13T09:30:54.000Z"
-                      itemprop="datePublished">Dec 13 2010</time>
-          </div>
-          <h1 class="post-title"><a data-pjax href="/2010/12/13/achilles-sacrifices-in-the-iliad/">Achilles’ Sacrifices in The Iliad</a></h1>
-        </header>
-        <section class="post-excerpt">
-          <p>
-            
-              <p>[caption id="attachment_804" align="alignright" width="240" caption="An Interpretation of Achilles&#39; Shield"]<a rel="attachment wp-att-804" href="http://i.dcritic.com/2010/12/12/achilles-sacrifices-in-the-iliad/achilles-shield/"><img class="size-full wp-image-804  " title="Achilles' Shield" src="/assets/achilles-shield.jpg" alt="Achilles' Shield" width="240" height="240" /></a>[/caption]</p>
-<p><span class="drop_cap">T</span>raditionally, all great heroes have sacrificed one thing or another.  The Greeks, being a very anthropocentric people who worshipped the power and ability of humans, created many great works of literature of heroism, Homer being one of these great writers.  In his epic poem, <em>The Iliad</em>, Homer writes of many great heroes and warriors who would sacrifice everything to achieve kleos, immortal glory.  One of these ideal, perfect characters is Achilles, a strong, ideal male warrior who seeks to do acts of justice. Achilles sacrifices much of his former personality characterized by arrogance and becomes a new person as a whole in order to fulfill the after-death wishes of his most cherished friend, Patroclus.<br />
-            
-          </p>
-        </section>
-    </article>
-    
-    <nav class="pagination" role="pagination">
-        
-        <span class="page-number">Page 1 of 1</span>
-        
+    <hr />
+
+    <section>
+      <p>Thanks for reading my post! If you enjoyed it or it helped you, please consider liking/tweeting this page, commenting, or following me on <a href="https://github.com/simplyianm" target="_blank">GitHub</a> or <a href="https://twitter.com/simplyianm">Twitter</a>!</p>
+      <div class="share-links">
+        <div class="share-twitter">
+          <a class="twitter-share-button" href="https://twitter.com/share">Tweet</a>
+        </div>
+        <div class="share-facebook">
+          <iframe src="https://www.facebook.com/plugins/like.php?href=https://simplyian.com/2016/07/27/property-based-testing-considered-harmful/&layout=button_count" style="overflow:hidden;width:100%;height:20px;" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <nav class="pagination" style="width:auto" role="pagination">
+      
+      <a style="cursor:default" class="newer-posts" href="#">Latest Post</a>
+      
+      <a class="share-button" data-original-title title>Share this Post</a>
+      
+      <a data-pjax class="older-posts" href="/2016/07/10/How-Go-solves-date-and-time-formatting/">Next Post →</a>
+      
     </nav>
+
+    <section id="comment">
+      <div id="disqus_thread"></div>
+      <div id="comment-box"></div>
+    </section>
+
+  </article>
 </main>
+
+<script type="text/javascript">
+  window.twttr = (function(d, s, id) {
+    var t, js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+      twttr.widgets.load();
+      return
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    return window.twttr || (t = {
+      _e: [],
+      ready: function(f) {
+        t._e.push(f)
+      }
+    })
+  }(document, "script", "twitter-wjs"));
+</script>
 
 
   
